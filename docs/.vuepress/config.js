@@ -1,5 +1,5 @@
 module.exports = {
-	title: 'ISF Documenation',
+	title: 'ISF Documenation!',
   description: 'Interactive Shader Format is a file format used to describe GLSL shaders for real-time image filtering and generation.',
 	themeConfig: {
 		sidebar: {
