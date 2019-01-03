@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Audio Visualizers in ISF | ISF Documenation</title>
+    <meta name="description" content="Interactive Shader Format is a file format used to describe GLSL shaders for real-time image filtering and generation.">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Rubik:400,500">
+    
+    <link rel="preload" href="/assets/css/0.styles.e46be848.css" as="style"><link rel="preload" href="/assets/js/app.6d8aac83.js" as="script"><link rel="preload" href="/assets/js/12.e918779f.js" as="script"><link rel="prefetch" href="/assets/js/10.c8f3fa1e.js"><link rel="prefetch" href="/assets/js/11.e5e59264.js"><link rel="prefetch" href="/assets/js/13.c860494a.js"><link rel="prefetch" href="/assets/js/14.dbc4c4b9.js"><link rel="prefetch" href="/assets/js/15.062b0eec.js"><link rel="prefetch" href="/assets/js/16.e349a769.js"><link rel="prefetch" href="/assets/js/17.5ed081e1.js"><link rel="prefetch" href="/assets/js/18.4a64789d.js"><link rel="prefetch" href="/assets/js/19.ebafee6d.js"><link rel="prefetch" href="/assets/js/2.6d720a38.js"><link rel="prefetch" href="/assets/js/20.cd0ef636.js"><link rel="prefetch" href="/assets/js/21.36ff03de.js"><link rel="prefetch" href="/assets/js/22.3573e69c.js"><link rel="prefetch" href="/assets/js/23.9a215b3a.js"><link rel="prefetch" href="/assets/js/3.b812cbbc.js"><link rel="prefetch" href="/assets/js/4.8c133ff6.js"><link rel="prefetch" href="/assets/js/5.c2d76b22.js"><link rel="prefetch" href="/assets/js/6.e95f5c9b.js"><link rel="prefetch" href="/assets/js/7.15405d7b.js"><link rel="prefetch" href="/assets/js/8.55f275fb.js"><link rel="prefetch" href="/assets/js/9.34e860c3.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.e46be848.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">ISF Documenation</span></a> <div class="links" style="max-width:nullpx;"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/using_isf.html" class="nav-link">Using ISF</a></div><div class="nav-item"><a href="/quickstart.html" class="nav-link">Quickstart</a></div><div class="nav-item"><a href="/primer/" class="nav-link router-link-active">Primer</a></div><div class="nav-item"><a href="/ref/" class="nav-link">Reference</a></div><div class="nav-item"><a href="https://isf.video" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  ISF Homepage
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <div class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/using_isf.html" class="nav-link">Using ISF</a></div><div class="nav-item"><a href="/quickstart.html" class="nav-link">Quickstart</a></div><div class="nav-item"><a href="/primer/" class="nav-link router-link-active">Primer</a></div><div class="nav-item"><a href="/ref/" class="nav-link">Reference</a></div><div class="nav-item"><a href="https://isf.video" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  ISF Homepage
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div> <!----></nav>  <ul class="sidebar-links"><li><a href="/primer/primer_chapter_1.html" class="sidebar-link">Introduction</a></li><li><a href="/primer/primer_chapter_2.html" class="sidebar-link">The Anatomy of an ISF</a></li><li><a href="/primer/primer_chapter_3.html" class="sidebar-link">Using and Creating ISF Compositions</a></li><li><a href="/primer/primer_chapter_4.html" class="sidebar-link">Data Types, Standard Variables and Functions</a></li><li><a href="/primer/primer_chapter_5.html" class="sidebar-link">Vertex Shaders</a></li><li><a href="/primer/primer_chapter_6.html" class="sidebar-link">Convolution Filters</a></li><li><a href="/primer/primer_chapter_7.html" class="sidebar-link">Multi-Pass and Persistent Buffers in ISF</a></li><li><a href="/primer/primer_chapter_8.html" class="active sidebar-link">Audio Visualizers in ISF</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/primer/primer_chapter_8.html#audio-waveforms-in-isf" class="sidebar-link">Audio Waveforms in ISF</a></li><li class="sidebar-sub-header"><a href="/primer/primer_chapter_8.html#audio-fft-in-isf" class="sidebar-link">Audio FFT in ISF</a></li></ul></li><li><a href="/primer/primer_chapter_9.html" class="sidebar-link">Adapting Existing GLSL Code to the ISF Specification</a></li></ul> </div> <div class="page"> <div class="content"><h1 id="audio-visualizers-in-isf"><a href="#audio-visualizers-in-isf" aria-hidden="true" class="header-anchor">#</a> Audio Visualizers in ISF</h1> <p>Though GLSL as a language has no concept of sound data, many developers have found ways to writes audio-visualizers by converting audio into a format that can be passed to shaders.    As one of its extensions to the language, ISF includes a standard way for host software to pass in audio waveforms and FFT information for this purpose.</p> <p>In this chapter we will discuss:</p> <ul><li>How to declare audio waveform inputs for shaders in ISF.</li> <li>How to create a basic audio waveform visualizer with ISF.</li> <li>The basic idea of an audio FFT.</li> <li>How to declare audio FFT inputs for shaders in ISF.</li> <li>How to create a basic audio FFT histogram visualizer with ISF.</li></ul> <p>This chapter includes examples from the <a href="http://vidvox.net/rays_oddsnends/ISF%20tests+tutorials.zip" target="_blank" rel="noopener noreferrer">ISF Test/Tutorial filters<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a>.</p> <p>For an example of audio waveforms and FFTs used in a host application see <a href="https://vdmx.vidvox.net/tutorials/visualizing-audio-analysis-fft-and-waveforms" target="_blank" rel="noopener noreferrer">the VDMX tutorial on visualizing audio fft and waveforms<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a>.</p> <h2 id="audio-waveforms-in-isf"><a href="#audio-waveforms-in-isf" aria-hidden="true" class="header-anchor">#</a> Audio Waveforms in ISF</h2> <p>One of the ways that ISF extends GLSL is by providing a convention for working with audio waveform data.  The technique that ISF uses for passing sound information into shaders is for the host application to convert the desired raw audio samples into image data that can be accessed like any other image input.</p> <h3 id="how-audio-is-stored-in-images-in-isf"><a href="#how-audio-is-stored-in-images-in-isf" aria-hidden="true" class="header-anchor">#</a> How audio is stored in images in ISF</h3> <p>Within ISF, audio data packed into images follow the following conventions:</p> <ul><li>The width of the image is the number of provided audio samples.</li> <li>The height is the number of audio channels.</li> <li>The first audio sample temporally corresponds to the first horizontal pixel column (x = 0) in the image.</li> <li>The first audio channel corresponds to the first vertical pixel row (y = 0) in the image.</li> <li>The rgb channels for each pixel will call contain the same value, representing the amplitude of the signal at the sample time, centered around 0.5.  In other words, this will be a grayscale image.</li> <li>When possible, the host application may provide 32-bit floating point values instead of 8-bit data.</li></ul> <h3 id="declaring-audio-inputs-in-isf"><a href="#declaring-audio-inputs-in-isf" aria-hidden="true" class="header-anchor">#</a> Declaring audio inputs in ISF</h3> <p>Like with other variables and images that connect our shaders to the host application, for audio we will be adding elements to the <code>INPUTS</code> section of our JSON blob.</p> <p>To declare an &quot;audio&quot; input in the ISF JSON, there are a two required attributes (<code>TYPE</code> and <code>NAME</code>) and additional optional attributes that can be provided.</p> <ul><li>The <code>TYPE</code> attribute must be set to the string &quot;audio&quot; which specifies that the input will be sent audio waveform data from an audio source.</li> <li>Like with other inputs, you must provide a <code>NAME</code> attribute that contains a unique string that will be used to reference the provided image data in the GLSL code.</li> <li>&quot;audio&quot;-type inputs support the use of the <code>MAX</code> key- but in this context, <code>MAX</code> specifies the number of samples that the shader wants to receive.  This key is optional- if <code>MAX</code> is not defined then the shader will receive audio data with the number of samples that were provided natively.  For example, if the <code>MAX</code> of an &quot;audio&quot;-type input is defined as 1, the resulting 1-pixel-wide image is going to accurately convey the &quot;total volume&quot; of the audio wave; if you want a 4-column FFT graph, specify a <code>MAX</code> of 4 on an &quot;audioFFT&quot;-type input, etc.</li> <li>As with other elements you can include a custom <code>LABEL</code> attribute that contains a string with a human readable name for the attribute.</li></ul> <h4 id="an-example-audio-waveform-visualizer"><a href="#an-example-audio-waveform-visualizer" aria-hidden="true" class="header-anchor">#</a> An example audio waveform visualizer</h4> <p>From the &quot;ISF tests+tutorials&quot; is this simple audio visualizer shader.  In addition to the declared <code>waveImage</code> audio input is an options for setting the wave size and output display style called <code>waveSize</code>.</p> <div class="language- extra-class"><pre class="language-text"><code>/*
+{
+  &quot;CATEGORIES&quot; : [
+    &quot;Generator&quot;
+  ],
+  &quot;DESCRIPTION&quot; : &quot;Visualizes an audio waveform image&quot;,
+  &quot;INPUTS&quot; : [
+    {
+      &quot;NAME&quot; : &quot;waveImage&quot;,
+      &quot;TYPE&quot; : &quot;audio&quot;
+    },
+    {
+      &quot;NAME&quot; : &quot;waveSize&quot;,
+      &quot;TYPE&quot; : &quot;float&quot;,
+      &quot;MAX&quot; : 0.5,
+      &quot;DEFAULT&quot; : 0.05,
+      &quot;MIN&quot; : 0
+    }
+  ],
+  &quot;CREDIT&quot; : &quot;by VIDVOX&quot;
+}
+*/
+
+void main() {
+	//	just grab the first audio channel here
+	float		channel = 0.0;
+	
+	//	get the location of this pixel
+	vec2		loc = isf_FragNormCoord;
+	
+	//	though not needed here, note the IMG_SIZE function can be used to get the dimensions of the audio image
+	//vec2		audioImgSize = IMG_SIZE(waveImage);
+	
+	vec2		waveLoc = vec2(loc.x,channel);
+	vec4		wave = IMG_NORM_PIXEL(waveImage, waveLoc);
+	vec4		waveAdd = (1.0 - smoothstep(0.0, waveSize, abs(wave - loc.y)));
+	gl_FragColor = waveAdd;
+}
+</code></pre></div><p>In the code section for this basic example, the channel to visualizer is set to look at just the first audio channel.  In more complex setups you may want to add a selection menu that allows you to pick an individual channel, or write a for loop that iterates over each channel, or you may want to create a visualizer that handles multi-channel audio in some other fashion.</p> <p>Next we get the location of current pixel, in its normalized (0.0 to 1.0) format.  For this shader we will be stretching the raw audio waveform, regardless of how many pixels it is, across the entire width of the output image, so the normalized location is ideal because it can be directly fed into the <code>IMG_NORM_PIXEL</code> function without any additional scaling.</p> <p>Once the sample value for this particular x coordinate is looked up, the smoothstep() function is used along with the <code>waveSize</code> to see if the y coordinate of the current  pixel is within range of the audio sample value.</p> <h2 id="audio-fft-in-isf"><a href="#audio-fft-in-isf" aria-hidden="true" class="header-anchor">#</a> Audio FFT in ISF</h2> <h3 id="what-are-audio-ffts"><a href="#what-are-audio-ffts" aria-hidden="true" class="header-anchor">#</a> What are Audio FFTs?</h3> <p>FFT is short for &quot;Fast Fourier Transform&quot; which doesn't tell you much about what they do.  What we can take away from the name is that they are fast way to transform something and the person that came up with the idea of it was probably named Fourier.</p> <p>In general usage, FFTs rely on the idea that if you take a snapshot of any stream of data that happens &quot;over time&quot; (also known as occurring &quot;in the time domain&quot;) it can be represented as a single function that is a combination of sine waves with different amplitudes and frequencies added together.</p> <p>That is to say, for any set of 1024 numbers, you can create a function that is made up of 512 amplitude and frequency values such that:
+y(t) =  a0 * sin(f0<em>TIME) + a1 * sin(f1</em>TIME) + ... + a511 * sin(f511 * TIME);</p> <p>This concept is particularly useful when working with audio waveforms, as FFTs will tell use the amount of energy within a specific frequency range.  Each frequency section within the FFT is known as an &quot;FFT bin&quot; and the last frequency will be half the sample rate.</p> <p>Though it is interesting to learn the low level math behind how FFTs work (and how to compute them by hand), in practical use this is one area where computers are our best friends - to get an FFT from our data, all we have to do is ask politely.</p> <h3 id="declaring-audio-fft-inputs-in-isf"><a href="#declaring-audio-fft-inputs-in-isf" aria-hidden="true" class="header-anchor">#</a> Declaring Audio FFT inputs in ISF</h3> <p>Like with receiving raw audio data, FFTs are declared as part of the <code>INPUTS</code> section of the JSON blob and provided to the code as an image.</p> <p>Within ISF, audio FFT data packed into images follow the following conventions:</p> <ul><li>The width of the image is the number of provided frequency bins.  Typically this image will be a power of two in width (128, 256, 512, 1024, etc) and with the final bin representing the &quot;Nyquist frequency&quot; at the current sample rate.</li> <li>The height is the number of audio channels.</li> <li>The first frequency bin temporally corresponds to the first horizontal pixel column (x = 0) in the image.</li> <li>The first audio channel corresponds to the first vertical pixel row (y = 0) in the image.</li> <li>The rgb channels for each pixel will call contain the same value, representing the amplitude of the frequency bin during this time snapshot.  In other words, this will be a grayscale image.</li> <li>When possible, the host application may provide 32-bit floating point values instead of 8-bit data.</li></ul> <p>To declare an &quot;audioFFT&quot; input in the ISF JSON, there are a two required attributes (<code>TYPE</code> and <code>NAME</code>) and additional optional attributes that can be provided.</p> <ul><li>The <code>TYPE</code> attribute must be set to the string &quot;audioFFT&quot; which specifies that the input will be sent audio waveform data from an audio source.</li> <li>Like with other inputs, you must provide a <code>NAME</code> attribute that contains a unique string that will be used to reference the provided image data in the GLSL code.</li> <li>&quot;audioFFT&quot;-type inputs support the use of the <code>MAX</code> key- but in this context, <code>MAX</code> specifies the number of samples that the shader wants to receive.  This key is optional- if <code>MAX</code> is not defined then the shader will receive audio data with the number of samples that were provided natively.  For example, if the <code>MAX</code> of an &quot;audio&quot;-type input is defined as 1, the resulting 1-pixel-wide image is going to accurately convey the &quot;total volume&quot; of the audio wave; if you want a 4-column FFT graph, specify a <code>MAX</code> of 4 on an &quot;audioFFT&quot;-type input, etc.</li> <li>As with other elements you can include a custom <code>LABEL</code> attribute that contains a string with a human readable name for the attribute.</li></ul> <h4 id="an-example-audio-fft-visualizer"><a href="#an-example-audio-fft-visualizer" aria-hidden="true" class="header-anchor">#</a> An example Audio FFT visualizer</h4> <p>From the ISF tests+tutorials collection is this demonstration of using FFTs.  Along with the <code>audioFFT</code> element in the <code>INPUTS</code> portion of the JSON blob, several other uniform variables are declared for adjusting the gain, display range and coloring of the output.</p> <div class="language- extra-class"><pre class="language-text"><code>/*{
+	&quot;DESCRIPTION&quot;: &quot;Visualizes an FFT analysis image with custom set colors for frequency domain&quot;,
+	&quot;CREDIT&quot;: &quot;by VIDVOX&quot;,
+	&quot;ISFVSN&quot;: &quot;2&quot;,
+	&quot;CATEGORIES&quot;: [
+		&quot;Generator&quot;
+	],
+	&quot;INPUTS&quot;: [
+		{
+			&quot;NAME&quot;: &quot;fftImage&quot;,
+			&quot;TYPE&quot;: &quot;audioFFT&quot;
+		},
+		{
+			&quot;NAME&quot;: &quot;strokeSize&quot;,
+			&quot;TYPE&quot;: &quot;float&quot;,
+			&quot;MIN&quot;: 0.0,
+			&quot;MAX&quot;: 0.25,
+			&quot;DEFAULT&quot;: 0.01
+		},
+		{
+			&quot;NAME&quot;: &quot;gain&quot;,
+			&quot;TYPE&quot;: &quot;float&quot;,
+			&quot;MIN&quot;: 1.0,
+			&quot;MAX&quot;: 5.0,
+			&quot;DEFAULT&quot;: 1.0
+		},
+		{
+			&quot;NAME&quot;: &quot;minRange&quot;,
+			&quot;TYPE&quot;: &quot;float&quot;,
+			&quot;MIN&quot;: 0.0,
+			&quot;MAX&quot;: 1.0,
+			&quot;DEFAULT&quot;: 0.0
+		},
+		{
+			&quot;NAME&quot;: &quot;maxRange&quot;,
+			&quot;TYPE&quot;: &quot;float&quot;,
+			&quot;MIN&quot;: 0.0,
+			&quot;MAX&quot;: 1.0,
+			&quot;DEFAULT&quot;: 0.9
+		},
+		{
+			&quot;NAME&quot;: &quot;topColor&quot;,
+			&quot;TYPE&quot;: &quot;color&quot;,
+			&quot;DEFAULT&quot;: [
+				0.0,
+				0.0,
+				0.0,
+				0.0
+			]
+		},
+		{
+			&quot;NAME&quot;: &quot;bottomColor&quot;,
+			&quot;TYPE&quot;: &quot;color&quot;,
+			&quot;DEFAULT&quot;: [
+				0.0,
+				0.5,
+				0.9,
+				1.0
+			]
+		},
+		{
+			&quot;NAME&quot;: &quot;strokeColor&quot;,
+			&quot;TYPE&quot;: &quot;color&quot;,
+			&quot;DEFAULT&quot;: [
+				0.25,
+				0.25,
+				0.25,
+				1.0
+			]
+		}
+	]
+}*/
+
+
+
+void main() {
+	
+	vec2 loc = isf_FragNormCoord;
+	
+	loc.x = loc.x * abs(maxRange - minRange) + minRange;
+	
+	vec4 fft = IMG_NORM_PIXEL(fftImage, vec2(loc.x,0.5));
+	float fftVal = gain * (fft.r + fft.g + fft.b) / 3.0;
+	if (loc.y &gt; fftVal)
+		fft = topColor;
+	else
+		fft = bottomColor;
+	if ((strokeSize &gt; 0.0) &amp;&amp; (abs(fftVal - loc.y) &lt; strokeSize))	{
+		fft = mix(strokeColor, fft, abs(fftVal - loc.y) / strokeSize);
+	}
+	
+	gl_FragColor = fft;
+}
+</code></pre></div><p>Like with the audio waveform example, the <code>IMG_NORM_PIXEL</code> function is used to retrieve the FFT results.  In this code, before the pixel lookup happens, the <code>maxRange</code> and <code>minRange</code> uniform variables are used to adjust the range of values that will be read from the <code>fftImage</code>.</p> <p>After that the color of the output pixel varies depending on the result from the FFT for the observed bin and the y position of the <code>loc</code> variable.  If the current pixel's y position is within <code>strokeSize</code> of the <code>fftVal</code>, the output is mixed with the stroke color.</p> <h4 id="an-example-audio-fft-spectrogram-visualizer"><a href="#an-example-audio-fft-spectrogram-visualizer" aria-hidden="true" class="header-anchor">#</a> An example Audio FFT Spectrogram visualizer</h4> <p>As a final example in this chapter we will look at a shader that combines this new concept of audio FFTs with other powerful capabilities in ISF, the ability to store persistent buffers and perform multiple render passes.  This will enable us to not just look at the current FFT snapshot, we can store and display multiple FFTs over time.</p> <p>If we take our FFT data slices and visualize them over time, we are essentially creating what is known as a <a href="https://en.wikipedia.org/wiki/Spectrogram" target="_blank" rel="noopener noreferrer">Spectrogram<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a> and you may have seen them before, as they are widely used in the arts, sciences and even show up from time to time in pop-culture.  Like FFTs themselves, they can represent all kinds of data and one very common use case is audio.</p> <p>One particularly cool usage of this is from Aphex Twin in the song &quot;Equation&quot; where an image of a face is essentially encoded in the music, such that when you create a spectrogram from the FFT, the face image is revealed:</p> <p><a href="https://www.youtube.com/watch?v=M9xMuPWAZW8&t=330s" title="Equation" target="_blank" rel="noopener noreferrer"><img src="http://img.youtube.com/vi/M9xMuPWAZW8/0.jpg" alt="[Equation] - Aphex Twin Spectrogram"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></p> <p>Here is the code for making an audio FFT Spectrogram in ISF.  Note how we are making use of audioFFT inputs, multiple shader passes and persistent buffers.  Like with the previous FFT example there are added inputs for controlling the coloring of the output display.  There is also an option to reset the persistent buffer via the <code>clear</code> event.</p> <div class="language- extra-class"><pre class="language-text"><code>/*{
+	&quot;DESCRIPTION&quot;: &quot;Buffers the incoming FFTs for timed display&quot;,
+	&quot;CREDIT&quot;: &quot;by VIDVOX&quot;,
+	&quot;ISFVSN&quot;: &quot;2&quot;,
+	&quot;CATEGORIES&quot;: [
+		&quot;Generator&quot;
+	],
+	&quot;INPUTS&quot;: [
+		{
+			&quot;NAME&quot;: &quot;fftImage&quot;,
+			&quot;TYPE&quot;: &quot;audioFFT&quot;
+		},
+		{
+			&quot;NAME&quot;: &quot;clear&quot;,
+			&quot;TYPE&quot;: &quot;event&quot;
+		},
+		{
+			&quot;NAME&quot;: &quot;gain&quot;,
+			&quot;TYPE&quot;: &quot;float&quot;,
+			&quot;MIN&quot;: 0.0,
+			&quot;MAX&quot;: 2.0,
+			&quot;DEFAULT&quot;:1.0
+		},
+		{
+			&quot;NAME&quot;: &quot;range&quot;,
+			&quot;TYPE&quot;: &quot;float&quot;,
+			&quot;MIN&quot;: 0.0,
+			&quot;MAX&quot;: 1.0,
+			&quot;DEFAULT&quot;: 1.0
+		},
+		{
+			&quot;NAME&quot;: &quot;axis_scale&quot;,
+			&quot;TYPE&quot;: &quot;float&quot;,
+			&quot;MIN&quot;: 1.0,
+			&quot;MAX&quot;: 6.0,
+			&quot;DEFAULT&quot;: 1.25
+		},
+		{
+			&quot;NAME&quot;: &quot;lumaMode&quot;,
+			&quot;TYPE&quot;: &quot;bool&quot;,
+			&quot;DEFAULT&quot;: 0.0
+		},
+		{
+			&quot;NAME&quot;: &quot;color1&quot;,
+			&quot;TYPE&quot;: &quot;color&quot;,
+			&quot;DEFAULT&quot;: [
+				0.0,
+				0.5,
+				1.0,
+				1.0
+			]
+		},
+		{
+			&quot;NAME&quot;: &quot;color2&quot;,
+			&quot;TYPE&quot;: &quot;color&quot;,
+			&quot;DEFAULT&quot;: [
+				1.0,
+				0.0,
+				0.0,
+				1.0
+			]
+		},
+		{
+			&quot;NAME&quot;: &quot;color3&quot;,
+			&quot;TYPE&quot;: &quot;color&quot;,
+			&quot;DEFAULT&quot;: [
+				0.0,
+				1.0,
+				0.0,
+				1.0
+			]
+		}
+	],
+	&quot;PASSES&quot;: [
+		{
+			&quot;TARGET&quot;: &quot;fftValues&quot;,
+			&quot;DESCRIPTION&quot;: &quot;This buffer stores all of the previous fft values&quot;,
+			&quot;HEIGHT&quot;: &quot;512&quot;,
+			&quot;FLOAT&quot;: true,
+			&quot;PERSISTENT&quot;: true
+		},
+		{
+	
+		}
+	]
+    
+}*/
+
+void main()
+{
+	//    first pass- read the value from the fft image, store it in the &quot;fftValues&quot; persistent buffer
+	if (PASSINDEX==0)    {
+		//    the first column of pixels is copied from the newly received fft image
+		if (clear)	{
+			gl_FragColor = vec4(0.0);
+		}
+		else if (gl_FragCoord.x&lt;1.0)    {
+			vec2		loc = vec2(isf_FragNormCoord.y, isf_FragNormCoord.x);
+			vec4		rawColor = IMG_NORM_PIXEL(fftImage, loc);
+			gl_FragColor = rawColor;
+		}
+		//    all other columns of pixels come from the &quot;fftValues&quot; persistent buffer (we're scrolling)
+		else    {
+			gl_FragColor = IMG_PIXEL(fftValues, vec2(gl_FragCoord.x-1.0, gl_FragCoord.y));
+		}
+	}
+	//    second pass- read from the buffer of raw values, apply gain/range and colors
+	else if (PASSINDEX==1)    {
+		vec2		loc = vec2(isf_FragNormCoord.x, pow(isf_FragNormCoord.y*range, axis_scale));
+		vec4		rawColor = IMG_NORM_PIXEL(fftValues, loc);
+	
+		rawColor = rawColor * vec4(gain);
+	
+		float		mixVal = 0.0;
+		
+		if (lumaMode)	{
+			float		locus_1 = 0.20;
+			float		locus_2 = 0.50;
+			float		locus_3 = 0.75;
+	
+			if (rawColor.r &lt; locus_1)    {
+				mixVal = (rawColor.r)/(locus_1);
+				gl_FragColor = mix(vec4(0,0,0,0), color1, mixVal);
+			}
+			else if (rawColor.r&gt;=locus_1 &amp;&amp; rawColor.r&lt;locus_2)    {
+				mixVal = (rawColor.r - locus_1)/(locus_2 - locus_1);
+				gl_FragColor = mix(color1, color2, mixVal);
+			}
+			else if (rawColor.r&gt;=locus_2 &amp;&amp; rawColor.r&lt;locus_3)    {
+				mixVal = (rawColor.r - locus_2)/(locus_3 - locus_2);
+				gl_FragColor = mix(color2, color3, mixVal);
+			}
+			else if (rawColor.r&gt;=locus_3)    {
+				mixVal = (rawColor.r - locus_3);
+				gl_FragColor = mix(color3, vec4(1,1,1,1), mixVal);
+			}
+		}
+		else	{
+			float		locus_1 = 0.25;
+			float		locus_2 = 0.5;
+			float		locus_3 = 0.75;
+	
+			if (loc.y &lt; locus_1)    {
+				gl_FragColor = rawColor.r * color1;
+			}
+			else if (loc.y&gt;=locus_1 &amp;&amp; loc.y&lt;locus_2)    {
+				mixVal = (loc.y - locus_1)/(locus_2 - locus_1);
+				gl_FragColor = rawColor.r * mix(color1, color2, mixVal);
+			}
+			else if (loc.y&gt;=locus_2 &amp;&amp; loc.y&lt;locus_3)    {
+				mixVal = (loc.y - locus_2)/(locus_3 - locus_2);
+				gl_FragColor = rawColor.r * mix(color2, color3, mixVal);
+			}
+			else if (loc.y &gt; locus_3)    {
+				gl_FragColor = rawColor.r * color3;
+			}
+		}
+	}
+}
+</code></pre></div><p>The first pass of this shader is used to simply take the image data from the <code>fftImage</code> being provided and write it into the first column of the persistent <code>fftValues</code> buffer.  Pixels that already exist in the buffer are shifted further back in time.</p> <p>On the second render pass the raw spectrogram values from <code>fftValues</code> are read and styled using the provided uniform variables.  For the most part this section branches based on whether the <code>lumaMode</code> style is active.  In one code branch the colors vary over the frequency, in the other code branch the colors vary depending on the amplitude.</p></div> <div class="page-edit"><!----> <!----></div> <div class="page-nav"><p class="inner"><span class="prev">
+        ←
+        <a href="/primer/primer_chapter_7.html" class="prev">
+          Multi-Pass and Persistent Buffers in ISF
+        </a></span> <span class="next"><a href="/primer/primer_chapter_9.html">
+          Adapting Existing GLSL Code to the ISF Specification
+        </a>
+        →
+      </span></p></div> </div> <!----></div></div>
+    <script src="/assets/js/12.e918779f.js" defer></script><script src="/assets/js/app.6d8aac83.js" defer></script>
+  </body>
+</html>

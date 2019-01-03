@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Convolution Filters | ISF Documenation</title>
+    <meta name="description" content="Interactive Shader Format is a file format used to describe GLSL shaders for real-time image filtering and generation.">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Rubik:400,500">
+    
+    <link rel="preload" href="/assets/css/0.styles.e46be848.css" as="style"><link rel="preload" href="/assets/js/app.6d8aac83.js" as="script"><link rel="preload" href="/assets/js/10.c8f3fa1e.js" as="script"><link rel="prefetch" href="/assets/js/11.e5e59264.js"><link rel="prefetch" href="/assets/js/12.e918779f.js"><link rel="prefetch" href="/assets/js/13.c860494a.js"><link rel="prefetch" href="/assets/js/14.dbc4c4b9.js"><link rel="prefetch" href="/assets/js/15.062b0eec.js"><link rel="prefetch" href="/assets/js/16.e349a769.js"><link rel="prefetch" href="/assets/js/17.5ed081e1.js"><link rel="prefetch" href="/assets/js/18.4a64789d.js"><link rel="prefetch" href="/assets/js/19.ebafee6d.js"><link rel="prefetch" href="/assets/js/2.6d720a38.js"><link rel="prefetch" href="/assets/js/20.cd0ef636.js"><link rel="prefetch" href="/assets/js/21.36ff03de.js"><link rel="prefetch" href="/assets/js/22.3573e69c.js"><link rel="prefetch" href="/assets/js/23.9a215b3a.js"><link rel="prefetch" href="/assets/js/3.b812cbbc.js"><link rel="prefetch" href="/assets/js/4.8c133ff6.js"><link rel="prefetch" href="/assets/js/5.c2d76b22.js"><link rel="prefetch" href="/assets/js/6.e95f5c9b.js"><link rel="prefetch" href="/assets/js/7.15405d7b.js"><link rel="prefetch" href="/assets/js/8.55f275fb.js"><link rel="prefetch" href="/assets/js/9.34e860c3.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.e46be848.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">ISF Documenation</span></a> <div class="links" style="max-width:nullpx;"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/using_isf.html" class="nav-link">Using ISF</a></div><div class="nav-item"><a href="/quickstart.html" class="nav-link">Quickstart</a></div><div class="nav-item"><a href="/primer/" class="nav-link router-link-active">Primer</a></div><div class="nav-item"><a href="/ref/" class="nav-link">Reference</a></div><div class="nav-item"><a href="https://isf.video" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  ISF Homepage
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <div class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/using_isf.html" class="nav-link">Using ISF</a></div><div class="nav-item"><a href="/quickstart.html" class="nav-link">Quickstart</a></div><div class="nav-item"><a href="/primer/" class="nav-link router-link-active">Primer</a></div><div class="nav-item"><a href="/ref/" class="nav-link">Reference</a></div><div class="nav-item"><a href="https://isf.video" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  ISF Homepage
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div> <!----></nav>  <ul class="sidebar-links"><li><a href="/primer/primer_chapter_1.html" class="sidebar-link">Introduction</a></li><li><a href="/primer/primer_chapter_2.html" class="sidebar-link">The Anatomy of an ISF</a></li><li><a href="/primer/primer_chapter_3.html" class="sidebar-link">Using and Creating ISF Compositions</a></li><li><a href="/primer/primer_chapter_4.html" class="sidebar-link">Data Types, Standard Variables and Functions</a></li><li><a href="/primer/primer_chapter_5.html" class="sidebar-link">Vertex Shaders</a></li><li><a href="/primer/primer_chapter_6.html" class="active sidebar-link">Convolution Filters</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/primer/primer_chapter_6.html#what-is-a-convolution-matrix" class="sidebar-link">What is a convolution matrix?</a></li><li class="sidebar-sub-header"><a href="/primer/primer_chapter_6.html#writing-a-generalized-convolution-filter-in-isf" class="sidebar-link">Writing a Generalized Convolution Filter in ISF</a></li><li class="sidebar-sub-header"><a href="/primer/primer_chapter_6.html#creating-specific-kernels-as-filters" class="sidebar-link">Creating Specific Kernels As Filters</a></li><li class="sidebar-sub-header"><a href="/primer/primer_chapter_6.html#other-similar-use-cases" class="sidebar-link">Other Similar Use Cases</a></li></ul></li><li><a href="/primer/primer_chapter_7.html" class="sidebar-link">Multi-Pass and Persistent Buffers in ISF</a></li><li><a href="/primer/primer_chapter_8.html" class="sidebar-link">Audio Visualizers in ISF</a></li><li><a href="/primer/primer_chapter_9.html" class="sidebar-link">Adapting Existing GLSL Code to the ISF Specification</a></li></ul> </div> <div class="page"> <div class="content"><h1 id="convolution-filter"><a href="#convolution-filter" aria-hidden="true" class="header-anchor">#</a> Convolution Filter</h1> <p>In image filtering one of the commonly used techniques from mathematics is are convolution matrices, also sometimes called a kernel.  Convolution is a process by which an element, in this case a pixel, is adjusted by performing some sort of function along with its neighboring pixels.  This is generally used for blurring, sharpening, embossing, edge detection, and other situations where multiple pixels are being blended together in some fashion.  This lesson on convolution will be relevant whether you are writing shaders to meet the ISF specification and for using GLSL other environments.</p> <p>For this chapter we'll look at:</p> <ul><li>What a convolution matrix is and how they are used to process images.</li> <li>How to set up a generalized convolution ISF filter.</li> <li>How to build specific use cases of convolution filters.</li> <li>Discuss other similar use cases.</li></ul> <p>These concepts will also come into play in later chapters as we dive further into advanced topics of GLSL and ISF.</p> <h2 id="what-is-a-convolution-matrix"><a href="#what-is-a-convolution-matrix" aria-hidden="true" class="header-anchor">#</a> What is a convolution matrix?</h2> <p>In mathematics, a convolution matrix, or kernel, is a set of weights that describe how a number of elements are to be added together.  For our purposes each kernel is a 3x3 grid of numbers, but in some cases you may encounter 5x5 or even larger kernels.</p> <p>An example kernel may look like:</p> <div class="language- extra-class"><pre class="language-text"><code>//	A blurring kernel
+[0.0625, 0.125, 0.0625,
+0.125, 0.25, 0.125,
+0.0625, 0.125, 0.0625]
+</code></pre></div><p>Each of the numbers in this grid is called a <code>weight</code>.</p> <p>Here you can imagine the middle pixel as the one being evaluated.  In our GLSL code we so far have retrieved this by using the <code>IMG_THIS_PIXEL()</code> function on an image.  To obtain the output result, we obtain the values of all of the neighboring pixels and combine them using the weights as multipliers.  When this operation is performed for every pixel in your image, you can get wildly different results by changing these weight values.</p> <pre><code>Note: For further reading on kernels visit the [Wikipedia page on convolution for image processing](https://en.wikipedia.org/wiki/Kernel_(image_processing)).
+</code></pre> <h3 id="example-kernels"><a href="#example-kernels" aria-hidden="true" class="header-anchor">#</a> Example Kernels</h3> <p>Many different effects can be created by using different weight values as inputs.  To get a sense for how some of the most important image filters works let's look at some sample kernels.</p> <h4 id="the-identity-kernel"><a href="#the-identity-kernel" aria-hidden="true" class="header-anchor">#</a> The Identity Kernel</h4> <div class="language- extra-class"><pre class="language-text"><code>//	The Identity Kernel
+[0.0, 0.0, 0.0,
+0.0, 1.0, 0.0,
+0.0, 0.0, 0.0]
+</code></pre></div><p>In this case each neighboring pixel is multiplied by 0.0 and the middle pixel is multiplied by 1.0, so the output is simply equal to the middle pixel.  When using this special kernel, known as the <code>Identity</code>, the output will always look the same as the input.</p> <h4 id="the-box-blur-kernel"><a href="#the-box-blur-kernel" aria-hidden="true" class="header-anchor">#</a> The Box Blur Kernel</h4> <p>Another commonly found kernel is the one for a <code>Box Blur</code>.  Many blur filters are based on this idea of averaging the middle pixel with the values around it.  The stronger the weights of the neighboring pixels in comparison to the middle, the stronger the blur.  In such cases it is important for the sum of all of the weights to be 1.0.</p> <div class="language- extra-class"><pre class="language-text"><code>//	The Box Blur Kernel
+[0.11111, 0.11111, 0.11111,
+0.11111, 0.11111, 0.11111,
+0.11111, 0.11111, 0.11111]
+</code></pre></div><p>Though box blurs and other similar blurs are easily created with convolutions, a single pass of a 3x3 kernel does not produce a particularly deep blurring effect.  In the next chapter covering multi-pass shaders we'll look at how performing these kernels more than once can greatly increase the depth of the blur.</p> <h4 id="sharpen-kernel"><a href="#sharpen-kernel" aria-hidden="true" class="header-anchor">#</a> Sharpen Kernel</h4> <p>Often considered the opposite of the blur is the sharpen, which subtracts values on the diagonals instead of averaging.  This can often make edges appear more pronounced.</p> <div class="language- extra-class"><pre class="language-text"><code>//	The Sharpen Kernel
+[-1.0, 0.0, -1.0,
+0.0, 5.0, 0.0,
+-1.0, 0.0, -1.0]
+</code></pre></div><p>Like with blurs, increasing the weight of the middle pixel compared to the amount subtracted will result in a stronger sharpening effect.  Similarly the sum of the weights must always be 1.0 for sharpen filters.</p> <h4 id="edge-detection-kernels"><a href="#edge-detection-kernels" aria-hidden="true" class="header-anchor">#</a> Edge Detection Kernels</h4> <p>In a similar fashion to sharpen kernels for edge detection the trick is to subtract.  However in this case, instead of the the sum of all of the weights being 1.0, they'll come out to 0.0;  this way it requires that certain pixels be much brighter for others to stay in the image, while most of them are set to black.</p> <div class="language- extra-class"><pre class="language-text"><code>//	Edge Detection 1
+[1.0, 0.0, 1.0,
+0.0, -4.0, 0.0,
+1.0, 0.0, 1.0]
+</code></pre></div><div class="language- extra-class"><pre class="language-text"><code>//	Edge Detection 2
+[-1.0, -1.0, -1.0,
+-1.0, 8.0, -1.0,
+-1.0, -1.0, 1.0]
+</code></pre></div><p>Just as there are many ways to write sharpen and blur filters with varying amount of strength based on the relative weights, the same is true of edge detection kernels.</p> <h2 id="writing-a-generalized-convolution-filter-in-isf"><a href="#writing-a-generalized-convolution-filter-in-isf" aria-hidden="true" class="header-anchor">#</a> Writing a Generalized Convolution Filter in ISF</h2> <p>When creating GLSL shaders that evaluate convolution kernels it can be useful to make use of the vertex shader stage when possible.  Like with rotations this allows us to prepare coordinate values that are used for lookup during the fragment shader stage, saving valuable GPU time during rendering.</p> <h3 id="create-the-vertex-shader"><a href="#create-the-vertex-shader" aria-hidden="true" class="header-anchor">#</a> Create the Vertex Shader</h3> <p>First we'll make the vertex shader for the convolution kernel.  Whether you are creating a generalized use case like in this example, or creating a shader based on a specific kernel, your vertex shader will likely look something like this:</p> <div class="language- extra-class"><pre class="language-text"><code>varying vec2 left_coord;
+varying vec2 right_coord;
+varying vec2 above_coord;
+varying vec2 below_coord;
+
+varying vec2 lefta_coord;
+varying vec2 righta_coord;
+varying vec2 leftb_coord;
+varying vec2 rightb_coord;
+
+void main()
+{
+	isf_vertShaderInit();
+	vec2 texc = vec2(isf_FragNormCoord[0],isf_FragNormCoord[1]);
+	vec2 d = 1.0/RENDERSIZE;
+
+	left_coord = clamp(vec2(texc.xy + vec2(-d.x , 0)),0.0,1.0);
+	right_coord = clamp(vec2(texc.xy + vec2(d.x , 0)),0.0,1.0);
+	above_coord = clamp(vec2(texc.xy + vec2(0,d.y)),0.0,1.0);
+	below_coord = clamp(vec2(texc.xy + vec2(0,-d.y)),0.0,1.0);
+
+	lefta_coord = clamp(vec2(texc.xy + vec2(-d.x , d.x)),0.0,1.0);
+	righta_coord = clamp(vec2(texc.xy + vec2(d.x , d.x)),0.0,1.0);
+	leftb_coord = clamp(vec2(texc.xy + vec2(-d.x , -d.x)),0.0,1.0);
+	rightb_coord = clamp(vec2(texc.xy + vec2(d.x , -d.x)),0.0,1.0);
+}
+</code></pre></div><p>Here we've declared eight different varying vec2 variables, one for each of the neighboring pixels.  Combined with the middle coordinate itself located at <code>isf_FragNormCoord</code> this completes the calculations needed to do the image pixel lookups in the fragment shader stage.</p> <h3 id="create-the-fragment-shader"><a href="#create-the-fragment-shader" aria-hidden="true" class="header-anchor">#</a> Create the Fragment Shader</h3> <p>Now we can create the fragment shader that performs the actual convolution.  For this generalized shader we declare 9 float values, one for each weight and give each a range of -8.0 to 8.0.  Only the middle pixel is set to 1.0 by default, so when first loaded the filter will function as a pass-thru.</p> <div class="language- extra-class"><pre class="language-text"><code>/*{
+	&quot;CREDIT&quot;: &quot;by VIDVOX&quot;,
+	&quot;ISFVSN&quot;: &quot;2&quot;,
+	&quot;CATEGORIES&quot;: [
+		&quot;Blur&quot;
+	],
+	&quot;INPUTS&quot;: [
+		{
+			&quot;NAME&quot;: &quot;inputImage&quot;,
+			&quot;TYPE&quot;: &quot;image&quot;
+		},
+		{
+			&quot;NAME&quot;: &quot;w00&quot;,
+			&quot;TYPE&quot;: &quot;float&quot;,
+			&quot;MIN&quot;: -8.0,
+			&quot;MAX&quot;: 8.0,
+			&quot;DEFAULT&quot;: 0.0
+		},
+		{
+			&quot;NAME&quot;: &quot;w10&quot;,
+			&quot;TYPE&quot;: &quot;float&quot;,
+			&quot;MIN&quot;: -8.0,
+			&quot;MAX&quot;: 8.0,
+			&quot;DEFAULT&quot;: 0.0
+		},
+		{
+			&quot;NAME&quot;: &quot;w20&quot;,
+			&quot;TYPE&quot;: &quot;float&quot;,
+			&quot;MIN&quot;: -8.0,
+			&quot;MAX&quot;: 8.0,
+			&quot;DEFAULT&quot;: 0.0
+		},
+		{
+			&quot;NAME&quot;: &quot;w01&quot;,
+			&quot;TYPE&quot;: &quot;float&quot;,
+			&quot;MIN&quot;: -8.0,
+			&quot;MAX&quot;: 8.0,
+			&quot;DEFAULT&quot;: 0.0
+		},
+		{
+			&quot;NAME&quot;: &quot;w11&quot;,
+			&quot;TYPE&quot;: &quot;float&quot;,
+			&quot;MIN&quot;: -8.0,
+			&quot;MAX&quot;: 8.0,
+			&quot;DEFAULT&quot;: 1.0
+		},
+		{
+			&quot;NAME&quot;: &quot;w21&quot;,
+			&quot;TYPE&quot;: &quot;float&quot;,
+			&quot;MIN&quot;: -8.0,
+			&quot;MAX&quot;: 8.0,
+			&quot;DEFAULT&quot;: 0.0
+		},
+		{
+			&quot;NAME&quot;: &quot;w02&quot;,
+			&quot;TYPE&quot;: &quot;float&quot;,
+			&quot;MIN&quot;: -8.0,
+			&quot;MAX&quot;: 8.0,
+			&quot;DEFAULT&quot;: 0.0
+		},
+		{
+			&quot;NAME&quot;: &quot;w12&quot;,
+			&quot;TYPE&quot;: &quot;float&quot;,
+			&quot;MIN&quot;: -8.0,
+			&quot;MAX&quot;: 8.0,
+			&quot;DEFAULT&quot;: 0.0
+		},
+		{
+			&quot;NAME&quot;: &quot;w22&quot;,
+			&quot;TYPE&quot;: &quot;float&quot;,
+			&quot;MIN&quot;: -8.0,
+			&quot;MAX&quot;: 8.0,
+			&quot;DEFAULT&quot;: 0.0
+		}
+	]
+}*/
+
+
+varying vec2 left_coord;
+varying vec2 right_coord;
+varying vec2 above_coord;
+varying vec2 below_coord;
+
+varying vec2 lefta_coord;
+varying vec2 righta_coord;
+varying vec2 leftb_coord;
+varying vec2 rightb_coord;
+
+
+void main()
+{
+	vec4 colorLA = IMG_NORM_PIXEL(inputImage, lefta_coord);
+	vec4 colorA = IMG_NORM_PIXEL(inputImage, above_coord);
+	vec4 colorRA = IMG_NORM_PIXEL(inputImage, righta_coord);
+
+	vec4 colorL = IMG_NORM_PIXEL(inputImage, left_coord);
+	vec4 color = IMG_THIS_NORM_PIXEL(inputImage);
+	vec4 colorR = IMG_NORM_PIXEL(inputImage, right_coord);
+	
+	vec4 colorLB = IMG_NORM_PIXEL(inputImage, leftb_coord);
+	vec4 colorB = IMG_NORM_PIXEL(inputImage, below_coord);
+	vec4 colorRB = IMG_NORM_PIXEL(inputImage, rightb_coord);
+
+	//	make the average for the RGB values
+	vec3 convolution = (w11 * color + w01 * colorL + w21 * colorR + w10 * colorA + w12 * colorB + w00 * colorLA + w20 * colorRA + w02 * colorLB + w22 * colorRB).rgb;
+	
+	//	keep the alpha the same as the original pixel
+	gl_FragColor = vec4(convolution,color.a);
+}
+</code></pre></div><p>In the code section below the JSON, we can see that the <code>varying</code> vec2 variables from the vertex shader have also been declared here.  This makes it possible for those values to be read here in the fragment shader.</p> <p>Within the main() {} function the initial chunk of code gathers each neighboring pixel.  Next the convolution result vec3 RGB color is created by multiplying each pixel by its weight and adding them all together.  One small detail is that we use the alpha channel from the original pixel.</p> <h2 id="creating-specific-kernels-as-filters"><a href="#creating-specific-kernels-as-filters" aria-hidden="true" class="header-anchor">#</a> Creating Specific Kernels As Filters</h2> <p>As you might imagine, getting a specific look by manipulating 9 different sliders can be a bit much.  This is why often it can be useful to pick a particular kernel and create a specific filter that includes a one or two high level parameters which modify the weights to adjust the strength.</p> <p>Note that for these examples we will use a vertex shader identical to the one used above for the general convolution case.  Be sure to duplicate that code in its own file with a name that matches your fragment shaders below and uses the <code>.vs</code> extension.</p> <h3 id="creating-a-varying-box-blur-filter-in-isf"><a href="#creating-a-varying-box-blur-filter-in-isf" aria-hidden="true" class="header-anchor">#</a> Creating a Varying Box Blur Filter in ISF</h3> <p>A very simple blur filter that has a single strength value can be written as such.</p> <div class="language- extra-class"><pre class="language-text"><code>/*{
+	&quot;CREDIT&quot;: &quot;by VIDVOX&quot;,
+	&quot;ISFVSN&quot;: &quot;2&quot;,
+	&quot;CATEGORIES&quot;: [
+		&quot;Blur&quot;
+	],
+	&quot;INPUTS&quot;: [
+		{
+			&quot;NAME&quot;: &quot;inputImage&quot;,
+			&quot;TYPE&quot;: &quot;image&quot;
+		},
+		{
+			&quot;NAME&quot;: &quot;blurLevel&quot;,
+			&quot;TYPE&quot;: &quot;float&quot;,
+			&quot;MIN&quot;: 0.0,
+			&quot;MAX&quot;: 1.0,
+			&quot;DEFAULT&quot;: 0.0
+		}
+	]
+}*/
+
+varying vec2 left_coord;
+varying vec2 right_coord;
+varying vec2 above_coord;
+varying vec2 below_coord;
+
+varying vec2 lefta_coord;
+varying vec2 righta_coord;
+varying vec2 leftb_coord;
+varying vec2 rightb_coord;
+
+void main()
+{
+
+	float mWeight = 1.0 - blurLevel;
+	float nWeight = blurLevel / 8.0;
+	
+	vec4 color = IMG_THIS_NORM_PIXEL(inputImage);
+	
+	//	note that we can skip the pixel lookups here if nWeight is 0.0
+	vec4 colorL = (nWeight &gt; 0.0) ? IMG_NORM_PIXEL(inputImage, left_coord) : vec4(0.0);
+	vec4 colorR = (nWeight &gt; 0.0) ? IMG_NORM_PIXEL(inputImage, right_coord) : vec4(0.0);
+	vec4 colorA = (nWeight &gt; 0.0) ? IMG_NORM_PIXEL(inputImage, above_coord) : vec4(0.0);
+	vec4 colorB = (nWeight &gt; 0.0) ? IMG_NORM_PIXEL(inputImage, below_coord) : vec4(0.0);
+
+	vec4 colorLA = (nWeight &gt; 0.0) ? IMG_NORM_PIXEL(inputImage, lefta_coord) : vec4(0.0);
+	vec4 colorRA = (nWeight &gt; 0.0) ? IMG_NORM_PIXEL(inputImage, righta_coord) : vec4(0.0);
+	vec4 colorLB = (nWeight &gt; 0.0) ? IMG_NORM_PIXEL(inputImage, leftb_coord) : vec4(0.0);
+	vec4 colorRB = (nWeight &gt; 0.0) ? IMG_NORM_PIXEL(inputImage, rightb_coord) : vec4(0.0);
+
+	vec3 blur = ((mWeight * color) + nWeight * (colorL + colorR + colorA + colorB + colorLA + colorRA + colorLB + colorRB)).rgb;
+	
+	gl_FragColor = vec4(blur,color.a);
+}
+</code></pre></div><p>Unlike our previous box blur kernel which had fixed values, this determines its weights based on the <code>blurLevel</code> uniform variable declared in the JSON section.  As that value moves from 0.0 to 1.0, the weight of the neighbors increases while the weight of the middle pixel decreases.  Recall that for a blur or sharpen we need the sum of our weights to be 1.0.</p> <p>As a challenge, try adapting one of the other kernels we looked at, such as the sharpen kernel, and adapt this code to apply it instead of the box blur.</p> <h3 id="creating-convolution-filters-with-for-loops"><a href="#creating-convolution-filters-with-for-loops" aria-hidden="true" class="header-anchor">#</a> Creating Convolution Filters With For Loops</h3> <p>In the examples so far we've used a vertex shader to pre-compute our coordinate points used in our fragment shaders.  While this is recommended when possible, there are times when your algorithm may use an indeterminate number of lookup points, or the lookup points may vary depending on other factors within your fragment shader code.</p> <div class="language- extra-class"><pre class="language-text"><code>/*
+{
+  &quot;CATEGORIES&quot; : [
+    &quot;Blur&quot;
+  ],
+  &quot;DESCRIPTION&quot; : &quot;&quot;,
+  &quot;ISFVSN&quot; : &quot;2&quot;,
+  &quot;INPUTS&quot; : [
+    {
+      &quot;NAME&quot; : &quot;inputImage&quot;,
+      &quot;TYPE&quot; : &quot;image&quot;
+    },
+    {
+      &quot;NAME&quot; : &quot;blurLevel&quot;,
+      &quot;TYPE&quot; : &quot;float&quot;,
+      &quot;MAX&quot; : 1,
+      &quot;DEFAULT&quot; : 0.5,
+      &quot;MIN&quot; : 0
+    }
+  ],
+  &quot;CREDIT&quot; : &quot;by VIDVOX&quot;
+}
+*/
+
+void main()	{
+	float mWeight = 1.0 - blurLevel;
+	float nWeight = blurLevel / 8.0;
+	vec4 result = vec4(0.0);
+	if (blurLevel &gt; 0.0)	{
+		for (int i = -1;i &lt;= 1;++i)	{
+			for (int j = -1;j &lt;= 1;++j)	{
+				vec2 loc = gl_FragCoord.xy + vec2(i,j);
+				vec4 color = IMG_PIXEL(inputImage,loc);
+				if ((i == 0)&amp;&amp;(j == 0))	{
+					result.rgb += mWeight * color.rgb;
+					result.a = color.a;
+				}
+				else	{
+					result.rgb += nWeight * color.rgb;
+				}
+			}
+		}
+	}
+	else	{
+		result = IMG_THIS_NORM_PIXEL(inputImage);	
+	}
+	
+	gl_FragColor = result;
+}
+</code></pre></div><p>Here instead of using the vertex shader to pre-compute the lookup points and pass them over with varying variables, the lookup points are computed each time inside of the for loop.  With this method it would be easy to adapt this blur to doing a 5x5 neighbor pixel averaging without having to declare any new variables.</p> <p>As a note, it is recommended to avoid doing too many pixel lookups and comparisons within your code.  While there is no technical limit on this these operations are comparatively costly.  In some cases you can write in optimizations, such as for situations where you know a weight value for a pixel is 0.0, you can skip its corresponding lookup.</p> <h3 id="more-examples-of-convolution-shaders"><a href="#more-examples-of-convolution-shaders" aria-hidden="true" class="header-anchor">#</a> More Examples Of Convolution Shaders</h3> <p>A number of the sample shaders on the <a href="http://interactiveshaderformat.com" target="_blank" rel="noopener noreferrer">ISF Sharing Website<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a> are great examples of convolution filters.  As hinted at, many of the convolution shaders that are used in actual practice use another advanced technique that we will soon learn about for creating ISF compositions with multiple render passes.</p> <h2 id="other-similar-use-cases"><a href="#other-similar-use-cases" aria-hidden="true" class="header-anchor">#</a> Other Similar Use Cases</h2> <p>Though not technically considered convolution filters because they don't just simply apply a kernel to a set of pixels, there are many visual effects that can be created by comparing a pixel to its neighbors.  Once you have the data in vec4 variables you can apply whatever functions or operations you can think of to combine the values into a single result.</p> <p>Here are a few filters in particular that use a similar technique:</p> <ul><li>An <code>Erode</code> effect searches surrounding pixels looking for minimum values.</li> <li>A <code>Dilate</code> effect searches surrounding pixels looking for maximum values.</li> <li>A <code>Frosted Glass</code> style effect can blend together several local pixels in a non-standard pattern.</li> <li>An <code>Emboss</code> effect uses a combination of a convolution kernel and other post processing to create its output.</li></ul> <p>Examples of these shaders and other related examples can be found on <a href="http://interactiveshaderformat.com" target="_blank" rel="noopener noreferrer">ISF Sharing Website<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a>.</p></div> <div class="page-edit"><!----> <!----></div> <div class="page-nav"><p class="inner"><span class="prev">
+        ←
+        <a href="/primer/primer_chapter_5.html" class="prev">
+          Vertex Shaders
+        </a></span> <span class="next"><a href="/primer/primer_chapter_7.html">
+          Multi-Pass and Persistent Buffers in ISF
+        </a>
+        →
+      </span></p></div> </div> <!----></div></div>
+    <script src="/assets/js/10.c8f3fa1e.js" defer></script><script src="/assets/js/app.6d8aac83.js" defer></script>
+  </body>
+</html>

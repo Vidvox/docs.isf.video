@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Multi-Pass and Persistent Buffers in ISF | ISF Documenation</title>
+    <meta name="description" content="Interactive Shader Format is a file format used to describe GLSL shaders for real-time image filtering and generation.">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Rubik:400,500">
+    
+    <link rel="preload" href="/assets/css/0.styles.e46be848.css" as="style"><link rel="preload" href="/assets/js/app.6d8aac83.js" as="script"><link rel="preload" href="/assets/js/11.e5e59264.js" as="script"><link rel="prefetch" href="/assets/js/10.c8f3fa1e.js"><link rel="prefetch" href="/assets/js/12.e918779f.js"><link rel="prefetch" href="/assets/js/13.c860494a.js"><link rel="prefetch" href="/assets/js/14.dbc4c4b9.js"><link rel="prefetch" href="/assets/js/15.062b0eec.js"><link rel="prefetch" href="/assets/js/16.e349a769.js"><link rel="prefetch" href="/assets/js/17.5ed081e1.js"><link rel="prefetch" href="/assets/js/18.4a64789d.js"><link rel="prefetch" href="/assets/js/19.ebafee6d.js"><link rel="prefetch" href="/assets/js/2.6d720a38.js"><link rel="prefetch" href="/assets/js/20.cd0ef636.js"><link rel="prefetch" href="/assets/js/21.36ff03de.js"><link rel="prefetch" href="/assets/js/22.3573e69c.js"><link rel="prefetch" href="/assets/js/23.9a215b3a.js"><link rel="prefetch" href="/assets/js/3.b812cbbc.js"><link rel="prefetch" href="/assets/js/4.8c133ff6.js"><link rel="prefetch" href="/assets/js/5.c2d76b22.js"><link rel="prefetch" href="/assets/js/6.e95f5c9b.js"><link rel="prefetch" href="/assets/js/7.15405d7b.js"><link rel="prefetch" href="/assets/js/8.55f275fb.js"><link rel="prefetch" href="/assets/js/9.34e860c3.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.e46be848.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">ISF Documenation</span></a> <div class="links" style="max-width:nullpx;"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/using_isf.html" class="nav-link">Using ISF</a></div><div class="nav-item"><a href="/quickstart.html" class="nav-link">Quickstart</a></div><div class="nav-item"><a href="/primer/" class="nav-link router-link-active">Primer</a></div><div class="nav-item"><a href="/ref/" class="nav-link">Reference</a></div><div class="nav-item"><a href="https://isf.video" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  ISF Homepage
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <div class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/using_isf.html" class="nav-link">Using ISF</a></div><div class="nav-item"><a href="/quickstart.html" class="nav-link">Quickstart</a></div><div class="nav-item"><a href="/primer/" class="nav-link router-link-active">Primer</a></div><div class="nav-item"><a href="/ref/" class="nav-link">Reference</a></div><div class="nav-item"><a href="https://isf.video" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  ISF Homepage
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div> <!----></nav>  <ul class="sidebar-links"><li><a href="/primer/primer_chapter_1.html" class="sidebar-link">Introduction</a></li><li><a href="/primer/primer_chapter_2.html" class="sidebar-link">The Anatomy of an ISF</a></li><li><a href="/primer/primer_chapter_3.html" class="sidebar-link">Using and Creating ISF Compositions</a></li><li><a href="/primer/primer_chapter_4.html" class="sidebar-link">Data Types, Standard Variables and Functions</a></li><li><a href="/primer/primer_chapter_5.html" class="sidebar-link">Vertex Shaders</a></li><li><a href="/primer/primer_chapter_6.html" class="sidebar-link">Convolution Filters</a></li><li><a href="/primer/primer_chapter_7.html" class="active sidebar-link">Multi-Pass and Persistent Buffers in ISF</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/primer/primer_chapter_7.html#persistent-buffers" class="sidebar-link">Persistent Buffers</a></li><li class="sidebar-sub-header"><a href="/primer/primer_chapter_7.html#multi-pass-shaders" class="sidebar-link">Multi-Pass Shaders</a></li><li class="sidebar-sub-header"><a href="/primer/primer_chapter_7.html#other-uses-of-persistent-buffers-and-multi-pass-shaders" class="sidebar-link">Other uses of persistent buffers and multi-pass shaders</a></li></ul></li><li><a href="/primer/primer_chapter_8.html" class="sidebar-link">Audio Visualizers in ISF</a></li><li><a href="/primer/primer_chapter_9.html" class="sidebar-link">Adapting Existing GLSL Code to the ISF Specification</a></li></ul> </div> <div class="page"> <div class="content"><h1 id="multi-pass-shaders-and-persistent-buffers-in-isf"><a href="#multi-pass-shaders-and-persistent-buffers-in-isf" aria-hidden="true" class="header-anchor">#</a> Multi-Pass Shaders and Persistent Buffers in ISF</h1> <p>Two extremely powerful concepts that ISF adds on to GLSL are the ability to retain image information between render passes (persistent buffers) and creating compound shaders that have multiple rendering stages (multi-pass shaders) at potentially varying sizes.</p> <p>In this chapter we'll look at:</p> <ul><li>How to set up a persistent buffer.</li> <li>Discuss creating feedback style effects with persistent buffers.</li> <li>How to set up multiple render passes.</li> <li>Discuss creating a deep blur using multiple render passes.</li> <li>How to make a Conway's Game of Life generator using a persistent buffer.</li></ul> <h2 id="persistent-buffers"><a href="#persistent-buffers" aria-hidden="true" class="header-anchor">#</a> Persistent Buffers</h2> <p>ISF files can define persistent buffers.  These buffers are images (GL textures) that stay with the ISF file for as long as it exists. This is useful if you want to &quot;build up&quot; an image over time- you can repeatedly query and update the contents of persistent buffers by rendering into them- or if you want to perform calculations across the entire image, storing the results somewhere for later evaluation. Further details on exactly how to do this are in the full <a href="https://github.com/mrRay/ISF_Spec/" target="_blank" rel="noopener noreferrer">ISF Specification Page<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a>.</p> <div class="language- extra-class"><pre class="language-text"><code>/*{
+	&quot;DESCRIPTION&quot;: &quot;demonstrates the use of a persistent buffer to create a motion-blur type effect. also demonstrates the simplest use of steps: a one-step rendering pass&quot;,
+	&quot;CREDIT&quot;: &quot;by zoidberg&quot;,
+	&quot;ISFVSN&quot;: &quot;2.0&quot;,
+	&quot;CATEGORIES&quot;: [
+		&quot;TEST-GLSL FX&quot;
+	],
+	&quot;INPUTS&quot;: [
+		{
+			&quot;NAME&quot;: &quot;inputImage&quot;,
+			&quot;TYPE&quot;: &quot;image&quot;
+		},
+		{
+			&quot;NAME&quot;: &quot;blurAmount&quot;,
+			&quot;TYPE&quot;: &quot;float&quot;
+		}
+	],
+	&quot;PASSES&quot;: [
+		{
+			&quot;TARGET&quot;: &quot;bufferVariableNameA&quot;,
+			&quot;PERSISTENT&quot;: true,
+			&quot;FLOAT&quot;: true
+		}
+	]
+	
+}*/
+
+void main()
+{
+	vec4		freshPixel = IMG_THIS_PIXEL(inputImage);
+	vec4		stalePixel = IMG_THIS_PIXEL(bufferVariableNameA);
+	gl_FragColor = mix(freshPixel,stalePixel,blurAmount);
+}
+</code></pre></div><p>In this simple example we have added a new section to our JSON blob called <code>PASSES</code> which is used to describe each render pass of the shader.  Here you can set the options for each pass.</p> <ul><li>The <code>TARGET</code> attribute is used to set the name by which this render pass will be referred to in the code section.  This will be available as an <code>IMAGE</code> type.</li> <li>For each buffer that you wish to retain between passes, the <code>PERSISTENT</code> can be set to <code>true</code>.</li> <li>If you wish to have the value stored as a 32-bit floating point value the additional <code>FLOAT</code> attribute can be included and set to <code>true</code>.  Using 32-bit textures will use up more memory, but in some cases can be extremely useful.</li></ul> <p>For this ISF we have a single render pass, that is persistent and stores floating point values.</p> <p>In the code section we refer to the image <code>bufferVariableNameA</code>, which holds the output from the previous frame.</p> <p>When the <code>PASSES</code> section is left out, as in our previous examples, it is presumed that the shader includes a single render pass and that the output is not stored in memory to be used later on.</p> <h3 id="video-feedback"><a href="#video-feedback" aria-hidden="true" class="header-anchor">#</a> Video Feedback</h3> <p>One of the most common usages of persistent buffers is creating video feedback loops.  This is a process that goes back to the days of analog video and the same idea can be done digitally.  The above shader is an example of of this technique: By blending the previous pixel with the current frame, the visual effect of a feedback style motion blur is created.  Adding in additional functionality to this shader such as zooming, rotating, inverting, applying convolution kernels to blur / sharpen can create all kinds of interesting results.</p> <p>Here is an example of how to modify the example to include an invert stage:</p> <div class="language- extra-class"><pre class="language-text"><code>/*{
+	&quot;DESCRIPTION&quot;: &quot;creates a simple inverting feedback effect&quot;,
+	&quot;CREDIT&quot;: &quot;by VIDVOX&quot;,
+	&quot;ISFVSN&quot;: &quot;2.0&quot;,
+	&quot;CATEGORIES&quot;: [
+		&quot;TEST-GLSL FX&quot;
+	],
+	&quot;INPUTS&quot;: [
+		{
+			&quot;NAME&quot;: &quot;inputImage&quot;,
+			&quot;TYPE&quot;: &quot;image&quot;
+		},
+		{
+			&quot;NAME&quot;: &quot;blurAmount&quot;,
+			&quot;TYPE&quot;: &quot;float&quot;
+		}
+	],
+	&quot;PASSES&quot;: [
+		{
+			&quot;TARGET&quot;: &quot;bufferVariableNameA&quot;,
+			&quot;PERSISTENT&quot;: true,
+			&quot;FLOAT&quot;: true
+		}
+	]
+	
+}*/
+
+void main()
+{
+	vec4		freshPixel = IMG_THIS_PIXEL(inputImage);
+	vec4		stalePixel = IMG_THIS_PIXEL(bufferVariableNameA);
+	stalePixel.rgb = 1.0 - stalePixel.rgb;
+	gl_FragColor = mix(freshPixel,stalePixel,blurAmount);
+}
+</code></pre></div><p>Here we have simply added the line that on each pass inverts the rgb of the <code>stalePixel</code>.  As a challenge, try adding the rotate or blurring sample code from previous chapters and apply them to the <code>stalePixel</code> before the <code>mix</code> function is called.</p> <h2 id="multi-pass-shaders"><a href="#multi-pass-shaders" aria-hidden="true" class="header-anchor">#</a> Multi-Pass Shaders</h2> <p>The ISF file format defines the ability to execute a shader multiple times in the process of rendering a frame for output- each time the shader's executed (each pass), the uniform int variable <code>PASSINDEX</code> is incremented. Details on how to accomplish this are described below in the spec, but the basic process involves adding an array of dicts to the <code>PASSES</code> key in your top-level JSON dict. Each dict in the <code>PASSES</code> array describes a different rendering pass- the ISF host will automatically create buffers to render into, and those buffers (and therefore the results of those rendering passes) can be accessed like any other buffer/input image/imported image (you can render to a texture in one pass, and then read that texture back in and render something else in another pass).  The dicts in <code>PASSES</code> recognize a number of different keys to specify different properties of the rendering passes- more details are in the spec below.</p> <div class="language- extra-class"><pre class="language-text"><code>/*{
+	&quot;DESCRIPTION&quot;: &quot;demonstrates the use of two-pass rendering- the first pass renders to a persistent buffer which is substantially smaller than the res of the image being drawn.  the second pass renders at the default requested size and scales up the image from the first pass&quot;,
+	&quot;CREDIT&quot;: &quot;by zoidberg&quot;,
+	&quot;ISFVSN&quot;: &quot;2.0&quot;,
+	&quot;CATEGORIES&quot;: [
+		&quot;TEST-GLSL FX&quot;
+	],
+	&quot;INPUTS&quot;: [
+		{
+			&quot;NAME&quot;: &quot;inputImage&quot;,
+			&quot;TYPE&quot;: &quot;image&quot;
+		}
+	],
+	&quot;PASSES&quot;: [
+		{
+			&quot;TARGET&quot;:&quot;bufferVariableNameA&quot;,
+			&quot;PERSISTENT&quot;: true,
+			&quot;WIDTH&quot;: &quot;$WIDTH/16.0&quot;,
+			&quot;HEIGHT&quot;: &quot;$HEIGHT/16.0&quot;
+		},
+		{
+		
+		}
+	]
+	
+}*/
+
+void main()
+{
+	//	first pass: read the &quot;inputImage&quot;- remember, we're drawing to the persistent buffer &quot;bufferVariableNameA&quot; on the first pass
+	if (PASSINDEX == 0)	{
+		gl_FragColor = IMG_THIS_NORM_PIXEL(inputImage);
+	}
+	//	second pass: read from &quot;bufferVariableNameA&quot;.  output looks chunky and low-res.
+	else if (PASSINDEX == 1)	{
+		gl_FragColor = IMG_THIS_NORM_PIXEL(bufferVariableNameA);
+	}
+}
+</code></pre></div><p>Like in our previous example, we had added the new <code>PASSES</code> section to the JSON blob.  This time there are two entries – the first is persistent and has a target name, the second contains no attributes.</p> <p>The first pass also has two new attributes: <code>WIDTH</code> and <code>HEIGHT</code> which can be used to resize the image before it is provided to the shader.  These attributes can be set to specific values, or you can enter in simple mathematically equations that allow them to vary depending on the actual width and height of the incoming image.  Declared uniform variables can also be used in these equations.  In this particular case the buffer will be resized to 1/16th its original width and height.</p> <p>In the code section itself, the new variable <code>PASSINDEX</code> is also used.  The <code>PASSINDEX</code> is a special automatically created uniform variable that is used to tell the main() {} function which rendering pass is currently being executed.  This allows you to write compound shaders that perform different operations on each pass.</p> <ul><li>The <code>PASSINDEX</code> starts at 0 and increments on each pass.  So the first pass is 0, the second pass is 1, the third is 2, and so on.</li> <li>Because it is a uniform, the <code>PASSINDEX</code> variable is available to both the fragment and vertex shaders.</li></ul> <h3 id="creating-a-multi-pass-blur-effect"><a href="#creating-a-multi-pass-blur-effect" aria-hidden="true" class="header-anchor">#</a> Creating a Multi-Pass Blur Effect</h3> <p>As you may have noted in the previous chapter on convolution, a basic 3x3 kernel does not blur an image very much, unless you are very zoomed in.  One way to address this was to use larger kernel sizes that average together even more neighboring pixels on each pass.  The downside of using large kernels is that they are computationally very costly.</p> <p>Another way to create stronger blurring effects is to re-apply the blur multiple times in a single effect.</p> <p>Like with most things in GLSL, there are several ways you can go about writing a multi-pass blur and you can find several advanced examples on the ISF Sharing Site in the Blurs category.  In this section we will look at one of the more basic examples called Soft Blur.fs which is a 3-pass blur shader.</p> <p>First we will write the vertex shader.  This is exactly the same as the .vs we used for the basic convolution shaders in the previous chapter.</p> <div class="language- extra-class"><pre class="language-text"><code>//	Soft Blur.vs
+varying vec2 left_coord;
+varying vec2 right_coord;
+varying vec2 above_coord;
+varying vec2 below_coord;
+
+varying vec2 lefta_coord;
+varying vec2 righta_coord;
+varying vec2 leftb_coord;
+varying vec2 rightb_coord;
+
+
+void main()
+{
+	isf_vertShaderInit();
+	vec2 texc = vec2(isf_FragNormCoord[0],isf_FragNormCoord[1]);
+	vec2 d = 1.0/RENDERSIZE;
+
+	left_coord = clamp(vec2(texc.xy + vec2(-d.x , 0)),0.0,1.0);
+	right_coord = clamp(vec2(texc.xy + vec2(d.x , 0)),0.0,1.0);
+	above_coord = clamp(vec2(texc.xy + vec2(0,d.y)),0.0,1.0);
+	below_coord = clamp(vec2(texc.xy + vec2(0,-d.y)),0.0,1.0);
+
+	lefta_coord = clamp(vec2(texc.xy + vec2(-d.x , d.x)),0.0,1.0);
+	righta_coord = clamp(vec2(texc.xy + vec2(d.x , d.x)),0.0,1.0);
+	leftb_coord = clamp(vec2(texc.xy + vec2(-d.x , -d.x)),0.0,1.0);
+	rightb_coord = clamp(vec2(texc.xy + vec2(d.x , -d.x)),0.0,1.0);
+}
+</code></pre></div><p>Next we have the fragment shader:</p> <div class="language- extra-class"><pre class="language-text"><code>/*{
+	&quot;CREDIT&quot;: &quot;by VIDVOX&quot;,
+	&quot;ISFVSN&quot;: &quot;2&quot;,
+	&quot;CATEGORIES&quot;: [
+		&quot;Blur&quot;
+	],
+	&quot;INPUTS&quot;: [
+		{
+			&quot;NAME&quot;: &quot;inputImage&quot;,
+			&quot;TYPE&quot;: &quot;image&quot;
+		},
+		{
+			&quot;NAME&quot;: &quot;softness&quot;,
+			&quot;TYPE&quot;: &quot;float&quot;,
+			&quot;MIN&quot;: 0.0,
+			&quot;MAX&quot;: 1.0,
+			&quot;DEFAULT&quot;: 0.9
+		},
+		{
+			&quot;NAME&quot;: &quot;depth&quot;,
+			&quot;TYPE&quot;: &quot;float&quot;,
+			&quot;MIN&quot;: 1.0,
+			&quot;MAX&quot;: 10.0,
+			&quot;DEFAULT&quot;: 10.0
+		}
+	],
+	&quot;PASSES&quot;: [
+		{
+			&quot;TARGET&quot;: &quot;smaller&quot;,
+			&quot;WIDTH&quot;: &quot;max(floor($WIDTH*0.02),1.0)&quot;,
+			&quot;HEIGHT&quot;: &quot;max(floor($HEIGHT*0.02),1.0)&quot;
+		},
+		{
+			&quot;TARGET&quot;: &quot;small&quot;,
+			&quot;WIDTH&quot;: &quot;max(floor($WIDTH*0.25),1.0)&quot;,
+			&quot;HEIGHT&quot;: &quot;max(floor($HEIGHT*0.25),1.0)&quot;
+		},
+		{
+		
+		}
+	]
+}*/
+
+
+//	A simple three pass blur – first reduce the size, then do a weighted blur, then do the same thing 
+
+
+varying vec2 left_coord;
+varying vec2 right_coord;
+varying vec2 above_coord;
+varying vec2 below_coord;
+
+varying vec2 lefta_coord;
+varying vec2 righta_coord;
+varying vec2 leftb_coord;
+varying vec2 rightb_coord;
+
+void main()
+{
+	
+	vec4 color = IMG_THIS_NORM_PIXEL(inputImage);
+	vec4 colorL = IMG_NORM_PIXEL(inputImage, left_coord);
+	vec4 colorR = IMG_NORM_PIXEL(inputImage, right_coord);
+	vec4 colorA = IMG_NORM_PIXEL(inputImage, above_coord);
+	vec4 colorB = IMG_NORM_PIXEL(inputImage, below_coord);
+
+	vec4 colorLA = IMG_NORM_PIXEL(inputImage, lefta_coord);
+	vec4 colorRA = IMG_NORM_PIXEL(inputImage, righta_coord);
+	vec4 colorLB = IMG_NORM_PIXEL(inputImage, leftb_coord);
+	vec4 colorRB = IMG_NORM_PIXEL(inputImage, rightb_coord);
+
+	vec4 avg = (color + colorL + colorR + colorA + colorB + colorLA + colorRA + colorLB + colorRB) / 9.0;
+	
+	if (PASSINDEX == 1)	{
+		vec4 blur = IMG_THIS_NORM_PIXEL(smaller);
+		avg = mix(color, (avg + depth*blur)/(1.0+depth), softness);
+	}
+	else if (PASSINDEX == 2)	{
+		vec4 blur = IMG_THIS_NORM_PIXEL(small);
+		avg = mix(color, (avg + depth*blur)/(1.0+depth), softness);
+	}
+	gl_FragColor = avg;
+}
+</code></pre></div><p>Looking at the JSON blob in the <code>PASSES</code> section, we can see that there are three render passes.  The first two render passes use the <code>WIDTH</code> and <code>HEIGHT</code> attributes to resize the image being passed in.  This is a useful trick when creating multi-pass blur effects that averages together pixels during the size reduction and makes those averages the new neighboring pixels where they can be processed by the kernel.</p> <p>On each rendering pass the basic Box Blur kernel is applied and sent to the output.  When the <code>PASSINDEX</code> is 1 or 2 (on the 2nd and third render passes), the result of the Box Blur is combined with the result from the previous pass.  Instead of directly changing the kernel, the declared <code>INPUT</code> variables are used to adjust the amount of this blending.</p> <h2 id="other-uses-of-persistent-buffers-and-multi-pass-shaders"><a href="#other-uses-of-persistent-buffers-and-multi-pass-shaders" aria-hidden="true" class="header-anchor">#</a> Other uses of persistent buffers and multi-pass shaders</h2> <h3 id="conway-s-game-of-life"><a href="#conway-s-game-of-life" aria-hidden="true" class="header-anchor">#</a> Conway's Game of Life</h3> <p>In computing simulation, one of the most famous algorithms is known as Conway's Game of Life.  Game of Life is a cellular automaton devised by the British mathematician John Horton Conway in 1970.  Though it is called a game, there aren't any players - the board starts with a random or preconfigured state and then evolves from there.</p> <p>The <a href="https://en.wikipedia.org/wiki/Conway's_Game_of_Life" target="_blank" rel="noopener noreferrer">Wikipedia page on Game of Life<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a> describes the rules as such:</p> <pre><code>The universe of the Game of Life is an infinite two-dimensional orthogonal grid of square cells, each of which is in one of two possible states, alive or dead, or &quot;populated&quot; or &quot;unpopulated&quot;. Every cell interacts with its eight neighbours, which are the cells that are horizontally, vertically, or diagonally adjacent. At each step in time, the following transitions occur:
+
+- Any live cell with fewer than two live neighbours dies, as if caused by underpopulation.
+- Any live cell with two or three live neighbours lives on to the next generation.
+- Any live cell with more than three live neighbours dies, as if by overpopulation.
+- Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.
+</code></pre> <p>The idea of comparing a cell to its surround eight neighbors sounds an awful lot like what we have been doing with our convolution filters.  The only difference here is instead of using a kernel to process an incoming image, we'll need to start with some initial state and then iterate on that.</p> <p>For this shader we can once again re-use the basic convolution vertex shader and include the matching <code>varying</code> variables in the fragment shader below.</p> <div class="language- extra-class"><pre class="language-text"><code>/*{
+	&quot;DESCRIPTION&quot;: &quot;Based on Conway's Game of Life&quot;,
+	&quot;CREDIT&quot;: &quot;VIDVOX&quot;,
+	&quot;ISFVSN&quot;: &quot;2&quot;,
+	&quot;CATEGORIES&quot;: [
+		&quot;Generator&quot;
+	],
+	&quot;INPUTS&quot;: [
+		{
+			&quot;NAME&quot;: &quot;restartNow&quot;,
+			&quot;TYPE&quot;: &quot;event&quot;
+		},
+		{
+			&quot;NAME&quot;: &quot;startThresh&quot;,
+			&quot;TYPE&quot;: &quot;float&quot;,
+			&quot;DEFAULT&quot;: 0.5,
+			&quot;MIN&quot;: 0.0,
+			&quot;MAX&quot;: 1.0
+		}
+	],
+	&quot;PASSES&quot;: [
+		{
+			&quot;TARGET&quot;:&quot;lastData&quot;,
+			&quot;PERSISTENT&quot;: true
+		}
+	]
+	
+}*/
+
+/*
+
+Any live cell with fewer than two live neighbours dies, as if caused by under-population.
+Any live cell with two or three live neighbours lives on to the next generation.
+Any live cell with more than three live neighbours dies, as if by over-population.
+Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.
+
+*/
+
+varying vec2 left_coord;
+varying vec2 right_coord;
+varying vec2 above_coord;
+varying vec2 below_coord;
+
+varying vec2 lefta_coord;
+varying vec2 righta_coord;
+varying vec2 leftb_coord;
+varying vec2 rightb_coord;
+
+//	used to get the grayscale version of a pixel
+float gray(vec4 n)
+{
+	return (n.r + n.g + n.b)/3.0;
+}
+
+//	used to randomize the start state
+float rand(vec2 co){
+    return fract(sin(dot(co.xy ,vec2(12.9898,78.233))) * 43758.5453);
+}
+
+void main()	{
+	vec4		inputPixelColor = vec4(0.0);
+	vec2		loc = gl_FragCoord.xy;
+	
+	//	if we are starting or the restartNow event is active, randomize
+	if ((FRAMEINDEX &lt; 1)||(restartNow))	{
+		//	randomize the start conditions
+		float	alive = rand(vec2(TIME+1.0,2.1*TIME+0.1)*loc);
+		if (alive &gt; 1.0 - startThresh)	{
+			inputPixelColor = vec4(1.0);
+		}
+	}
+	else	{
+		vec4	color = IMG_PIXEL(lastData, loc);
+		vec4	colorL = IMG_PIXEL(lastData, left_coord);
+		vec4	colorR = IMG_PIXEL(lastData, right_coord);
+		vec4	colorA = IMG_PIXEL(lastData, above_coord);
+		vec4	colorB = IMG_PIXEL(lastData, below_coord);
+
+		vec4	colorLA = IMG_PIXEL(lastData, lefta_coord);
+		vec4	colorRA = IMG_PIXEL(lastData, righta_coord);
+		vec4	colorLB = IMG_PIXEL(lastData, leftb_coord);
+		vec4	colorRB = IMG_PIXEL(lastData, rightb_coord);
+		
+		float	neighborSum = gray(colorL + colorR + colorA + colorB + colorLA + colorRA + colorLB + colorRB);
+		float	state = gray(color);
+		
+		//	live cell
+		if (state &gt; 0.0)	{
+			if (neighborSum &lt; 2.0)	{
+				//	under population
+				inputPixelColor = vec4(0.0);
+			}
+			else if (neighborSum &lt; 4.0)	{
+				//	status quo
+				inputPixelColor = vec4(1.0);
+			}
+			else	{
+				//	over population
+				inputPixelColor = vec4(0.0);
+			}
+		}
+		//	dead cell
+		else	{
+			if ((neighborSum &gt; 2.0)&amp;&amp;(neighborSum &lt; 4.0))	{
+				//	reproduction
+				inputPixelColor = vec4(1.0);
+			}
+			else if (neighborSum &lt; 2.0)	{
+				//	stay dead
+			}
+		}
+	}
+	
+	gl_FragColor = inputPixelColor;
+}
+</code></pre></div><p>Walking through this code, the initial <code>if</code> statement is used to determine if the shader needs to randomize the state.  This happens under one of two conditions, either the <code>FRAMEINDEX</code> is 0 (the first frame) or the <code>restartNow</code> uniform (declared as an <code>event</code> type in the JSON blob) has been set to true by the host application.  The initial state is created by calling our custom rand() function which creates pseudo-random numbers between 0.0 and 1.0.  When these numbers are above the startThresh, the pixel starts as alive.</p> <p>When the state is not being randomized, we follow the ruleset.  There are two pieces of information we need to collect and based on those there can result in four possible outcomes.  In particular we need to know the current alive / dead state of the current pixel (1 or 0) and we need to know the summation of the states of the neighboring pixels.  Here the <code>state</code> variable holds the state of the current pixel and <code>neighborSum</code> is used to hold the sum of the surrounding 8 pixels.</p> <p>Once this information is collected we can create a set of <code>if</code> statements based on their values, starting with whether or not the state is 1 or 0.  When the cell is alive, it can die as a result of over or under population, otherwise it stays the same.  When the cell is dead, it can become alive due to reproduction if there are enough neighboring living cells.</p> <p>This simple set of rules creates a wide variety of different outcomes and the basic concept of cellular automaton can be used as a starting point for creating evolving behaviors within other shaders.  Recall that with ISF, you can make Game of Life just the first of multiple render passes that use the state information as part of more complex generators or effects.</p> <p>The Game of Life shader itself can be remixed in various interesting ways.  Here are a few challenges:</p> <ul><li>Create a version that uses the RGB channels to run three different simulations in a single output.</li> <li>Add an option to switch between pseudo-random numbers and sin waves for the starting state.</li> <li>Add options for random birth and random death of cells.</li> <li>Change the rules to increase or decrease the birth rate.</li></ul></div> <div class="page-edit"><!----> <!----></div> <div class="page-nav"><p class="inner"><span class="prev">
+        ←
+        <a href="/primer/primer_chapter_6.html" class="prev">
+          Convolution Filters
+        </a></span> <span class="next"><a href="/primer/primer_chapter_8.html">
+          Audio Visualizers in ISF
+        </a>
+        →
+      </span></p></div> </div> <!----></div></div>
+    <script src="/assets/js/11.e5e59264.js" defer></script><script src="/assets/js/app.6d8aac83.js" defer></script>
+  </body>
+</html>
