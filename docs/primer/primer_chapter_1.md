@@ -7,6 +7,7 @@ summary: "An overview of the topics covered in this Primer and an introduction t
 sidebar: home_sidebar
 permalink: primer_chapter_1.html
 folder: primer
+prev: /primer/
 ---
 
 # What is ISF?

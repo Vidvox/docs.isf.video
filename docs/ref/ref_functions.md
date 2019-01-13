@@ -1,5 +1,7 @@
 ---
 title: ISF JSON Reference
+prev: false
+next: false
 tags: [Reference, Functions]
 keywords: IMG_PIXEL(), IMG_NORM_PIXEL(), IMG_THIS_PIXEL(), IMG_NORM_THIS_PIXEL(), IMG_SIZE(), abs(), mod(), pow(), fract(), sign(), max(), min(), ceil(), floor(), radians(), degrees(), sin(), cos(), tan(), asin(), acos(), atan(), sqrt(), exp(), log(), log2(), inversesqrt(), clamp(), mix(), step(), smoothstep(), length(), dot(), cross(), faceforward(), reflect(), refract(), lessThan(), lessThanEqual(), greaterThan(), greaterThanEquala(), equal(), notEqual(), any(), all()
 last_updated: June 12, 2018

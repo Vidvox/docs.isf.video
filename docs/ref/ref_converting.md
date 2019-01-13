@@ -1,5 +1,7 @@
 ---
 title: ISF JSON Reference
+prev: false
+next: false
 tags: [Reference, Converting Shaders]
 keywords: texture2D(), texture2DRect(), IMG_NORM_PIXEL(), IMG_PIXEL(), GLSL, gl_FragCoord.xy, translate, convert
 last_updated: June 12, 2018

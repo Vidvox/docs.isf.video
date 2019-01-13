@@ -1,5 +1,7 @@
 ---
 title: ISF Variables Reference
+prev: false
+next: false
 tags: [Variables, Uniforms]
 keywords: PASSINDEX, RENDERSIZE, isf_FragNormCoord, TIME, TIMEDELTA, DATE, FRAMEINDEX
 last_updated: June 12, 2018

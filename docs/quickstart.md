@@ -1,5 +1,6 @@
 ---
 sidebar: false
+next: using_isf
 ---
 
 ## Introduction to the ISF Quick Start

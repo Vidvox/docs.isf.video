@@ -1,7 +1,9 @@
 module.exports = {
-	title: 'ISF Documenation!',
+	title: 'ISF Documenation',
   description: 'Interactive Shader Format is a file format used to describe GLSL shaders for real-time image filtering and generation.',
 	themeConfig: {
+    prev: true,
+    next: true,
 		sidebar: {
       '/primer/': [
         ['primer_chapter_1', 'Introduction'],

@@ -1,5 +1,7 @@
 ---
 title: ISF JSON Reference
+prev: false
+next: false
 tags: [Reference, Changes]
 keywords: PERSISTENT_BUFFERS, vv_FragNormCoord, vv_vertShaderInit(), VSN, ISFVSN, TIMEDELTA, DATE, FRAMEINDEX
 last_updated: June 12, 2018

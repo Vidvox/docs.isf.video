@@ -1,5 +1,7 @@
 ---
 title: ISF JSON Reference
+prev: false
+next: false
 tags: [JSON, Reference]
 keywords: PASSINDEX, PERSISTENT, INPUTS, VSN, ISFVSN, CREDIT, DESCRIPTION, CATEGORIES, MIN, MAX, DEFAULT, TARGET, IMPORTED, LABEL
 last_updated: June 12, 2018

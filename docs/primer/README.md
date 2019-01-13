@@ -1,4 +1,6 @@
 ---
+prev: ../using_isf
+next: primer_chapter_1
 ---
 
 # The ISF Primer

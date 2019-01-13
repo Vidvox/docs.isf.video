@@ -1,5 +1,7 @@
 ---
 title: ISF Multi-Pass and Persistent Buffer Reference
+prev: false
+next: false
 tags: [Multi-pass, Persistent Buffers]
 keywords: PASSINDEX, PERSISTENT
 last_updated: June 12, 2018

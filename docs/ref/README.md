@@ -15,12 +15,12 @@ This reference contains a set of useful notes for writing GLSL shaders to meet t
 
 ## Reference Pages
 
-- [Automatically Created Variables, Uniforms and Constants](ref_variables)
-- [Built-In Functions](ref_functions)
-- [Multi-Pass Shaders and Persistent Buffers](ref_multipass)
-- [ISF JSON Attributes](ref_json)
-- [Converting Non-ISF GLSL shaders to ISF](ref_converting)
-- [Change Log](ref_changes)
+- [Automatically Created Variables, Uniforms and Constants](ref_variables.md)
+- [Built-In Functions](ref_functions.md)
+- [Multi-Pass Shaders and Persistent Buffers](ref_multipass.md)
+- [ISF JSON Attributes](ref_json.md)
+- [Converting Non-ISF GLSL shaders to ISF](ref_converting.md)
+- [Change Log](ref_changes.md)
     
 ## Sample Files
 
