@@ -26,8 +26,8 @@ module.exports = {
       ]
     },
     nav: [
-      { text: 'Using ISF', link: '/using_isf.html' },
       { text: 'Quickstart', link: '/quickstart.html' },
+      { text: 'Using ISF', link: '/using_isf.html' },
       { text: 'Primer', link: '/primer/' },
       { text: 'Reference', link: '/ref/' },
       { text: 'ISF Homepage', link: 'https://isf.video'},
