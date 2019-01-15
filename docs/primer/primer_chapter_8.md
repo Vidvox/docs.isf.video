@@ -244,7 +244,7 @@ If we take our FFT data slices and visualize them over time, we are essentially 
 
 One particularly cool usage of this is from Aphex Twin in the song "Equation" where an image of a face is essentially encoded in the music, such that when you create a spectrogram from the FFT, the face image is revealed:
 
-[![[Equation] - Aphex Twin Spectrogram](https://img.youtube.com/vi/M9xMuPWAZW8/0.jpg)](https://www.youtube.com/watch?v=M9xMuPWAZW8&t=330s "Equation")
+<iframe width="560" height="315" src="https://www.youtube.com/embed/M9xMuPWAZW8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 Here is the code for making an audio FFT Spectrogram in ISF.  Note how we are making use of audioFFT inputs, multiple shader passes and persistent buffers.  Like with the previous FFT example there are added inputs for controlling the coloring of the output display.  There is also an option to reset the persistent buffer via the `clear` event.
 
