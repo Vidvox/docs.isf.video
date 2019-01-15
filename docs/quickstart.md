@@ -15,7 +15,8 @@ In this document we will cover the basics of using and writing shaders in ISF.
 
 ## Using ISF Compositions
 
-{% include image.html file="quickstart/ISF-In-VDMX.png" alt="ISF generator in VDMX" max-width="685" caption="ISF composition being used as a source file in VDMX." %}
+<img src="/quickstart/ISF-In-VDMX.png" alt="ISF generator in VDMX" />
+ISF composition being used as a source file in VDMX
 
 - Shaders written in the ISF specification can be used in supported environments on desktop, mobile and the web.  To use ISF files in a specific piece of software consult the appropriate documentation.
 - ISF files that you would like to be globally available to all software on your Mac can be placed in the "/Library/Graphics/ISF" or "~/Library/Graphics/ISF" directories.  Generators, filters and transitions in these directories should generally be automatically available within supported software where applicable. 
@@ -60,7 +61,8 @@ This ISF composition is made up of two parts - a JSON blob at the top that descr
 
 From this starting point, you can replace the contents of the `void main() {}` function with other code and set `gl_FragColor` to any other color.  With GLSL, the code in this function will execute simultaneously for every single pixel in your image.
 
-{% include image.html file="quickstart/All-Orange.png" alt="Orange generator in ISF Editor" max-width="720" caption="Every pixel is orange example in the ISF Editor." %}
+<img src="/quickstart/All-Orange.png" alt="Orange generator in ISF Editor" />
+Every pixel is orange example in the ISF Editor.
 
 This is further detailed in the [ISF Primer chapter on the anatomy of an ISF composition](primer_chapter_2).
 
@@ -116,7 +118,8 @@ void main() {
 
 This code uses the `TIME` uniform variable to animate the output.  When the x position of the current coordinate is less than the fraction part of the time in sections the image is filled in with our color, otherwise the pixel is transparent.
 
-{% include image.html file="quickstart/Timed-Animation.gif" alt="Timed animation example" max-width="480" caption="Timed animation loop in ISF Editor preview." %}
+<img src="/quickstart/Timed-Animation.gif" alt="Timed animation example" />
+Timed animation loop in ISF Editor preview
 
 Further discussion and examples can be found in the [ISF Primer chapter on automatically created uniform variables](primer_chapter_4).
 
@@ -153,7 +156,8 @@ void main() {
 }
 ```
 
-{% include image.html file="quickstart/ISF-Editor-Add-Inputs.png" alt="Adding inputs in the ISF Editor" max-width="720" caption="Adding inputs in the ISF Editor." %}
+<img src="/quickstart/ISF-Editor-Add-Inputs.png" alt="Adding inputs in the ISF Editor" />
+Adding inputs in the ISF Editor.
 
 Looking in the `INPUTS` section, there is a single element with several attributes.  The two that are required here are `NAME` and `TYPE` which are set to "level" and "float" respectively.
 
@@ -235,7 +239,8 @@ This very simple example demonstrates the two important details when creating im
 - Including the "inputImage" as an element in the `INPUTS` section of the JSON blob.
 - Using the `IMG_NORM_PIXEL()` function to get the color of a particular normalized pixel.  Within ISF, this function and its non-normalized counterpart `IMG_PIXEL()` replace the functions `texture2D()` or `texture2DRect()`.  More information can be found on the [ISF built-in functions](ref_functions) reference page.
 
-{% include image.html file="quickstart/ISF-Image-Inputs.png" alt="Creating ISF FX" max-width="720" caption="Adding an image input in the ISF Editor to create an FX." %}
+<img src="/quickstart/ISF-Image-Inputs.png" alt="Creating ISF FX" />
+Adding an image input in the ISF Editor to create an FX.
 
 ISF compositions can include more than one image input, making it possible to pass in additional data to be used for things like masking and distortion effects.  Additional information on declaring image inputs and the image filter convention can be found in the[ISF JSON Reference](ref_json).
 
@@ -292,7 +297,8 @@ void main() {
 }
 ```
 
-{% include image.html file="quickstart/Vertex-Shader-Editing.png" alt="Editing Vertex Shader in ISF Editor" max-width="720" caption="Editing Vertex Shader in the ISF Editor." %}
+<img src="/quickstart/Vertex-Shader-Editing.png" alt="Editing Vertex Shader in ISF Editor" />
+Editing Vertex Shader in the ISF Editor.
 
 The two important details here are:
 - When including your own vertex shader, make sure to include the `isf_vertShaderInit();` that tells the host application to do any initial setup.
@@ -465,7 +471,8 @@ To pass audio data into shaders, the audio samples are converted into pixel info
 
 The "audioFFT" type works in a similar fashion, with the results packed into an image where the y-axis representing individual channels and the x-axis holding the results for individual frequency bins.
 
-{% include image.html file="quickstart/Audio-Inputs.png" alt="Audio Reactive Shader in ISF Editor" max-width="720" caption="Shader with raw audio and FFT waveform inputs in the ISF Editor." %}
+<img src="/quickstart/Audio-Inputs.png" alt="Audio Reactive Shader in ISF Editor" />
+Shader with raw audio and FFT waveform inputs in the ISF Editor.
 
 Further discussion and examples can be found in the [ISF Primer chapter on working with audio and audio FFTs](primer_chapter_8).
 

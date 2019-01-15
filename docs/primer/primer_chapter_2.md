@@ -69,7 +69,7 @@ Recalling our discussion from chapter 1, GLSL is also commonly known as the "Ope
 
 With fragment shaders each pixel for the output is preloaded with the same same `main() {}` function and its behavior can vary depending on its coordinate position and other input variables that are specific to the individual pixel.
 
-<img src="/primer_2_pixels.jpg" alt="Rendering a 8x8 pixel grid"/>
+<img src="/primer/2/primer_2_pixels.jpg" alt="Rendering a 8x8 pixel grid"/>
 Fragment Shaders render the same main() {} function for each pixel
 
 
