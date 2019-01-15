@@ -7,3 +7,6 @@
 2. Install [Yarn](https://yarnpkg.com/lang/en/docs/install/)
 3. Run `npm install` from within the repository
 4. Run `yarn docs:dev` to run the site locally in dev mode
+
+## Notes
+Be sure to preface all code samples with ```glsl to have proper syntax highlighting. If you only use \`\`\` it assumes the code is plaintext and disables highlighting.
