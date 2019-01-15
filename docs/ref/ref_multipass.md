@@ -21,7 +21,7 @@ ISF files can define persistent buffers.  These buffers are images (GL textures)
 
 For each buffer that you wish to retain between passes, the `PERSISTENT` can be set to `true`.  If you wish to have the value stored as a 32-bit floating point value the additional `FLOAT` attribute can be included and set to `true`.  Using 32-bit textures will use up more memory, but in some cases can be extremely useful.
 
-```
+```glsl
 /*{
 	"DESCRIPTION": "demonstrates the use of a persistent buffer to create a motion-blur type effect. also demonstrates the simplest use of steps: a one-step rendering pass",
 	"CREDIT": "by zoidberg",
@@ -61,7 +61,7 @@ void main()
 
 The ISF file format defines the ability to execute a shader multiple times in the process of rendering a frame for output- each time the shader's executed (each pass), the uniform int variable `PASSINDEX` is incremented. Details on how to accomplish this are described below in the spec, but the basic process involves adding an array of dicts to the `PASSES` key in your top-level JSON dict. Each dict in the `PASSES` array describes a different rendering pass- the ISF host will automatically create buffers to render into, and those buffers (and therefore the results of those rendering passes) can be accessed like any other buffer/input image/imported image (you can render to a texture in one pass, and then read that texture back in and render something else in another pass).  The dicts in `PASSES` recognize a number of different keys to specify different properties of the rendering passes- more details are in the spec below.
 
-```
+```glsl
 /*{
 	"DESCRIPTION": "demonstrates the use of two-pass rendering- the first pass renders to a persistent buffer which is substantially smaller than the res of the image being drawn.  the second pass renders at the default requested size and scales up the image from the first pass",
 	"CREDIT": "by zoidberg",

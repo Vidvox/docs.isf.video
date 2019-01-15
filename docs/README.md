@@ -15,7 +15,7 @@ footer: Interactive Shader Format (ISF) copyright VIDVOX, LLC 2018, all rights r
 
 <div id="example">
 
-```
+```glsl
 /*{
 	"DESCRIPTION": "Demonstrates a float input",
 	"CREDIT": "by VIDVOX",

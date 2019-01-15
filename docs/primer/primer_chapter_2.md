@@ -35,7 +35,7 @@ JSON, or JavaScript Object Notation is an open-standard file format that uses hu
 
 An example of a the JSON blob from the 'Test-Float.fs' file:
 
-```
+```glsl
 /*{
 	"DESCRIPTION": "demonstrates the use of float-type inputs",
 	"CREDIT": "by zoidberg",
@@ -78,7 +78,7 @@ Within a fragment shader meeting the ISF specification, GLSL code is placed in t
 
 An example of a the GLSL from the 'Test-Float.fs' file:
 
-```
+```glsl
 void main()
 {
 	vec4		srcPixel = IMG_THIS_PIXEL(inputImage);
@@ -106,7 +106,7 @@ Now that we've gotten a basic look at how an ISF is put together, we can start o
 
 The most basic ISF example would be something that returns a single color for each pixel.  It might look something like this.
 
-```
+```glsl
 /*{
 	"DESCRIPTION": "Every pixel is orange",
 	"CREDIT": "by VIDVOX",
@@ -127,7 +127,7 @@ Now let's expand this shaders so that instead of rendering a single fixed value 
 
 The ISF specification supports several different types of INPUTS, including image, float, bool, long, color, event, audio, audioFFT and point.  Here we'll be adding in a "color" variable which contains an RGBA value.
 
-```
+```glsl
 /*{
 	"DESCRIPTION": "Demonstrates the use of color-type image inputs",
 	"CREDIT": "by VIDVOX",
@@ -167,7 +167,7 @@ So far we've examined how to set each pixel in a generator shader to the exact s
 
 Let's look how we can create a shader that fades between two colors, varying over the x position (left to right) of the image.
 
-```
+```glsl
 /*{
 	"DESCRIPTION": "Creates a linear gradient from one color to another",
 	"CREDIT": "by VIDVOX",
@@ -218,7 +218,7 @@ So far we've seen how to use ISF to generate totally new images by returning the
 
 For our first example we'll examine one of the most basic standard FX, Color Invert.fs, which takes an input pixel and inverts the rgb channels while leaving the alpha channel intact.
 
-```
+```glsl
 /*{
 	"DESCRIPTION": "Inverts each pixel",
 	"CREDIT": "by VIDVOX",
@@ -256,7 +256,7 @@ gl_FragColor = vec4(1.0-srcPixel.rgb,srcPixel.a);
 
 Another common usage for image processing is changing the positions of pixels.  Like with our previous example of creating a color gradient, for in this shader we will make use of the automatically provided 'isf_FragNormCoord' variable to get the location of the pixel being processed.
 
-```
+```glsl
 /*{
 	"DESCRIPTION": "Shift pixels to the left",
 	"CREDIT": "by VIDVOX",

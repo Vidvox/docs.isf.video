@@ -26,7 +26,7 @@ These concepts will also come into play in later chapters as we dive further int
 In mathematics, a convolution matrix, or kernel, is a set of weights that describe how a number of elements are to be added together.  For our purposes each kernel is a 3x3 grid of numbers, but in some cases you may encounter 5x5 or even larger kernels.
 
 An example kernel may look like:
-```
+```glsl
 //	A blurring kernel
 [0.0625, 0.125, 0.0625,
 0.125, 0.25, 0.125,
@@ -45,7 +45,7 @@ Many different effects can be created by using different weight values as inputs
 
 #### The Identity Kernel 
 
-```
+```glsl
 //	The Identity Kernel
 [0.0, 0.0, 0.0,
 0.0, 1.0, 0.0,
@@ -58,7 +58,7 @@ In this case each neighboring pixel is multiplied by 0.0 and the middle pixel is
 
 Another commonly found kernel is the one for a `Box Blur`.  Many blur filters are based on this idea of averaging the middle pixel with the values around it.  The stronger the weights of the neighboring pixels in comparison to the middle, the stronger the blur.  In such cases it is important for the sum of all of the weights to be 1.0.
 
-```
+```glsl
 //	The Box Blur Kernel
 [0.11111, 0.11111, 0.11111,
 0.11111, 0.11111, 0.11111,
@@ -71,7 +71,7 @@ Though box blurs and other similar blurs are easily created with convolutions, a
 
 Often considered the opposite of the blur is the sharpen, which subtracts values on the diagonals instead of averaging.  This can often make edges appear more pronounced.
 
-```
+```glsl
 //	The Sharpen Kernel
 [-1.0, 0.0, -1.0,
 0.0, 5.0, 0.0,
@@ -84,14 +84,14 @@ Like with blurs, increasing the weight of the middle pixel compared to the amoun
 
 In a similar fashion to sharpen kernels for edge detection the trick is to subtract.  However in this case, instead of the the sum of all of the weights being 1.0, they'll come out to 0.0;  this way it requires that certain pixels be much brighter for others to stay in the image, while most of them are set to black.
 
-```
+```glsl
 //	Edge Detection 1
 [1.0, 0.0, 1.0,
 0.0, -4.0, 0.0,
 1.0, 0.0, 1.0]
 ```
 
-```
+```glsl
 //	Edge Detection 2
 [-1.0, -1.0, -1.0,
 -1.0, 8.0, -1.0,
@@ -108,7 +108,7 @@ When creating GLSL shaders that evaluate convolution kernels it can be useful to
 
 First we'll make the vertex shader for the convolution kernel.  Whether you are creating a generalized use case like in this example, or creating a shader based on a specific kernel, your vertex shader will likely look something like this:
 
-```
+```glsl
 varying vec2 left_coord;
 varying vec2 right_coord;
 varying vec2 above_coord;
@@ -143,7 +143,7 @@ Here we've declared eight different varying vec2 variables, one for each of the 
 
 Now we can create the fragment shader that performs the actual convolution.  For this generalized shader we declare 9 float values, one for each weight and give each a range of -8.0 to 8.0.  Only the middle pixel is set to 1.0 by default, so when first loaded the filter will function as a pass-thru.
 
-```
+```glsl
 /*{
 	"CREDIT": "by VIDVOX",
 	"ISFVSN": "2",
@@ -269,7 +269,7 @@ Note that for these examples we will use a vertex shader identical to the one us
 
 A very simple blur filter that has a single strength value can be written as such.
 
-```
+```glsl
 /*{
 	"CREDIT": "by VIDVOX",
 	"ISFVSN": "2",
@@ -334,7 +334,7 @@ As a challenge, try adapting one of the other kernels we looked at, such as the 
 
 In the examples so far we've used a vertex shader to pre-compute our coordinate points used in our fragment shaders.  While this is recommended when possible, there are times when your algorithm may use an indeterminate number of lookup points, or the lookup points may vary depending on other factors within your fragment shader code.
 
-```
+```glsl
 /*
 {
   "CATEGORIES" : [

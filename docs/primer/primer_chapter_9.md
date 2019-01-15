@@ -45,7 +45,7 @@ You may want to read through the full explanation of voronoi from TBOS to get a 
 
 Starting with this example:
 
-```
+```glsl
 // Author: @patriciogv
 // Title: CellularNoise
 
@@ -125,7 +125,7 @@ When making adaptations it can also be useful to look in the code to find sectio
 
 The adapted result looks quite similar:
 
-```
+```glsl
 /*{
 	"DESCRIPTION": "Cellular Noise example",
 	"CREDIT": "@patriciogv",
@@ -205,13 +205,13 @@ void main() {
 
 Of course this is just a basic adaptation.  Though they aren't needed, looking more closely at the code you may notice other minor changes that could be made, such as changing:
 
-```
+```glsl
 vec2 st = gl_FragCoord.xy/RENDERSIZE.xy;
 ```
 
 to the simpler form of:
 
-```
+```glsl
 vec2 st = isf_FragNormCoord;
 ```
 

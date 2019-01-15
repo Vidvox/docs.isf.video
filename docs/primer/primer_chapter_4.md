@@ -34,7 +34,7 @@ Scalar types represent a single number within a particular set of numbers:
 - `float`, is short for floating point number, which are used to hold decimal numbers such as -2.718, 0.0, 3.14 or 12.34.
 
 Here is an example of GLSL code that makes use of each type of scalar variable:
-```
+```glsl
 void main() {
 	int		myInt = 3;
 	float	myFloat = 0.1;
@@ -63,7 +63,7 @@ To access the individual scalars that each vector is made up from, GLSL uses a '
 - `vec4` has '.x', '.y', '.z' and '.w' sub-values.  You can also interchange each of these respectively with '.r', '.g.', '.b', and 'a'.
 
 Here is an example of using some of these vector types together:
-```
+```glsl
 void main() {
 	float	myX = 0.25;
 	float	myY = 0.5;
@@ -104,7 +104,7 @@ Declaring variables in your ISF will typically happen in three places:
 
 Let's take the Twirl.fs FX as an example:
 
-```
+```glsl
 /*{
 	"CREDIT": "by VIDVOX",
 	"ISFVSN": "2",
@@ -204,7 +204,7 @@ The process of adding your own custom functions is easy and you've already gotte
 
 Each function you declare in your shader will look something like this:
 
-```
+```glsl
 'data type that gets returned' 'name of the function' ('variables passed into the function')
 {
 	//	some code
@@ -214,7 +214,7 @@ Each function you declare in your shader will look something like this:
 
 And of course it may help to see a few actual examples:
 
-```
+```glsl
 //	determines the grayscale value for the pixel by averaging the RGB channels
 float grayscaleAmount(vec4 color)
 {
@@ -235,7 +235,7 @@ vec3 hsv2rgb(vec3 c)	{
 
 When discussing data types, there was a special type known as 'void' which is reserved for functions that do not 'return' anything at the end.  Here is an example function that changes the state of the variable that is passed in:
 
-```
+```glsl
 //	flip the x and y values
 void flipValues(vec2 point)
 {
@@ -250,7 +250,7 @@ Functions can be placed either before or after your "void main(){...}" section o
 For example, each of these are essentially equivalent:
 
 1.
-```
+```glsl
 /*{
 	"DESCRIPTION": "Grayscale each pixel",
 	"CREDIT": "by VIDVOX",
@@ -281,7 +281,7 @@ void main() {
 ```
 
 2.
-```
+```glsl
 /*{
 	"DESCRIPTION": "Grayscale each pixel",
 	"CREDIT": "by VIDVOX",
@@ -340,7 +340,7 @@ Along with your 'main' function and any other custom functions declared in your 
 
 If you are writing shaders against the ISF specification there are a few additional functions that can be used for working with image data.
 
-```
+```glsl
 vec4 pixelColor = IMG_PIXEL(image imageName, vec2 pixelCoord); 
 vec4 pixelColor = IMG_NORM_PIXEL(image imageName, vec2 normalizedPixelCoord);
 vec4 pixelColor = IMG_THIS_PIXEL(image imageName); 
@@ -351,7 +351,7 @@ vec2 imageSize = IMG_SIZE(image imageName);
 - `IMG_THIS_PIXEL()` and `IMG_THIS_NORM_PIXEL()` are essentially the same as `IMG_PIXEL()` but automatically fill in the pixel coordinate for the pixel being rendered.
 - `IMG_SIZE()` returns a two-element vector describing the size of the image in pixels.
 
-```
+```glsl
 /*{
 	"DESCRIPTION": "Image get pixel functions",
 	"CREDIT": "by VIDVOX",
@@ -392,7 +392,7 @@ One of the commonly used math functions is `max` which is short for maximum.  Yo
 
 While this is not the case with all functions, when looking up `max` in a reference you'll note that it is declared four different times:
 
-```
+```glsl
 float max(float x, float y)  
 vec2 max(vec2 x, vec2 y)  
 vec3 max(vec3 x, vec3 y)  
@@ -405,7 +405,7 @@ When looking at other functions you may see all sorts of combinations of inputs 
 
 Now let's look at an actual shader that makes use of the `max` function.
 
-```
+```glsl
 /*
 {
   "CATEGORIES" : [
@@ -454,7 +454,7 @@ As a challenge, try adapting this shader into a filter that compares an image in
 
 You may recall from chapter 2 this example where we used the mix function to create a linear gradient.
 
-```
+```glsl
 /*{
 	"DESCRIPTION": "Creates a linear gradient from one color to another",
 	"CREDIT": "by VIDVOX",
@@ -496,7 +496,7 @@ Now we can take a second to look a little more closely at this helpful function 
 
 Like with the `max` function, we can use `mix` in a piecewise component fashion.
 
-```
+```glsl
 float mix(float x, float y, float a)  
 vec2 mix(vec2 x, vec2 y, vec2 a)  
 vec3 mix(vec3 x, vec3 y, vec3 a)  
@@ -505,7 +505,7 @@ vec4 mix(vec4 x, vec4 y, vec4 a)
 
 There is also a variation of the `mix` function where the third parameter is always a floating scalar, which is how it is used in the linear gradient example.
 
-```
+```glsl
 float mix(float x, float y, float a)  
 vec2 mix(vec2 x, vec2 y, float a)  
 vec3 mix(vec3 x, vec3 y, float a)  
@@ -548,7 +548,7 @@ Next we'll see how these comparisons are used to write our conditional statement
 Though not as fast as the other option for working with logic in shaders, the if / else method is the more flexible of the two options as it can create multiple logic branches that can each contain any amount of additional code.
 
 You can write if statements in a variety of ways, but the most general form looks something like this:
-```
+```glsl
 if (<some condition is true>)
 {
 	<here is some code>
@@ -573,7 +573,7 @@ Let's go back to the Twirl.fs filter discussed previously on this page.  In this
 
 The first usage of if is fairly straight forward.  Read outloud this would say “if the distance is less than the radius size, do the code in these curly braces”
 
-```
+```glsl
 	if (dist < radius_sized) 	{
 		//	do some stuff
 	}
@@ -581,7 +581,7 @@ The first usage of if is fairly straight forward.  Read outloud this would say �
 
 The if statement used at the end to determine which color is used for gl_FragColor is a little more complex:
 
-```
+```glsl
 	if ((loc.x < 0.0)||(loc.y < 0.0)||(loc.x > 1.0)||(loc.y > 1.0))	{
 		gl_FragColor = vec4(0.0);
 	}
@@ -601,12 +601,12 @@ If you only learn one technique, this would be it, however if you really wish to
 When possible, it is recommended that you use the `ternary` operator, as it is both concise and more quickly excuted by the GPU.
 
 Ternary operator, as the name implies, has three parts, and takes the following general form:
-```
+```glsl
 val = (<some comparison statement>) ? (<option1>) : (<option2>);
 ```
 
 This is essentially equivalent to writing the code:
-```
+```glsl
 if (<some comparison statement>)
 	val = <option1>
 else
@@ -615,7 +615,7 @@ else
 
 Now let's look at our previous max function example, but change it up a bit so that we return the brighter color based on the overall brightness of each provided color.
 
-```
+```glsl
 /*
 {
   "CATEGORIES" : [
@@ -683,7 +683,7 @@ As an important note, remember that loops in GLSL fragment shaders are executing
 
 When using the keyword `for` when creating a loop, it is implied that the loop is controlled by a counter variable.
 
-```
+```glsl
 	for (<counter variable>;<counter conditional>;<counter varying>)
 	{
 		//	code to be executed
@@ -693,7 +693,7 @@ When using the keyword `for` when creating a loop, it is implied that the loop i
 The parentheses enclose three expressions that initialize, check and update the variable used as counter.  The body defined by curly braces encloses the statements that are executed at each pass of the loop.
 
 And example of a filled in for loop might look something like this:
-```
+```glsl
 	float	val = 0.0;
 	for (int i = 0;i < 4;i++)
 	{
@@ -705,7 +705,7 @@ Here we have a variable called `val`, and on each pass of the for loop we add 0.
 
 In certain versions of GLSL the second portion of the for loop, the comparison must be against a constant value, not a variable.  If you need a for loop that executes a variable number of times, for full compatability the `break` statement can be used to exit for loops based on sub-conditions, such as comparing to a variable.  As an example:
 
-```
+```glsl
 	float	val = 0.0;
 	int		actualMax = 3;
 	for (int i = 0;i < 100;i++)
@@ -724,7 +724,7 @@ With this for loop, the statement will exit early under two different conditions
 
 The while loop is similar to the for loop, but instead of using a counting variable it uses a custom conditional.  Typically this conditional relies on some variable inside of the loop itself that is changing.  They take the general form of:
 
-```
+```glsl
 	while (<while conditional>)
 	{
 		//	code to be executed
@@ -732,7 +732,7 @@ The while loop is similar to the for loop, but instead of using a counting varia
 ```
 
 And example of a filled in while loop might look something like this:
-```
+```glsl
 	float	val = 0.0;
 	while (val < 1.0)
 	{
@@ -746,7 +746,7 @@ An important note with while loops is that if the condition is not initially met
 
 The do-while loop is essentially the same as the while loop, with the minor difference that the code will execute at least once, even if the conditions within the () are not  initially met. They take the general form of:
 
-```
+```glsl
 	do 
 	{
 		//	code to be executed
@@ -755,7 +755,7 @@ The do-while loop is essentially the same as the while loop, with the minor diff
 ```
 
 And example of a filled in do-while loop might look something like this:
-```
+```glsl
 	float	val = 0.0;
 	do
 	{

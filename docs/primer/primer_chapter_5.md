@@ -35,7 +35,7 @@ However there are a few cases where it can be beneficial to include a custom ver
 When including a vertex shader as part of an ISF composition, start by creating a basic fragment shader that will include the JSON blob.  Then create another file with the same name but use a 'vs' file extension.  Whenever a host application tries to load the fragment shader, it will look to see if a custom matching .vs is included.  If not, the default vertex shader is used instead.
 
 The most basic vertex shader for ISF would look something like this:
-```
+```glsl
 //	passthru.vs
 //	put your code in the main() {} function
 
@@ -51,7 +51,7 @@ void main()
 
 And it match up with a corresponding boring passthru.fs that looks like this:
 
-```
+```glsl
 //	passthru.fs
 /*{
 	"DESCRIPTION": "Passes through each pixel",
@@ -80,7 +80,7 @@ This vertex shader isn't particularly exciting and is essentially what the defau
 
 The other noteworthy addition to this code is:
 
-```
+```glsl
 varying vec2 translated_coord;
 ```
 
@@ -123,7 +123,7 @@ Here a rotation is performed by converting each point to polar coordinates, addi
 
 This same math for going between coordinate spaces can be re-used in other situations.  Though not exactly the same, you may recall seeing similar looking code in Chapter 3 when we looked at the Twirl.fs filter.
 
-```
+```glsl
 /*
 {
   "CATEGORIES" : [
@@ -178,7 +178,7 @@ Now let's do the same thing, but instead of doing the translation in the fragmen
 
 Here is the code for Rotate.vs / Rotate.fs
 
-```
+```glsl
 //	Rotate.vs
 varying vec2 translated_coord;
 
@@ -204,7 +204,7 @@ void main()	{
 
 And the matching Rotate.fs:
 
-```
+```glsl
 /*{
 	"CREDIT": "by VIDVOX",
 	"ISFVSN": "2",

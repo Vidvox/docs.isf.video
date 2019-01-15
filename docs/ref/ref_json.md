@@ -24,7 +24,7 @@ These demonstrate the basic set of attributes available and provides examples of
 The first thing in your ISF file needs to be a comment (delineated using "/\*" and "\*/") containing a JSON dict. If the comment doesn't exist- or the JSON dict is malformed or can't be parsed- your ISF file can't be loaded (ISF files can be tested with the ISF Editor linked to elsewhere on this page). This JSON dict is referred to as your "top-level dict" throughout the rest of this document.
 
 A basic ISF may have a JSON blob that looks something like this:
-```
+```glsl
 /*{
 	"DESCRIPTION": "demonstrates the use of float-type inputs",
 	"CREDIT": "by zoidberg",

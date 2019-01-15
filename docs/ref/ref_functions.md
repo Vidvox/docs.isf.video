@@ -19,7 +19,7 @@ The base language of GLSL includes many useful functions.  If you are writing sh
 
 ISF extends GLSL with the following functions.
 
-```
+```glsl
 vec4 pixelColor = IMG_PIXEL(image imageName, vec2 pixelCoord); 
 vec4 pixelColor = IMG_NORM_PIXEL(image imageName, vec2 normalizedPixelCoord);
 vec4 pixelColor = IMG_THIS_PIXEL(image imageName); 
@@ -39,14 +39,14 @@ This is a reference for many of the commonly used built-in functions from the Op
 ### Basic Number Operations
 
 For each of these functions, you can use float input, or as vec2, vec3, or vec4 to perform the operations on multiple values at once. In most cases these functions take a single input parameter (x) and where specified take two parameters (x and y) For example:
-```
+```glsl
 float abs(float x)  
 vec2 abs(vec2 x)  
 vec3 abs(vec3 x)  
 vec4 abs(vec4 x)
 ```
 or
-```
+```glsl
 float mod(float x, float y)  
 vec2 mod(vec2 x, vec2 y)  
 vec3 mod(vec3 x, vec3 y)  
@@ -63,7 +63,7 @@ vec4 mod(vec4 x, vec4 y)
 - `mod`: The mod, short for Modulo, function returns x minus the product of y and floor(x/y).
 
 There are also a variations of the `min`, `max` and `mod` functions where the second parameter is always a floating scalar. For example,
-```
+```glsl
 float mod(float x, float y)  
 vec2 mod(vec2 x, float y)  
 vec3 mod(vec3 x, float y)  
@@ -73,7 +73,7 @@ vec4 mod(vec4 x, float y)
 ### Angle and Trigonometry
 
 For each of these functions, you can use float input, or as vec2, vec3, or vec4 to perform the operations on multiple values at once. For example:
-```
+```glsl
 float radians(float degrees)  
 vec2 radians(vec2 degrees)  
 vec3 radians(vec3 degrees)  
@@ -91,7 +91,7 @@ vec4 radians(vec4 degrees)
 
 There is also a two-argument variation of the atan function. For a point with Cartesian coordinates (x, y) the function returns the angle θ of the same point with polar coordinates (r, θ).
 
-```
+```glsl
 float atan(float y, float x)  
 vec2 atan(vec2 y, vec2 x)  
 vec3 atan(vec3 y, vec3 x)  
@@ -101,14 +101,14 @@ vec4 atan(vec4 y, vec4 x)
 ### Exponential
 
 For each of these functions, you can use float input, or as vec2, vec3, or vec4 to perform the operations on multiple values at once. For example:
-```
+```glsl
 float sqrt(float x)  
 vec2 sqrt(vec2 x)  
 vec3 sqrt(vec3 x)  
 vec4 sqrt(vec4 x)
 ```
 or
-```
+```glsl
 float pow(float x, float y)  
 vec2 pow(vec2 x, vec2 y)  
 vec3 pow(vec3 x, vec3 y)  
@@ -129,7 +129,7 @@ Exponential function (base 2)
 GLSL provides several useful functions for clamping and interpolating between values.  Many of these functions can be used with a variety of different input parameter arrangements.
 
 `clamp`: The clamp function returns x if it is larger than minVal and smaller than maxVal. In case x is smaller than minVal, minVal is returned. If x is larger than maxVal, maxVal is returned.
-```
+```glsl
 float clamp(float x, float minVal, float maxVal)  
 vec2 clamp(vec2 x, vec2 minVal, vec2 maxVal)  
 vec3 clamp(vec3 x, vec3 minVal, vec3 maxVal)  
@@ -137,7 +137,7 @@ vec4 clamp(vec4 x, vec4 minVal, vec4 maxVal)
 ```
 
 There is also a variation of the `clamp` function where the second and third parameters are always a floating scalars:
-```
+```glsl
 float clamp(float x, float minVal, float maxVal)  
 vec2 clamp(vec2 x, float minVal, float maxVal)  
 vec3 clamp(vec3 x, float minVal, float maxVal)  
@@ -145,7 +145,7 @@ vec4 clamp(vec4 x, float minVal, float maxVal)
 ```
 
 `mix`: The mix function returns the linear blend of x and y, i.e. the product of x and (1 - a) plus the product of y and a.
-```
+```glsl
 float mix(float x, float y, float a)  
 vec2 mix(vec2 x, vec2 y, vec2 a)  
 vec3 mix(vec3 x, vec3 y, vec3 a)  
@@ -153,7 +153,7 @@ vec4 mix(vec4 x, vec4 y, vec4 a)
 ```
 
 There is also a variation of the `mix` function where the third parameter is always a floating scalar.
-```
+```glsl
 float mix(float x, float y, float a)  
 vec2 mix(vec2 x, vec2 y, float a)  
 vec3 mix(vec3 x, vec3 y, float a)  
@@ -161,7 +161,7 @@ vec4 mix(vec4 x, vec4 y, float a)
 ```
 
 `step`: The step function returns 0.0 if x is smaller then edge and otherwise 1.0.
-```
+```glsl
 float step(float edge, float x)  
 vec2 step(vec2 edge, vec2 x)  
 vec3 step(vec3 edge, vec3 x)  
@@ -169,7 +169,7 @@ vec4 step(vec4 edge, vec4 x)
 ```
 
 There is also a variation of the step function where the edge parameter is always a floating scalar:
-```
+```glsl
 float step(float edge, float x)  
 vec2 step(float edge, vec2 x)  
 vec3 step(float edge, vec3 x)  
@@ -177,7 +177,7 @@ vec4 step(float edge, vec4 x)
 ```
 
 `smoothstep`: The smoothstep function returns 0.0 if x is smaller then edge0 and 1.0 if x is larger than edge1. Otherwise the return value is interpolated between 0.0 and 1.0 using Hermite polynomials.
-```
+```glsl
 float smoothstep(float edge0, float edge1, float x)  
 vec2 smoothstep(vec2 edge0, vec2 edge1, vec2 x)  
 vec3 smoothstep(vec3 edge0, vec3 edge1, vec3 x)  
@@ -185,7 +185,7 @@ vec4 smoothstep(vec4 edge0, vec4 edge1, vec4 x)
 ```
 
 There is also a variation of the smoothstep function where the edge0 and edge1 parameters are always floating scalars:
-```
+```glsl
 float smoothstep(float edge0, float edge1, float x)  
 vec2 smoothstep(float edge0, float edge1, vec2 x)  
 vec3 smoothstep(float edge0, float edge1, vec3 x)  
@@ -195,14 +195,14 @@ vec4 smoothstep(float edge0, float edge1, vec4 x)
 ### Geometry
 
 Unless otherwise specified these functions take the following form where applicable:
-```
+```glsl
 float length(float x)  
 float length(vec2 x)  
 float length(vec3 x)  
 float length(vec4 x)
 ```
 or
-```
+```glsl
 float dot(float x, float y)  
 float dot(vec2 x, vec2 y)  
 float dot(vec3 x, vec3 y)  
@@ -214,25 +214,25 @@ float dot(vec4 x, vec4 y)
 - `normalize`: The normalize function returns a vector with length 1.0 that is parallel to x, i.e. x divided by its length.
 - `dot`: The dot function returns the dot product of the two input parameters, i.e. the sum of the component-wise products. If x and y are the same the square root of the dot product is equivalent to the length of the vector.
 - `cross`: The cross function returns the cross product of the two input parameters, i.e. a vector that is perpendicular to the plane containing x and y and has a magnitude that is equal to the area of the parallelogram that x and y span.  The cross product is equivalent to the product of the length of the vectors times the sinus of the(smaller) angle between x and y.  The cross function will only take a pair of vec3 variables as input parameters and will always return a vec3 as a result.
-	```
+	```glsl
 	vec3 cross(vec3 x, vec3 y)
 	```
 - `faceforward`: The faceforward function returns a vector that points in the same direction as a reference vector. The function has three input parameters of the type floating scalar or float vector: N, the vector to orient, I, the incident vector, and Nref, the reference vector. If the dot product of I and Nref is smaller than zero the return value is N. Otherwise -N is returned.
-	```
+	```glsl
 	float faceforward(float N, float I, float Nref)  
 	vec2 faceforward(vec2 N, vec2 I, vec2 Nref)  
 	vec3 faceforward(vec3 N, vec3 I, vec3 Nref)  
 	vec4 faceforward(vec4 N, vec4 I, vec4 Nref)
 	```
 - `reflect`: The reflect function returns a vector that points in the direction of reflection. The function has two input parameters of the type floating scalar or float vector: I, the incident vector, and N, the normal vector of the reflecting surface. Side note: To obtain the desired result the vector N has to be normalized.
-	```
+	```glsl
 	float reflect(float I, float N)  
 	vec2 reflect(vec2 I, vec2 N)  
 	vec3 reflect(vec3 I, vec3 N)  
 	vec4 reflect(vec4 I, vec4 N)
 	```
 - `refract`: The refract function returns a vector that points in the direction of refraction.  The function has two input parameters of the type floating scalar or float vector and one input parameter of the type floating scalar: I, the incident vector, N, the normal vector of the refracting surface, and eta, the ratio of indices of refraction.  To obtain the desired result the vectors I and N have to be normalized.
-	```
+	```glsl
 	float refract(float I, float N, float eta)  
 	vec2 refract(vec2 I, vec2 N, float eta)  
 	vec3 refract(vec3 I, vec3 N, float eta)  
@@ -242,13 +242,13 @@ float dot(vec4 x, vec4 y)
 ### Vector Logic Comparisons
 
 Unless otherwise specified, these functions all work on both floating and integer vector inputs these two forms:
-```
+```glsl
 bvec2 lessThan(vec2 x, vec2 y)  
 bvec3 lessThan(vec3 x, vec3 y)    
 bvec4 lessThan(vec4 x, vec4 y)  
 ```
 and
-```
+```glsl
 bvec2 lessThan(ivec2 x, ivec2 y)  
 bvec3 lessThan(ivec3 x, ivec3 y)  
 bvec4 lessThan(ivec4 x, ivec4 y)
@@ -261,13 +261,13 @@ bvec4 lessThan(ivec4 x, ivec4 y)
 - `equal`: The lessThan function returns a boolean vector as result of a component-wise comparison in the form of x[i] == y[i].
 - `notEqual`: The lessThan function returns a boolean vector as result of a component-wise comparison in the form of x[i] != y[i].
 - `any`: The any function returns a boolean value as result of the evaluation whether any component of the input vector is TRUE.
-	```
+	```glsl
 	bool any(bvec2 x)  
 	bool any(bvec3 x)  
 	bool any(bvec4 x)
 	```
 - `all`: The any function returns a boolean value as result of the evaluation whether all component of the input vector is TRUE.
-	```
+	```glsl
 	bool all(bvec2 x)  
 	bool all(bvec3 x)  
 	bool all(bvec4 x)

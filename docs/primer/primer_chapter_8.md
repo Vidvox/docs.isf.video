@@ -52,7 +52,7 @@ To declare an "audio" input in the ISF JSON, there are a two required attributes
 
 From the "ISF tests+tutorials" is this simple audio visualizer shader.  In addition to the declared `waveImage` audio input is an options for setting the wave size and output display style called `waveSize`.
 
-```
+```glsl
 /*
 {
   "CATEGORIES" : [
@@ -136,7 +136,7 @@ To declare an "audioFFT" input in the ISF JSON, there are a two required attribu
 
 From the ISF tests+tutorials collection is this demonstration of using FFTs.  Along with the `audioFFT` element in the `INPUTS` portion of the JSON blob, several other uniform variables are declared for adjusting the gain, display range and coloring of the output.
 
-```
+```glsl
 /*{
 	"DESCRIPTION": "Visualizes an FFT analysis image with custom set colors for frequency domain",
 	"CREDIT": "by VIDVOX",
@@ -248,7 +248,7 @@ One particularly cool usage of this is from Aphex Twin in the song "Equation" wh
 
 Here is the code for making an audio FFT Spectrogram in ISF.  Note how we are making use of audioFFT inputs, multiple shader passes and persistent buffers.  Like with the previous FFT example there are added inputs for controlling the coloring of the output display.  There is also an option to reset the persistent buffer via the `clear` event.
 
-```
+```glsl
 /*{
 	"DESCRIPTION": "Buffers the incoming FFTs for timed display",
 	"CREDIT": "by VIDVOX",
