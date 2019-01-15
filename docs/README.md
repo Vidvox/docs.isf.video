@@ -13,6 +13,8 @@ features:
 footer: Interactive Shader Format (ISF) copyright VIDVOX, LLC 2018, all rights reserved.
 ---
 
+<div id="example">
+
 ```
 /*{
 	"DESCRIPTION": "Demonstrates a float input",
@@ -37,3 +39,7 @@ void main() {
 	gl_FragColor = vec4(level,level,level,1.0);
 }
 ```
+
+<iframe src="https://isf.video/sketches/5c3cb5101b920200131ecd1d/embed" style="border: 0"></iframe>
+
+</div>

@@ -27,3 +27,27 @@ h1, h2, h3, h4, h5, h6,
         background-color: #2d2d2d !important;
     }
 }
+
+#example {
+    @media screen and (min-width: 768px) {
+        display: flex;
+    }
+    & > div,
+    & > iframe {
+        flex: 1;
+    }
+    & > div { /* the example code on the left */
+        pre {
+            margin-bottom: 0;
+            line-height: 1.2;
+            code {
+                font-size: .75rem;
+            }
+        }
+    }
+    & > iframe { /* the iframe showing off the example code */
+        width: 100%;
+        min-height: 340px;
+    }
+}
+
