@@ -10,3 +10,5 @@
 
 ## Notes
 Be sure to preface all code samples with ```glsl to have proper syntax highlighting. If you only use \`\`\` it assumes the code is plaintext and disables highlighting.
+
+Static assets, like images, should be put in /doc/.vuepress/public and linked to via a normal HTML `<img />` element. Look in quickstart.md for examples.
