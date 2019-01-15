@@ -23,7 +23,7 @@ module.exports = {
         ['ref_json', 'ISF JSON Attributes'],
         ['ref_converting', 'Converting Non-ISF GLSL shaders to ISF'],
         ['ref_changes', 'Change Log'],
-      ]
+      ],
     },
     nav: [
       { text: 'Quickstart', link: '/quickstart.html' },

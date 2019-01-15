@@ -1,4 +1,5 @@
 ---
+sidebar: false
 prev: ../using_isf
 next: primer_chapter_1
 ---

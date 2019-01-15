@@ -4,7 +4,7 @@ tags: [Reference, Introduction]
 keywords: variables, functions, multi-pass, persistent, JSON, converting, change
 last_updated: June 12, 2018
 summary: "An overview of reference materials for ISF."
-sidebar: home_sidebar
+sidebar: false
 permalink: ref_index.html
 folder: ref
 ---
