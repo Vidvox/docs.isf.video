@@ -14,7 +14,7 @@ module.exports = {
         ['primer_chapter_6', 'Convolution Filters'],
         ['primer_chapter_7', 'Multi-Pass and Persistent Buffers in ISF'],
         ['primer_chapter_8', 'Audio Visualizers in ISF'],
-        ['primer_chapter_9', 'Adapting Existing GLSL Code to the ISF Specification'],
+        ['primer_chapter_9', 'Adapting GLSL Code to the ISF Spec'],
       ],
       '/ref/': [
         ['ref_variables', 'Automatically Created Variables, Uniforms and Constants'],

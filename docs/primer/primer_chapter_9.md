@@ -1,12 +1,5 @@
 ---
-title: Adapting GLSL Code to the ISF Spec
-tags: [Primer, Audio, FFT]
-keywords: getting_started
-last_updated: June 12, 2018
-summary: "Tips for adapting existing GLSL code to the ISF specification."
 sidebar: home_sidebar
-permalink: primer_chapter_9.html
-folder: primer
 ---
 
 # Adapting Existing GLSL Code to the ISF Specification
