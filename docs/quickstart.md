@@ -9,7 +9,7 @@ If you are already somewhat familiar with programming, this quick start guide is
 
 For a more in depth lessons on learning GLSL and ISF you can read the [ISF Primer](primer_index).  Additionally the [ISF Reference Pages](ref_index) are a useful set of documents to keep on hand when writing and remixing ISF compositions.  Developers interested in supporting ISF in their own software can visit the [ISF Specification Page](https://github.com/mrRay/ISF_Spec/) for detailed information and links to useful sample code.
 
-Finally, the [ISF Test/Tutorial filters](http://vidvox.net/rays_oddsnends/ISF%20tests+tutorials.zip) contains many useful test ISF compositions that are useful references.
+Finally, the [ISF Test/Tutorial filters](http://vidvox.net/rays_oddsnends/ISF%20tests+tutorials.zip) contains many useful test ISF compositions that are useful references and the standard set of shaders that we include with VDMX can be found in the [ISF Files repository](https://github.com/Vidvox/ISF-Files) on GitHub.
 
 In this document we will cover the basics of using and writing shaders in ISF.
 
@@ -242,7 +242,7 @@ This very simple example demonstrates the two important details when creating im
 <img src="/quickstart/ISF-Image-Inputs.png" alt="Creating ISF FX" />
 Adding an image input in the ISF Editor to create an FX.
 
-ISF compositions can include more than one image input, making it possible to pass in additional data to be used for things like masking and distortion effects.  Additional information on declaring image inputs and the image filter convention can be found in the[ISF JSON Reference](ref_json).
+ISF compositions can include more than one image input, making it possible to pass in additional data to be used for things like masking and distortion effects.  Additional information on declaring image inputs and the image filter convention can be found in the [ISF JSON Reference](ref_json).
 
 ## Including Vertex Shaders
 

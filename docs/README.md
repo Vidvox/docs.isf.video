@@ -5,11 +5,11 @@ actionText: Get Started →
 actionLink: /quickstart
 features:
 - title: GLSL+JSON
-  details: Some words about this “selling point” that have been arranged into a sentence.
+  details: The ISF specification is designed around two widely used existing standards, GLSL and JSON.
 - title: Versatility
-  details: Some words about this “selling point” that have been arranged into a sentence.
+  details: ISF compositions can be created with published controls and run inside a variety of different host applications.
 - title: Performance
-  details: Some words about this “selling point” that have been arranged into a sentence.
+  details: GLSL code runs on the GPU for fast and efficient rendering on desktop, mobile and the web.
 footer: Interactive Shader Format (ISF) copyright VIDVOX, LLC 2018, all rights reserved.
 ---
 
