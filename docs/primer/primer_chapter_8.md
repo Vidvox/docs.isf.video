@@ -11,6 +11,9 @@ folder: primer
 
 # Audio Visualizers in ISF
 
+<img src="/quickstart/Audio-Inputs.png" alt="Audio Reactive Shader in ISF Editor" />
+<em>Shader with raw audio and FFT waveform inputs in the ISF Editor.</em>
+
 Though GLSL as a language has no concept of sound data, many developers have found ways to writes audio-visualizers by converting audio into a format that can be passed to shaders.    As one of its extensions to the language, ISF includes a standard way for host software to pass in audio waveforms and FFT information for this purpose.
 
 In this chapter we will discuss:

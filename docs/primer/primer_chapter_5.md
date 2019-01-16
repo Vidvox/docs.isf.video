@@ -11,6 +11,9 @@ folder: primer
 
 # Vertex Shaders
 
+<img src="/quickstart/Vertex-Shader-Editing.png" alt="Editing Vertex Shader in ISF Editor" />
+<em>Editing Vertex Shader in the ISF Editor.</em>
+
 When writing shaders that are designed for 2D images as the ISF specification is currently designed for, typically most of the code you'll write is in the fragment shader (.fs) of your ISF shader.  In all of the examples we've seen so far we haven't had to create a vertex shader at all - part of the ISF specification is to automatically generate one if there isn't one provided.
 
 In this chapter we'll look at how to add a custom vertex shader to work alongside a fragment shader with ISF and one of the simple cases where they can be useful.  The specific topics covered will be:
@@ -35,6 +38,9 @@ However there are a few cases where it can be beneficial to include a custom ver
 When including a vertex shader as part of an ISF composition, start by creating a basic fragment shader that will include the JSON blob.  Then create another file with the same name but use a 'vs' file extension.  Whenever a host application tries to load the fragment shader, it will look to see if a custom matching .vs is included.  If not, the default vertex shader is used instead.
 
 The most basic vertex shader for ISF would look something like this:
+
+[Pass Thru Vertex Example](https://isf.video/sketches/5c13e4cdb791f37ce0ab014b)
+
 ```glsl
 //	passthru.vs
 //	put your code in the main() {} function
@@ -123,6 +129,8 @@ Here a rotation is performed by converting each point to polar coordinates, addi
 
 This same math for going between coordinate spaces can be re-used in other situations.  Though not exactly the same, you may recall seeing similar looking code in Chapter 3 when we looked at the Twirl.fs filter.
 
+[Rotation in Fragment Shader.fs](https://isf.video/sketches/5c13e4cdb791f37ce0ab014f)
+
 ```glsl
 /*
 {
@@ -177,6 +185,8 @@ void main()	{
 Now let's do the same thing, but instead of doing the translation in the fragment shader we'll use the vertex shader
 
 Here is the code for Rotate.vs / Rotate.fs
+
+[Rotation in Vertex Shader.fs](https://isf.video/sketches/5c13e4cdb791f37ce0ab0151)
 
 ```glsl
 //	Rotate.vs
