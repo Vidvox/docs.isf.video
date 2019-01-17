@@ -67,7 +67,7 @@ Currently the ISF Specification is used to describe generators, filters and tran
 Though GLSL and ISF themselves are limited in their overall capabilities - you are limited to what is possible by using vertex and fragment shaders and it often requires a host application to load the documents - whenever possible it can be beneficial to write your generators and FX in this format for a variety of reasons:
 - By its very nature ISF encourages writing small, re-usable code files that can be used in a variety of different environments.
 - Because it is an open format, it will be less likely that the ISF files you make will need to be recreated in a different language should you need to transition to different software in the future.
-- The same generator / FX files can be made to run on desktop, mobile and webgl platforms, often with little or no modifications.
+- The same generator / FX files can be made to run on desktop, mobile and WebGL platforms, often with little or no modifications.
 
 In these ways, ISF files are more flexible than using a language like Processing or OpenFrameworks, which are overall can create vastly more complex projects, but are difficult to re-use in other environments.  As GLSL itself is supported in many creative coding languages, learning how to write shaders and using them whenever possible in those environments can work to your advantage in many ways.
 
