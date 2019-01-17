@@ -14,13 +14,13 @@ prev: /primer/
 
 ISF, aka Interactive Shader Format, is a file format for creating video generators and FX plugins that can run on desktop, mobile and WebGL.  ISF is built on top of GLSL, a powerful cross-platform language that runs on the GPU.  By writing shaders that meet the ISF specification you can easily re-use your creations across different software applications without having to make environment specific modifications.
 
-If you already know some GLSL, learning how to take advantage of ISF will be very easy as it is merely a set of simple basic conventions to follow.  Having already encountered some of the limitations of the language on its own will hopefully make you appreciate some of the ideas introduced by ISF.  Additionally you still may enjoy some of the beginner GLSL lessons in this tutorial as a refresher and to help better understand some of the thought process behind the ISF specification.
+If you already know some GLSL, learning how to take advantage of ISF will be very easy as it is merely a set of simple conventions to follow.  Having already encountered some of the limitations of the language on its own will hopefully make you appreciate some of the ideas introduced by ISF.  Additionally, you still may enjoy some of the beginner GLSL lessons in this tutorial as a refresher and to help better understand some of the thought process behind the ISF specification.
 
 If you don't already know any GLSL, get excited, because this is some crazy powerful stuff that you are about to add to your visual toolkit.  There is a rich community of developers who are sharing their experience online for you to learn from and the underlying concepts are widely applicable to a wide variety of platforms.
 
 ## About this Guide
 
-One of the most powerful techniques in modern digital art using code to create and process imagery.  When lots of these images are put together, we call it video.  This guide is an introduction to one of the emerging standards for rendering images and video known as Interactive Shader Format, or ISF for short.
+One of the most powerful techniques in modern digital art is using code to create and process imagery.  When lots of these images are put together, we call it video.  This guide is an introduction to one of the emerging standards for rendering images and video known as Interactive Shader Format, or ISF for short.
 
 The core concept of writing generators and FX in ISF is that each idea is designed to be a small self contained file that can be run on its own or combined with other ISF compositions within a variety of different host environments.  Artists and new developers can focus on creating specific visual effects without having to write an entire application around them.  By writing shaders against the ISF standard, the same rendering code can often be re-used on desktop, mobile and web platforms.  In most cases ISF compositions are designed to be run in real-time, accelerated by the computer graphics card.
 
