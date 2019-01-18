@@ -304,7 +304,7 @@ Finally we use the 'IMG_NORM_PIXEL' function to get the color of the pixel at th
 
 If you've been working with C-syntax for some time, you may have noted that we could have written this same code more concisely like this:
 
-```
+```glsl
 void main() {
 	gl_FragColor = IMG_NORM_PIXEL(inputImage,vec2(mod(isf_FragNormCoord.x+TIME,1.0),isf_FragNormCoord.y));
 }
@@ -319,6 +319,18 @@ When writing code, whether for your own personal use or for sharing with others 
 In GLSL comments come in two syntaxes that are common to many other languages.
 - On any line, any text after a `//` will be ignored.
 - Any text that is between an opening `/*` and a closing `*/` pair will be ignored.
+
+```glsl
+void main() {
+	//	this is a code comment
+	
+	/*
+		everything between these markers is another code comment
+	*/
+	
+	gl_FragColor = IMG_NORM_PIXEL(inputImage,vec2(mod(isf_FragNormCoord.x+TIME,1.0),isf_FragNormCoord.y));
+}
+```
 
 Note that you can put comments before, after, or directly within your code.
 
