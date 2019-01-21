@@ -61,7 +61,7 @@ Though you can create or modify ISF compositions using any standard text editor 
 
 - Here are a bunch of simple test ISF files that demonstrate ISF's basic features (these are test filters, and we don't expect them to have signifcant creative use):
 [ISF Test/Tutorial filters](http://vidvox.net/rays_oddsnends/ISF%20tests+tutorials.zip)
-- [Here is an installer](http://www.vidvox.net/rays_oddsnends/Vidvox%20ISF%20resources.pkg.zip) for over a hundred different ISF files, both images and filters.  The installer places them in /Library/Graphics/ISF where they can be accessed by all users.
+- The [ISF Files](https://github.com/Vidvox/ISF-Files) repository on GitHub includes over a hundred different ISF files, both images and filters.  This is the standard set published by VIDVOX and included with VDMX.  They should be placed in /Library/Graphics/ISF where they can be accessed by all users.
 
 # Adding Support For ISF in 3rd Party Software
 
@@ -69,10 +69,22 @@ The [ISF Specification Page](https://github.com/mrRay/ISF_Spec/) contains detail
 
 ## Related open source codebases
 
-The VIDVOX ISF Editor and VVISFKit framework codebases are open source and can be found in the [VVOpenSource](https://github.com/mrRay/vvopensource) repository.
+
+### Objective-C
+
+The original ISF Editor and VVISFKit framework codebases written in Objective-c for Mac are open source and can be found in the [VVOpenSource](https://github.com/mrRay/vvopensource) repository.
+
+### C++
+
+The [VVISF-GL](https://github.com/mrRay/VVISF-GL) repository contains crossplatform (Mac and Windows) libraries for parsing and rendering ISF files in OpenGL. It also contains Mac and Windows versions of the ISF Editor written in Qt.
+
+### Javascript
+
+The [ISF-JS-Renderer](https://www.github.com/msfeldstein/ISF-JS-Renderer) can be used to parse and render ISF files through javascript.
+
+### Other resources
 
 Additionally here are a few other useful open source projects that use ISF to check out:
-- [ISF-JS-Renderer](https://www.github.com/msfeldstein/ISF-JS-Renderer) can be used to parse and render ISF files through javascript.
 - [libisf](https://github.com/jcelerier/libisf) is a library for parsing ISF files and includes an example editor made with Qt.
 - [ISF TouchDesigner](https://github.com/marcinbiegun/isf-touchdesigner) has partial support for using ISF files in TouchDesigner projects.
 - [ofxISF](https://github.com/satoruhiga/ofxISF) has partial support for using ISF files in OpenFrameworks projects.

@@ -70,7 +70,7 @@ Recalling our discussion from chapter 1, GLSL is also commonly known as the "Ope
 With fragment shaders each pixel for the output is preloaded with the same same `main() {}` function and its behavior can vary depending on its coordinate position and other input variables that are specific to the individual pixel.
 
 <img src="/primer/2/primer_2_pixels.jpg" alt="Rendering a 8x8 pixel grid"/>
-Fragment Shaders render the same main() {} function for each pixel
+<em>Fragment Shaders render the same main() {} function for each pixel</em>
 
 
 This is often a different way of thinking about graphical programming or visual design than many people are accustomed to, but makes sense when you consider the parallel processing power of the GPU.  Rather than write a complex program that needs to step through each coordinate, these smaller micro-programs can be executed on each individual pixel at the same time.
@@ -78,6 +78,8 @@ This is often a different way of thinking about graphical programming or visual 
 Within a fragment shader meeting the ISF specification, GLSL code is placed in the bottom section of the document.  For the most part, standard shader code can be used, however there are a few small differences with a few functions to help with cross-platform compatibility.
 
 An example of a the GLSL from the 'Test-Float.fs' file:
+
+[Test Float.fs](https://isf.video/sketches/5c13e4cbb791f37ce0ab0128)
 
 ```glsl
 void main()
@@ -107,6 +109,8 @@ Now that we've gotten a basic look at how an ISF is put together, we can start o
 
 The most basic ISF example would be something that returns a single color for each pixel.  It might look something like this.
 
+[All Orange.fs](https://isf.video/sketches/5c13e4cbb791f37ce0ab0124)
+
 ```glsl
 /*{
 	"DESCRIPTION": "Every pixel is orange",
@@ -127,6 +131,8 @@ void main() {
 Now let's expand this shaders so that instead of rendering a single fixed value we can set the render color based on one provided from a host application.
 
 The ISF specification supports several different types of INPUTS, including image, float, bool, long, color, event, audio, audioFFT and point.  Here we'll be adding in a "color" variable which contains an RGBA value.
+
+[Color Input.fs](https://isf.video/sketches/5c13e4cbb791f37ce0ab0129)
 
 ```glsl
 /*{
@@ -167,6 +173,8 @@ So far we've examined how to set each pixel in a generator shader to the exact s
 - RENDERSIZE is another extension for ISF that contains the overall pixel dimensions for the output being rendered.  This tells you the range for the gl_FragCoord.xy variable.
 
 Let's look how we can create a shader that fades between two colors, varying over the x position (left to right) of the image.
+
+[Gradient Example](https://isf.video/sketches/5c13e4cbb791f37ce0ab012a)
 
 ```glsl
 /*{
@@ -219,6 +227,8 @@ So far we've seen how to use ISF to generate totally new images by returning the
 
 For our first example we'll examine one of the most basic standard FX, Color Invert.fs, which takes an input pixel and inverts the rgb channels while leaving the alpha channel intact.
 
+[Image Filter Example.fs](https://isf.video/sketches/5c13e4cbb791f37ce0ab0125)
+
 ```glsl
 /*{
 	"DESCRIPTION": "Inverts each pixel",
@@ -257,6 +267,8 @@ gl_FragColor = vec4(1.0-srcPixel.rgb,srcPixel.a);
 
 Another common usage for image processing is changing the positions of pixels.  Like with our previous example of creating a color gradient, for in this shader we will make use of the automatically provided 'isf_FragNormCoord' variable to get the location of the pixel being processed.
 
+[Moving Pixels Example.fs](https://isf.video/sketches/5c13e4cbb791f37ce0ab012d)
+
 ```glsl
 /*{
 	"DESCRIPTION": "Shift pixels to the left",
@@ -292,7 +304,7 @@ Finally we use the 'IMG_NORM_PIXEL' function to get the color of the pixel at th
 
 If you've been working with C-syntax for some time, you may have noted that we could have written this same code more concisely like this:
 
-```
+```glsl
 void main() {
 	gl_FragColor = IMG_NORM_PIXEL(inputImage,vec2(mod(isf_FragNormCoord.x+TIME,1.0),isf_FragNormCoord.y));
 }
@@ -307,6 +319,18 @@ When writing code, whether for your own personal use or for sharing with others 
 In GLSL comments come in two syntaxes that are common to many other languages.
 - On any line, any text after a `//` will be ignored.
 - Any text that is between an opening `/*` and a closing `*/` pair will be ignored.
+
+```glsl
+void main() {
+	//	this is a code comment
+	
+	/*
+		everything between these markers is another code comment
+	*/
+	
+	gl_FragColor = IMG_NORM_PIXEL(inputImage,vec2(mod(isf_FragNormCoord.x+TIME,1.0),isf_FragNormCoord.y));
+}
+```
 
 Note that you can put comments before, after, or directly within your code.
 

@@ -24,6 +24,8 @@ In this chapter we'll look at:
 
 ISF files can define persistent buffers.  These buffers are images (GL textures) that stay with the ISF file for as long as it exists. This is useful if you want to "build up" an image over time- you can repeatedly query and update the contents of persistent buffers by rendering into them- or if you want to perform calculations across the entire image, storing the results somewhere for later evaluation. Further details on exactly how to do this are in the full [ISF Specification Page](https://github.com/mrRay/ISF_Spec/).
 
+[Persistent Buffer Example.fs](https://isf.video/sketches/5c13e4ceb791f37ce0ab015a)
+
 ```glsl
 /*{
 	"DESCRIPTION": "demonstrates the use of a persistent buffer to create a motion-blur type effect. also demonstrates the simplest use of steps: a one-step rendering pass",
@@ -77,6 +79,8 @@ One of the most common usages of persistent buffers is creating video feedback l
 
 Here is an example of how to modify the example to include an invert stage:
 
+[Inverting Feedback Example](https://isf.video/sketches/5c13e4ceb791f37ce0ab0159)
+
 ```glsl
 /*{
 	"DESCRIPTION": "creates a simple inverting feedback effect",
@@ -119,6 +123,8 @@ Here we have simply added the line that on each pass inverts the rgb of the `sta
 ## Multi-Pass Shaders
 
 The ISF file format defines the ability to execute a shader multiple times in the process of rendering a frame for output- each time the shader's executed (each pass), the uniform int variable `PASSINDEX` is incremented. Details on how to accomplish this are described below in the spec, but the basic process involves adding an array of dicts to the `PASSES` key in your top-level JSON dict. Each dict in the `PASSES` array describes a different rendering pass- the ISF host will automatically create buffers to render into, and those buffers (and therefore the results of those rendering passes) can be accessed like any other buffer/input image/imported image (you can render to a texture in one pass, and then read that texture back in and render something else in another pass).  The dicts in `PASSES` recognize a number of different keys to specify different properties of the rendering passes- more details are in the spec below.
+
+[Multi-Pass Example.fs](https://isf.video/sketches/5c13e4cdb791f37ce0ab0158)
 
 ```glsl
 /*{
@@ -179,6 +185,8 @@ Another way to create stronger blurring effects is to re-apply the blur multiple
 Like with most things in GLSL, there are several ways you can go about writing a multi-pass blur and you can find several advanced examples on the ISF Sharing Site in the Blurs category.  In this section we will look at one of the more basic examples called Soft Blur.fs which is a 3-pass blur shader.
 
 First we will write the vertex shader.  This is exactly the same as the .vs we used for the basic convolution shaders in the previous chapter.
+
+[Soft Blur Example.fs](https://isf.video/sketches/5c13e4ceb791f37ce0ab015c)
 
 ```glsl
 //	Soft Blur.vs
@@ -321,6 +329,8 @@ The [Wikipedia page on Game of Life](https://en.wikipedia.org/wiki/Conway's_Game
 The idea of comparing a cell to its surround eight neighbors sounds an awful lot like what we have been doing with our convolution filters.  The only difference here is instead of using a kernel to process an incoming image, we'll need to start with some initial state and then iterate on that.
 
 For this shader we can once again re-use the basic convolution vertex shader and include the matching `varying` variables in the fragment shader below.
+
+[Game of Life.fs](https://isf.video/sketches/5c13e4ceb791f37ce0ab016c)
 
 ```glsl
 /*{

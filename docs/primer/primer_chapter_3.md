@@ -23,7 +23,10 @@ For the most part while reading this book you can use the provided code editing 
 
 ### Using a text editor
 
-You can write and edit shader files using most standard text editors.  When using a text editor 
+<img src="/primer/3/ISF-in-text-editor.png" alt="ISF editing in BBEdit" />
+<em>Editing ISF composition in BBEdit.</em>
+
+You can write and edit shader files using most standard text editors.  When using a text editor:
 
 - When saving documents make sure to use the ".fs" extension for fragment shaders.  Unless otherwise specified all of the examples in this book use only a single fragment shader file.
 - In a later chapter we will discuss optionally including a vertex shader, which use the ".vs" file extension, as part of an ISF composition.
@@ -39,10 +42,16 @@ ISF files can be created, viewed and shared online at the [isf.video](http://int
 - UI items are automatically created for inputs, allowing you to interact with your ISF file.
 - Shaders uploaded to this site can be shared publicly or made private.
 
-### The ISF Editor for Mac
+### The ISF Editor for Mac and Windows
+
+<img src="/primer/3/ISF-Editor.png" alt="ISF Editor for Mac" />
+<em>ISF Editor for Mac.</em>
 
 A free ISF Editor for Mac is available here: 
 [ISF Editor.app.zip](https://www.vidvox.net/download/ISF_Editor_2.9.7.3.dmg).
+
+Beta releases of the ISF Editor for Mac and Windows can be found here:
+[ISF Editor Releases](https://github.com/mrRay/VVISF-GL/releases)
 
 These are some of its basic features:
 - Browses, renders and displays ISF files. Has a built-in video source, and can also use any QC comps, movie files, image files, Syphon video servers, or AVCapture-compatible video inputs as a video source for testing ISF-based image filters.
@@ -52,10 +61,6 @@ These are some of its basic features:
 - Output window can be paused, and can also be used to view the output of the individual render passes in your ISF file, which facilitates debugging by providing shader devs with a quick and easy way to visualize values being used in their shaders.
 - "Import from Shadertoy/GLSL Sandbox" feature can be used to automatically convert the vast majority of shaders found on Shadertoy and GLSL Sandbox to ISF sources and filters. Some shaders may need further modification, but it's shocking how many will "just work".
 
-### Glitch.com
-
-An example implementation of using ISF on Glitch.com can be found in the [ISF Generator Example on Glitch](https://glitch.com/edit/#!/isf-example?path=README.md).  This can be used a starting point for a sandbox to develop your own shaders that can be previewed in a web browser.
-
 ## Using ISF Compositions in host software
 
 ISF compositions can be used in a variety of different host applications.  In this section we will briefly look at how ISF works in a few different pieces of software, but for detailed information you may want to consult with the corresponding documentation provided by the developer.
@@ -63,6 +68,9 @@ ISF compositions can be used in a variety of different host applications.  In th
 On the Mac, compositions that are located in the "/Library/Graphics/ISF/" and "~/Library/Graphics/ISF/" directories are considered to be global and are commonly automatically accessed by any software that supports the specification.
 
 ### VDMX
+
+<img src="/primer/3/ISF-in-VDMX.png" alt="ISF in VDMX" />
+<em>ISF sources and FX used in VDMX.</em>
 
 The ISF specification was originally designed for use in [VDMX](http://vidvox.net) and is a fitting first example.
 
@@ -89,7 +97,12 @@ Here are links to websites of a few different other softwares that support the I
 
 ### Using ISF in WebGL
 
-The [interactive-shader-format-js](https://github.com/msfeldstein/interactive-shader-format-js) project includes code for loading and rendering ISF compositions as part of a WebGL pipeline.  An example implementation of using the javascript implementation of ISF can be found in the [ISF Generator Example on Glitch.com](https://glitch.com/edit/#!/isf-example?path=README.md).
+<img src="/primer/3/ISF-on-Glitch.png" alt="ISF example on Glitch.com" />
+<em>ISF example template on Glitch.com.</em>
+
+The [interactive-shader-format-js](https://github.com/msfeldstein/interactive-shader-format-js) project includes code for loading and rendering ISF compositions as part of a WebGL pipeline.
+
+An example implementation of using the javascript implementation of ISF can be found in the [ISF Generator Example on Glitch.com](https://glitch.com/edit/#!/isf-example?path=README.md).
 
 ### Related open source projects
 
