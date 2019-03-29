@@ -40,6 +40,6 @@ void main() {
 }
 ```
 
-<iframe src="https://isf.video/sketches/5c3cb5101b920200131ecd1d/embed" style="border: 0"></iframe>
+<iframe src="https://www.interactiveshaderformat.com/sketches/3125/embed" style="border: 0"></iframe>
 
 </div>
