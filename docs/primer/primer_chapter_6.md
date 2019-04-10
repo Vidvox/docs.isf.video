@@ -108,7 +108,7 @@ When creating GLSL shaders that evaluate convolution kernels it can be useful to
 
 First we'll make the vertex shader for the convolution kernel.  Whether you are creating a generalized use case like in this example, or creating a shader based on a specific kernel, your vertex shader will likely look something like this:
 
-[3x3 Convolution Example](https://isf.video/sketches/5c13e4cdb791f37ce0ab0152)
+[3x3 Convolution Example](https://www.interactiveshaderformat.com/sketches/3142)
 
 ```glsl
 varying vec2 left_coord;
@@ -145,7 +145,7 @@ Here we've declared eight different varying vec2 variables, one for each of the 
 
 Now we can create the fragment shader that performs the actual convolution.  For this generalized shader we declare 9 float values, one for each weight and give each a range of -8.0 to 8.0.  Only the middle pixel is set to 1.0 by default, so when first loaded the filter will function as a pass-thru.
 
-[3x3 Convolution Example](https://isf.video/sketches/5c13e4cdb791f37ce0ab0152)
+[3x3 Convolution Example](https://www.interactiveshaderformat.com/sketches/3142)
 
 ```glsl
 /*{
@@ -273,7 +273,7 @@ Note that for these examples we will use a vertex shader identical to the one us
 
 A very simple blur filter that has a single strength value can be written as such.
 
-[Box Blur Example.fs](https://isf.video/sketches/5c13e4cdb791f37ce0ab0153)
+[Box Blur Example.fs](https://www.interactiveshaderformat.com/sketches/3143)
 
 ```glsl
 /*{
@@ -340,7 +340,7 @@ As a challenge, try adapting one of the other kernels we looked at, such as the 
 
 In the examples so far we've used a vertex shader to pre-compute our coordinate points used in our fragment shaders.  While this is recommended when possible, there are times when your algorithm may use an indeterminate number of lookup points, or the lookup points may vary depending on other factors within your fragment shader code.
 
-[For Loop Convolution Blur Example.fs](https://isf.video/sketches/5c13e4cdb791f37ce0ab0155)
+[For Loop Convolution Blur Example.fs](https://www.interactiveshaderformat.com/sketches/3144)
 
 ```glsl
 /*

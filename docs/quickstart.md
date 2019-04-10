@@ -42,7 +42,7 @@ In this case the ".fs" file extension stands for "fragment shader" which is the 
 
 Copy and paste the following code into the text editor area and then save the document.  If you are working one of the live updating apps, your output should render a solid orange color.  If you are working in a text editor, you should be able to load the "myshader.fs" into the host application of your choice as a generator file.
 
-[All Orange.fs](https://isf.video/sketches/5c13e4cbb791f37ce0ab0124)
+[All Orange.fs](https://www.interactiveshaderformat.com/sketches/3127)
 
 ```glsl
 /*{
@@ -105,7 +105,7 @@ In the ISF References Pages you can find a list of [automatic uniforms in ISF](r
 
 Next create another shader called "Timed Animation.fs" and paste in the following code:
 
-[Timed Animation.fs](https://isf.video/sketches/5c13e4cbb791f37ce0ab0126)
+[Timed Animation.fs](https://www.interactiveshaderformat.com/sketches/3124)
 
 ```glsl
 /*{
@@ -138,7 +138,7 @@ Going back to our first example, we could add a single uniform variable to this 
 
 You can either create a new shader for this, or modify the "myshader.fs" that you've already started.
 
-[Test Float.fs](https://isf.video/sketches/5c13e4cbb791f37ce0ab0128)
+[Test Float.fs](https://www.interactiveshaderformat.com/sketches/3128)
 
 ```glsl
 /*{
@@ -171,7 +171,7 @@ Additional the optional `LABEL`, `MIN`, `MAX` and `LABEL` attributes are include
 
 Now instead of the "float" option for `TYPE`, try this code which uses the "color" option which provides a vec4 uniform variable.
 
-[Color Input.fs](https://isf.video/sketches/5c13e4cbb791f37ce0ab0129)
+[Color Input.fs](https://www.interactiveshaderformat.com/sketches/3129)
 
 ```glsl
 /*{
@@ -217,7 +217,7 @@ As an important note, if you are on a Mac, be sure to save this file to the "~/L
 
 Now copy and paste the following code into your editor and save the file:
 
-[Image Filter Example.fs](https://isf.video/sketches/5c13e4cbb791f37ce0ab0125/)
+[Image Filter Example.fs](https://www.interactiveshaderformat.com/sketches/3126)
 
 ```glsl
 /*{
@@ -269,7 +269,7 @@ If you are using the ISF Editor for Mac or the web, instead of creating a new te
 
 For the vertex shader, copy and paste the following code:
 
-[Pass Thru Vertex Example](https://isf.video/sketches/5c13e4cdb791f37ce0ab014b)
+[Pass Thru Vertex Example](https://www.interactiveshaderformat.com/sketches/3139)
 
 ```glsl
 //	passthru.vs
@@ -330,7 +330,7 @@ Like with other properties we have seen so far, setting up multiple render passe
 
 From the set of ISF Tests + Tutorial shaders is the "Test-MultiPassRendering.fs" example of using multiple render passes:
 
-[Multi-Pass Example.fs](https://isf.video/sketches/5c13e4cdb791f37ce0ab0158)
+[Multi-Pass Example.fs](https://www.interactiveshaderformat.com/sketches/3147)
 
 ```glsl
 /*{
@@ -390,7 +390,7 @@ Persistent buffers are an optional attribute that can be attached to any element
 
 From the set of ISF Tests + Tutorial shaders is the "Test-PersistentBuffer.fs" example of using persistent buffers:
 
-[Persistent Buffer Example](https://isf.video/sketches/5c13e4ceb791f37ce0ab015a)
+[Persistent Buffer Example](https://www.interactiveshaderformat.com/sketches/3145)
 
 ```glsl
 /*{

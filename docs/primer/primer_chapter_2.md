@@ -79,7 +79,7 @@ Within a fragment shader meeting the ISF specification, GLSL code is placed in t
 
 An example of a the GLSL from the 'Test-Float.fs' file:
 
-[Test Float.fs](https://isf.video/sketches/5c13e4cbb791f37ce0ab0128)
+[Test Float.fs](https://www.interactiveshaderformat.com/sketches/3128)
 
 ```glsl
 void main()
@@ -109,7 +109,7 @@ Now that we've gotten a basic look at how an ISF is put together, we can start o
 
 The most basic ISF example would be something that returns a single color for each pixel.  It might look something like this.
 
-[All Orange.fs](https://isf.video/sketches/5c13e4cbb791f37ce0ab0124)
+[All Orange.fs](https://www.interactiveshaderformat.com/sketches/3127)
 
 ```glsl
 /*{
@@ -132,7 +132,7 @@ Now let's expand this shaders so that instead of rendering a single fixed value 
 
 The ISF specification supports several different types of INPUTS, including image, float, bool, long, color, event, audio, audioFFT and point.  Here we'll be adding in a "color" variable which contains an RGBA value.
 
-[Color Input.fs](https://isf.video/sketches/5c13e4cbb791f37ce0ab0129)
+[Color Input.fs](https://www.interactiveshaderformat.com/sketches/3129)
 
 ```glsl
 /*{
@@ -174,7 +174,7 @@ So far we've examined how to set each pixel in a generator shader to the exact s
 
 Let's look how we can create a shader that fades between two colors, varying over the x position (left to right) of the image.
 
-[Gradient Example](https://isf.video/sketches/5c13e4cbb791f37ce0ab012a)
+[Gradient Example](https://www.interactiveshaderformat.com/sketches/3130)
 
 ```glsl
 /*{
@@ -227,7 +227,7 @@ So far we've seen how to use ISF to generate totally new images by returning the
 
 For our first example we'll examine one of the most basic standard FX, Color Invert.fs, which takes an input pixel and inverts the rgb channels while leaving the alpha channel intact.
 
-[Image Filter Example.fs](https://isf.video/sketches/5c13e4cbb791f37ce0ab0125)
+[Image Filter Example.fs](https://www.interactiveshaderformat.com/sketches/3126)
 
 ```glsl
 /*{
@@ -267,7 +267,7 @@ gl_FragColor = vec4(1.0-srcPixel.rgb,srcPixel.a);
 
 Another common usage for image processing is changing the positions of pixels.  Like with our previous example of creating a color gradient, for in this shader we will make use of the automatically provided 'isf_FragNormCoord' variable to get the location of the pixel being processed.
 
-[Moving Pixels Example.fs](https://isf.video/sketches/5c13e4cbb791f37ce0ab012d)
+[Moving Pixels Example.fs](https://www.interactiveshaderformat.com/sketches/3131)
 
 ```glsl
 /*{

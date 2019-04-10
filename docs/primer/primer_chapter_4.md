@@ -454,7 +454,7 @@ As a challenge, try adapting this shader into a filter that compares an image in
 
 You may recall from chapter 2 this example where we used the mix function to create a linear gradient.
 
-[Mix Function Example.fs](https://isf.video/sketches/5c13e4cdb791f37ce0ab0143)
+[Mix Function Example.fs](https://www.interactiveshaderformat.com/sketches/3137)
 
 ```glsl
 /*{
@@ -617,7 +617,7 @@ else
 
 Now let's look at our previous max function example, but change it up a bit so that we return the brighter color based on the overall brightness of each provided color.
 
-[Max Function Example.fs](https://isf.video/sketches/5c13e4ccb791f37ce0ab0142)
+[Max Function Example.fs](https://www.interactiveshaderformat.com/sketches/3136)
 
 ```glsl
 /*

@@ -39,7 +39,7 @@ When including a vertex shader as part of an ISF composition, start by creating 
 
 The most basic vertex shader for ISF would look something like this:
 
-[Pass Thru Vertex Example](https://isf.video/sketches/5c13e4cdb791f37ce0ab014b)
+[Pass Thru Vertex Example](https://www.interactiveshaderformat.com/sketches/3139)
 
 ```glsl
 //	passthru.vs
@@ -129,7 +129,7 @@ Here a rotation is performed by converting each point to polar coordinates, addi
 
 This same math for going between coordinate spaces can be re-used in other situations.  Though not exactly the same, you may recall seeing similar looking code in Chapter 3 when we looked at the Twirl.fs filter.
 
-[Rotation in Fragment Shader.fs](https://isf.video/sketches/5c13e4cdb791f37ce0ab014f)
+[Rotation in Fragment Shader.fs](https://www.interactiveshaderformat.com/sketches/3140)
 
 ```glsl
 /*
@@ -186,7 +186,7 @@ Now let's do the same thing, but instead of doing the translation in the fragmen
 
 Here is the code for Rotate.vs / Rotate.fs
 
-[Rotation in Vertex Shader.fs](https://isf.video/sketches/5c13e4cdb791f37ce0ab0151)
+[Rotation in Vertex Shader.fs](https://www.interactiveshaderformat.com/sketches/3141)
 
 ```glsl
 //	Rotate.vs
