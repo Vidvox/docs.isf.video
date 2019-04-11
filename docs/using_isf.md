@@ -20,6 +20,9 @@ The ISF specification was original created for [VDMX](http://vidvox.net) and is 
 - [Fugio](http://www.bigfug.com/software/fugio/)
 - [Mad Mappper](http://madmapper.com/)
 - [Millumin](http://www.millumin.com/)
+- [Modulo Player](https://www.modulo-pi.com/)
+- [Smode](https://smode.fr/)
+- [Synesthesia](https://synesthesia.live/)
 - [VDMX](http://vidvox.net)
 - ISF shaders can be made as full page standalone webpages, with or without controls.  An example implementation can be found in the [ISF Generator Example on Glitch](https://glitch.com/edit/#!/isf-example?path=README.md).
 - ISF files can be created, viewed and shared online at the [interactiveshaderformat.com](http://interactiveshaderformat.com) website.
