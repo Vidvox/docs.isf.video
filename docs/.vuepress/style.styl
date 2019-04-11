@@ -1,10 +1,18 @@
+// $white: #E5ECE6;
+// $black: #000702;
+// $dark-grey: #323933;
+// $darker-grey: #212823;
+// $link-color: #02ff3f;
+// $text-color: #b4bbb6;
+
 body,
 .navbar,
 .sidebar,
 .navbar .links,
-.home .feature p {
-    background: #2d2d2d;
-    color: #b9b9b9;
+.home .feature p,
+.home .hero .description {
+    background: #323933;
+    color: #b4bbb6;
 }
 
 body {
@@ -14,7 +22,11 @@ body {
 h1, h2, h3, h4, h5, h6,
 .navbar .site-name {
     font-weight: 500 !important;
-    color: #b9b9b9 !important;
+    color: rgba(255, 255, 255, 0.9) !important;
+}
+
+.nav-links a {
+    color: rgba(255, 255, 255, 0.9) !important;
 }
 
 .navbar .site-name {
@@ -30,16 +42,16 @@ h1, h2, h3, h4, h5, h6,
 }
 
 .search-box input {
-    background: #b9b9b9 url(/search.svg) 0.6rem 0.5rem no-repeat;
+    background: #b4bbb6 url(/search.svg) 0.6rem 0.5rem no-repeat;
     background-size: 1rem !important;
-    color: #2d2d2d !important;
+    color: #212823 !important;
 }
 
 .suggestions {
-    background-color: #3d3d3d !important;
+    background-color: #323933 !important;
     li:hover,
     li.focused {
-        background-color: #2d2d2d !important;
+        background-color: #212823 !important;
     }
 }
 
