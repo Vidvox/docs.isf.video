@@ -33,6 +33,10 @@ module.exports = {
       { text: 'Reference', link: '/ref/' },
       { text: 'ISF Homepage', link: 'https://isf.video'},
     ],
+    algolia: {
+      apiKey: 'cac8dafb6c4adbaf6d5d440e506fe3d6',
+      indexName: 'vidvox_isf'
+    },
 	},
   head: [
     ['link', { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Rubik:400,500' }],
