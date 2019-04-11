@@ -55,6 +55,24 @@ h1, h2, h3, h4, h5, h6,
     }
 }
 
+#app .ds-dropdown-menu,
+#app .ds-dropdown-menu * {
+    background-color: #212823 !important;
+    border: none;
+}
+
+.algolia-autocomplete .ds-dropdown-menu:before {
+display: none;
+}
+.algolia-search-wrapper .algolia-autocomplete .algolia-docsearch-suggestion--highlight {
+color: #1997c6;
+}
+
+.algolia-autocomplete .algolia-docsearch-suggestion--content:before,
+.algolia-autocomplete .algolia-docsearch-suggestion--subcategory-column:before {
+ display:none; 
+}
+
 #example {
     @media screen and (min-width: 768px) {
         display: flex;
