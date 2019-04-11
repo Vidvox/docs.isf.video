@@ -57,12 +57,21 @@ void main()
 }
 ```
 
-### ISF Attributes
+## ISF Attributes
 
-- If there's a string in the top-level dict stored at the `ISFVSN` key, this string will describe the version of the ISF specification this shader was written for.  This key should be considered mandatory- if it's missing, the assumption is that the shader was written for version 1.0 of the ISF spec (which didn't specify this key).  The string is expected to contain one or more integers separated by dots (eg: '2', or '2.1', or '2.1.1').
+### ISFVSN
+If there's a string in the top-level dict stored at the `ISFVSN` key, this string will describe the version of the ISF specification this shader was written for.  This key should be considered mandatory- if it's missing, the assumption is that the shader was written for version 1.0 of the ISF spec (which didn't specify this key).  The string is expected to contain one or more integers separated by dots (eg: '2', or '2.1', or '2.1.1').
+
+### VSN
 - If there's a string in the top-level dict stored at the `VSN` key, this string will describe the version of this ISF file.    This key is completely optional, and its use is up to the host or editor- the goal is to provide a simple path for tracking changes in ISF files.  Like the `ISFVSN` key, this string is expected to contain one or more integers separated by dots.
+
+### DESCRIPTION
 - If there's a string in the top-level dict stored at the `DESCRIPTION` key, this string will be displayed as a description associated with this filter in the host app. the use of this key is optional.
+
+### CATEGORIES
 - The `CATEGORIES` key in your top-level dict should store an array of strings. The strings are the category names you want the filter to appear in (assuming the host app displays categories).
+
+### INPUTS
 - The `INPUTS` key of your top-level dict should store an array of dictionaries (each dictionary describes a different input- the inputs should appear in the host app in the order they're listed in this array). For each input dictionary:
   - The value stored with the key `NAME` must be a string, and it must not contain any whitespaces. This is the name of the input, and will also be the variable name of the input in your shader.
   - The value stored with the key `TYPE` must be a string. This string describes the type of the input, and must be one of the following values: "event", "bool", "long", "float", "point2D", "color", "image", "audio", or "audioFFT".
@@ -78,20 +87,28 @@ void main()
     - The "long" type input is used to implement pop-up buttons/pop-up menus in the host UI. As such, "long"-type input dictionaries have a few extra keys:
       - The `VALUES` key stores an array of integer values. This array may have repeats, and the values correspond to the labels. When you choose an item from the pop-up menu, the corresponding value from this array is sent to your shader.
       - The `LABELS` key stores an array of strings. This array may have repeats, and the strings/labels correspond to the array of values.
+
+### PASSES and TARGET
 - The `PASSES` key should store an array of dictionaries. Each dictionary describes a different rendering pass. This key is optional: you don't need to include it, and if it's not present your effect will be assumed to be single-pass.
   - The `TARGET` string in the pass dict describes the name of the buffer this pass renders to.  The ISF host will automatically create a temporary buffer using this name, and you can read the pixels from this temporary buffer back in your shader in a subsequent rendering pass using this name.  By default, these temporary buffers are deleted (or returned to a pool) after the ISF file has finished rendering a frame of output- they do not persist from one frame to another.  No particular requirements are made for the default texture format- it's assumed that the host will use a common texture format for images of reasonable visual quality.
   - If the pass dict has a positive value stored at the `PERSISTENT` key, it indicates that the target buffer will be persistent- that it will be saved across frames, and stay with your effect until its deletion.  If you ask the filter to render a frame at a different resolution, persistent buffers are resized to accommodate.  Persistent buffers are useful for passing data from one frame to the next- for an image accumulator, or motion blur, for example.  This key is optional- if it isn't present (or contains a 0 or false value), the target buffer isn't persistent.
   - If the pass dict has a positive value stored at the `FLOAT` key, it indicates that the target buffer created by the host will have 32bit float per channel precision.  Float buffers are proportionally slower to work with, but if you need precision- for image accumulators or visual persistence projects, for example- then you should use this key.  Float-precision buffers can also be used to store variables or values between passes or between frames- each pixel can store four 32-bit floats, so you can render a low-res pass to a float buffer to store values, and then read them back in subsequent rendering passes.   This key is optional- if it isn't present (or contains a 0 or false value), the target buffer will be of normal precision.
   - If the pass dictionary has a value for the keys `WIDTH` or `HEIGHT` (these keys are optional), that value is expected to be a string with an equation describing the width/height of the buffer. This equation may reference variables: the width and height of the image requested from this filter are passed to the equation as `$WIDTH` and `$HEIGHT`, and the value of any other inputs declared in `INPUTS` can also be passed to this equation (for example, the value from the float input "blurAmount" would be represented in an equation as "$blurAmount"). This equation is evaluated once per frame, when you initially pass the filter a frame (it's not evaluated multiple times if the ISF file describes multiple rendering passes to produce a sigle frame). For more information (constants, built-in functions, etc) on math expression evaluations, please see the documentation for the excellent DDMathParser by Dave DeLong, which is what we're presently using.
+
+### IMPORTED images
 - The `IMPORTED` key describes buffers that will be created for image files that you want ISF to automatically import. This key is optional: you don't need to include it, and if it's not present your ISF file just won't import any external images. The item stored at this key should be a dictionary.
   - Each key-value pair in the `IMPORTED` dictionary describes a single image file to import. The key for each item in the `IMPORTED` dictionary is the name of the buffer as it will be used in your ISF file, and the value for each item in the `IMPORTED` dictionary is another dictionary describing the file to be imported.
     - The dictionary describing the image to import must have a `PATH` key, and the object stored at that key must be a string. This string should describe the path to the image file, relative to the ISF file being evaluated. For example, a file named "asdf.jpg" in the same folder as the ISF file would have the `PATH` "asdf.jpg", or "./asdf.jpg" (both describe the same location). If the jpg were located in your ISF file's parent directory, its `PATH` would be "../asdf.jpg", etc.
 
-### ISF Conventions
+## ISF Conventions
 
 Within ISF there are three main usages for compositions: generators, filters and transitions.  Though not explicitly an attribute of the JSON blob itself, the usage can be specified by including for specific elements in the `INPUTS` array.  When the ISF is loaded by the host application, instead of the usual matching interface controls, these elements may be connected to special parts of the software rendering pipeline.
 
-- ISF shaders that are to be used as image filters are expected to pass the image to be filtered using the "inputImage" variable name. This input needs to be declared like any other image input, and host developers can assume that any ISF shader specifying an "image"-type input named "inputImage" can be operated as an image filter.
-- ISF shaders that are to be used as transitions require three inputs: two image inputs ("startImage" and "endImage"), and a normalized float input ("progress") used to indicate the progress of the transition. Like image filters, all of these inputs need to be declared as you would declare any other input, and any ISF that implements "startImage", "endImage", and "progress" can be assumed to operate as a transition.
+### ISF FX: inputImage
+ISF shaders that are to be used as image filters are expected to pass the image to be filtered using the "inputImage" variable name. This input needs to be declared like any other image input, and host developers can assume that any ISF shader specifying an "image"-type input named "inputImage" can be operated as an image filter.
 
+### ISF Transitions: startImage, endImage and progress
+ISF shaders that are to be used as transitions require three inputs: two image inputs ("startImage" and "endImage"), and a normalized float input ("progress") used to indicate the progress of the transition. Like image filters, all of these inputs need to be declared as you would declare any other input, and any ISF that implements "startImage", "endImage", and "progress" can be assumed to operate as a transition.
+
+### ISF Generators
 ISF files that are neither filters nor transitions should be considered to be generators.

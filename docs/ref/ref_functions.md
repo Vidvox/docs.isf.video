@@ -27,9 +27,14 @@ vec4 pixelColor = IMG_NORM_THIS_PIXEL(image imageName);
 vec2 imageSize = IMG_SIZE(image imageName);
 ```
 
+### IMG_PIXEL() and IMG_NORM_PIXEL()
 - `IMG_PIXEL()` and `IMG_NORM_PIXEL()` fetch the color of a pixel in an image using either pixel-based coords or normalized coords, respectively, and should be used *instead of* `texture2D()` or `texture2DRect()`. In both functions, "imageName" refers to the variable name of the image you want to work with.
+
+### IMG_THIS_PIXEL() and IMG_NORM_THIS_PIXEL()
 - `IMG_THIS_PIXEL()` is essentially the same as `IMG_PIXEL()` but automatically fills in the pixel coordinate for the pixel being rendered.
 - `IMG_NORM_THIS_PIXEL()` is essentially the same as `IMG_THIS_PIXEL()` but automatically fills in the pixel coordinate for the pixel being rendered using a normalized coordinate range.
+
+### IMG_SIZE
 - `IMG_SIZE()` returns a two-element vector describing the size of the image in pixels.
 
 ## Standard GLSL Functions
