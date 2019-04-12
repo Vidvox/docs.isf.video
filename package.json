@@ -4,7 +4,10 @@
     "docs:build": "vuepress build docs"
   },
   "devDependencies": {
-    "@vuepress/plugin-medium-zoom": "^1.0.0-alpha.0",
-    "vuepress": "^0.14.5"
+    "@vuepress/plugin-medium-zoom": "^1.0.0-alpha.47",
+    "vuepress": "^1.0.0-alpha.47"
+  },
+  "dependencies": {
+    "vuepress-plugin-medium-zoom": "^1.1.1"
   }
 }

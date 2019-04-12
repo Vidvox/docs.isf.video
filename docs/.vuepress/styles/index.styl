@@ -11,7 +11,7 @@ body,
 .navbar .links,
 .home .feature p,
 .home .hero .description {
-    background: #323933;
+    background: #323933 !important;
     color: #b4bbb6;
 }
 
@@ -45,6 +45,9 @@ h1, h2, h3, h4, h5, h6,
     background: #b4bbb6 url(/search.svg) 0.6rem 0.5rem no-repeat;
     background-size: 1rem !important;
     color: #212823 !important;
+    &:focus {
+        border-color: transparent !important;
+    }
 }
 
 .suggestions {
@@ -96,3 +99,6 @@ color: #1997c6;
     }
 }
 
+.medium-zoom-overlay {
+    background-color: rgba(50,57,51,0.95) !important;
+}

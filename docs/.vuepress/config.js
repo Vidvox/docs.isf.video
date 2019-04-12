@@ -1,5 +1,7 @@
 module.exports = {
-  plugins: ['@vuepress/medium-zoom'],
+  plugins: [
+    'vuepress-plugin-medium-zoom',
+  ],
   title: 'ISF Documentation',
   description: 'Interactive Shader Format is a file format used to describe GLSL shaders for real-time image filtering and generation.',
 	themeConfig: {
