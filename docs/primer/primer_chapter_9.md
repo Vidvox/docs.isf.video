@@ -4,31 +4,60 @@ sidebar: home_sidebar
 
 # Adapting Existing GLSL Code to the ISF Specification
 
-As we have discussed several times, ISF is itself built on top of GLSL.  Whether you are already familiar with the language or just getting started, you may at times find it useful to adapt code from elsewhere to meet the ISF specification so that you can use the shaders between different softwares.  Likewise you may at times also find it useful to convert your ISF codebase into other formats to that have their own environment specific requirements for shaders.
+As we have discussed several times, ISF is itself built on top of GLSL. Whether you are already familiar with the language or just getting started, you may at times find it useful to adapt code from elsewhere to meet the ISF specification so that you can use the shaders between different softwares. Likewise you may at times also find it useful to convert your ISF codebase into other formats to that have their own environment specific requirements for shaders.
+
+In many cases GLSL code can be easily adapted to ISF by adding the JSON blob and making a few minor changes to a few function and variable names.
+
+For example, if you are coming from an environment like Shader Toy or The Book of Shaders, the variable that they use for the time in seconds might be something like `u_time` and you would simply need to change those to `TIME` to work in ISF.
+
+Some GLSL code can be partially or fully converted to ISF using the ISF Editor; in other situations you may need to convert some or all of the code manually. In the below sections we will look at these two approaches and an example.
 
 In this chapter we'll look at:
+- Using the ISF Editor to automatically convert shaders from Shadertoy and GLSLSandbox.
 - General tips for converting non-ISF GLSL shaders to ISF.
 - Adapting GLSL examples from The Book of Shaders.
 
-## Tips for converting Non-ISF GLSL shaders to ISF
+## Using the ISF Editor to automatically convert shaders
 
-In many cases, GLSL code can be easily adapted to ISF by adding the JSON blob and making a few minor changes to a few function and variable names.
+Many shaders from [Shadertoy.com](https://shadertoy.com) and [GLSLSandbox.com](https://GLSLSandbox.com) can be automatically converted to the ISF specification using the [desktop ISF Editor](https://isf.vidvox.net/desktop-editor/) tool.
 
-For example, if you are coming from an environment like Shader Toy or The Book of Shaders, the variable that they use for the time in seconds might be something like `u_time` and you would simply need to change those to `TIME` to work in ISF.
+To use this feature:
+1. Copy the URL for the Shadertoy or GLSLSandbox that you wish to convert.
+2. In the ISF Editor, from the `File` menu, select the `Import from GLSLSandbox` or `Import from Shadertoy` option.
+3. Paste the URL of the shader to be converted.
+
+Shaders created by this method will be imported to:
+- "~/Library/Graphics/ISF" directory on macOS
+- "/ProgramData/ISF" directory on Windows
+
+Along with the GLSL code, the JSON blob will include the link to the original URL in the description tag. You may also want to add the name of the original author in the credits or elsewhere in the code as a comment for attribution.
+
+Some shaders will convert perfectly using this method, and some will require some additional work to compile or render properly.
+
+A few notes on specific things that may need to be adjusted beyond the automatic conversion:
+- Many shaders from Shadertoy / GLSLSandbox do not make use of alpha channels in anticipation of being rendered 'over' another image.
+- While multi-pass conversion from Shadertoy is supported, it is possible to run into variable name collisions between passes. These may need to be manually fixed by changing the names of variables to be unique.
+- Once you have converted a shader to ISF, the next step would be to add new variables to the code, and publish them using the JSON meta-data as INPUTS so that they can be accessible through UI elements in host applications.
+- See below for other tips on converting shaders to ISF.
+
+## Manually converting GLSL shaders to ISF
+
+When automatic conversion to ISF only works for part of a shader, or for working with GLSL code examples from sources not yet supported for automatic conversion, it is also possible to do the work by hand.
 
 Here is a list of tips that address many of the common differences:
 - You should probably replace any calls in your shader to `texture2D()` or `texture2DRect()` with `IMG_NORM_PIXEL()` or `IMG_PIXEL()`, respectively. Images in ISF- inputs, persistent buffers, etc- can be accessed by either `IMG_NORM_PIXEL()` or `IMG_PIXEL()`, depending on whether you want to use normalized or non-normalized coordinates to access the colors of the image. If your shader isn't using these- if it's using `texture2D()` or `texture2DRect()`- it won't compile if the host application tries to send it a different type of texture.
 - If the shader you are converting makes use of any custom uniform variable declarations for receiving information from a host application, replace these with elements in the `INPUTS` section of your JSON blob.
 - Many shaders pass in the resolution of the image being rendered (knowing where the fragment being evaluated is located within the output image is frequently useful). By default, ISF automatically declares a uniform vec2 named `RENDERSIZE` which is passed the dimensions of the image being rendered.
 - If the shader you're converting requires a time value, note that the uniform float `TIME` is declared, and passed the duration (in seconds) which the shader's been runing when the shader's rendered.
-- Many shaders don't use (or even acknowledge) the alpha channel of the image being rendered. There's nothing wrong with this- but when the shader's loaded in an application that uses the alpha channel, the output of the shader can look bizarre and unpredictable (though it usually involves something being darker than it should be). If you run into this, try setting gl_FragColor.a to 1.0 at the end of your shader.
+- Many shaders don't use (or even acknowledge) the alpha channel of the image being rendered. There's nothing wrong with this- but when the shader's loaded in an application that uses the alpha channel, the output of the shader can look bizarre and unpredictable (though it usually involves something being darker than it should be). If you run into this, try setting gl_FragColor.a to 1.0 at the end of your shader. Likewise you may want to add proper alpha channel handling to the shader so that it can be used with composition modes that appear 'over' other images.
 - `gl_FragCoord.xy` contains the coordinates of the fragment being evaluated. `isf_FragNormCoord.xy` contains the normalized coordinates of the fragment being evaluated.  
 - While ISF files are fragment shaders, and the host environment automatically generates a vertex shader, you can use your own vertex shader if you'd like. If you go this route, your vertex shader should have the same base name as your ISF file (just use the extension .vs), and the first thing you do in your vertex shader's main function is call `isf_vertShaderInit();`.
 - If the shader you're converting requires imported graphic resources, note that the ISF format defines the ability to import image files by adding objects to your JSON dict under the `IMPORTED` key. The imported images are accessed via the usual `IMG_PIXEL()` or `IMG_NORM_PIXEL()` methods. Details on how to do this are listed in the full specification and ISF Reference Pages.
 - If your texture doesn't look right, make sure your texture coordinates are ranged properly (textures are typically "clamped" by the host implementation, if you specify an out-of-range texture coordinate it may look funny).
 
+You may also want to add the name of the original author of a shader being remixed in the credits, or elsewhere in the code as a comment for attribution.
 
-## Adapting GLSL examples from The Book of Shaders.
+### Example: Adapting GLSL examples from The Book of Shaders.
 
 One of the most popular websites for learning GLSL is [The Book of Shaders](https://thebookofshaders.com/), where you can find both a great explanation of how the language works and lots of sample code that show off all kinds of creative uses of shaders.
 
