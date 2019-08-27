@@ -26,7 +26,7 @@ This reference contains a set of useful notes for writing GLSL shaders to meet t
 
 - Here is a collection of simple test ISF files that demonstrate ISF's basic features.  These are test filters, they aren't intended to have signifcant creative use:
 [ISF Test/Tutorial filters](http://vidvox.net/rays_oddsnends/ISF%20tests+tutorials.zip)
-- [Here's an installer](http://www.vidvox.net/rays_oddsnends/Vidvox%20ISF%20resources.pkg.zip) for over a hundred different ISF files, both images and filters.  The installer places them in /Library/Graphics/ISF where they can be accessed by all users.
+- The [ISF Files Repository](https://github.com/vidvox/isf-files) contains over 200  generator, transition and effects shaders that can be used as learning resources or bundled with applications as a standard set of assets.  Note that these are installed by the ISF Editor and other apps to the "/Library/Graphics/ISF" directory on Mac and "/ProgramData/ISF" on Windows.
 
 ## Additional Resources
 
