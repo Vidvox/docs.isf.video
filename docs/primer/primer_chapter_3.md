@@ -47,15 +47,12 @@ ISF files can be created, viewed and shared online at the [isf.video](http://int
 <img src="/primer/3/ISF-Editor.png" alt="ISF Editor for Mac" />
 <em>ISF Editor for Mac.</em>
 
-A free ISF Editor for Mac is available here: 
-[ISF Editor.app.zip](https://www.vidvox.net/download/ISF_Editor_2.9.7.3.dmg).
-
-Beta releases of the ISF Editor for Mac and Windows can be found here:
-[ISF Editor Releases](https://github.com/mrRay/VVISF-GL/releases)
+A free ISF Editor for Mac and Windows is available here: 
+[ISF Editor.app.zip](https://isf.vidvox.net/desktop-editor/).
 
 These are some of its basic features:
-- Browses, renders and displays ISF files. Has a built-in video source, and can also use any QC comps, movie files, image files, Syphon video servers, or AVCapture-compatible video inputs as a video source for testing ISF-based image filters.
-- Automatically publishes the rendered output as a Syphon source.
+- Browses, renders and displays ISF files. Has a built-in video sources, Syphon / Spout video servers, or AVCapture-compatible video inputs as a video source for testing ISF-based image filters.
+- Automatically publishes the rendered output as a Syphon / Spout source.
 - UI items are automatically created for inputs, allowing you to interact with your ISF file.
 - Built-in shader editor with syntax coloring and integrated error display along with plenty of logging to facilitate creating and debugging shaders.
 - Output window can be paused, and can also be used to view the output of the individual render passes in your ISF file, which facilitates debugging by providing shader devs with a quick and easy way to visualize values being used in their shaders.
@@ -86,14 +83,17 @@ For an example of using audio waveforms and FFTs see [the VDMX tutorial on visua
 
 Additional tutorials on using ISF in VDMX can be found on the [VDMX Tutorials Site](https://vdmx.vidvox.net/search?q=ISF).
 
+### ISF for Motion and FCP X
+
+One of the interesting ways to take advantage of using GLSL shaders is for non-realtime use when creating motion graphics and editing video.  This can be especially useful for rendering out complex shaders at high resolutions and frame rates.
+
+The [ISF for Motion and FCP X](https://isf.vidvox.net/isf-for-motion/) add-on includes the standard set of ISF 200+ generators, filters, and transitions and the ability to use your own creations.
+
 ### Other supported software
 
 Here are links to websites of a few different other softwares that support the ISF specification:
 
-- [CoGe](https://imimot.com/cogevj/)
-- [Fugio](http://www.bigfug.com/software/fugio/)
-- [Mad Mappper](http://madmapper.com/)
-- [Millumin](http://www.millumin.com/)
+For a full listing of software that supports ISF, visit the [supported software](https://isf.video/integrations/) section of the ISF homepage.
 
 ### Using ISF in WebGL
 
@@ -108,11 +108,10 @@ An example implementation of using the javascript implementation of ISF can be f
 
 Developers interested in working with ISF files on a code level can take advantage of several existing libraries, frameworks and example projects.
 
-The VIDVOX ISF Editor and VVISFKit framework codebases are open source and can be found in the [VVOpenSource](https://github.com/mrRay/vvopensource) repository.
+- The [VVISF-GL](https://github.com/mrRay/vvisf-gl) repository contains a crossplatform C++ library for loading and rendering ISF shaders.
+- The [ISF-JS-Renderer](https://www.github.com/msfeldstein/ISF-JS-Renderer) can be used to parse and render ISF files through javascript in a web browser.
+- Legacy objective-c ISF Editor and VVISFKit framework codebases for Mac and iOS can be found in the [VVOpenSource](https://github.com/mrRay/vvopensource) repository.
 
-Additionally here are a few other useful open source projects that use ISF to check out:
-- [ISF-JS-Renderer](https://www.github.com/msfeldstein/ISF-JS-Renderer) can be used to parse and render ISF files through javascript.
-- [libisf](https://github.com/jcelerier/libisf) is a library for parsing ISF files and includes an example editor made with Qt.
-- [ISF TouchDesigner](https://github.com/marcinbiegun/isf-touchdesigner) has partial support for using ISF files in TouchDesigner projects.
-- [ofxISF](https://github.com/satoruhiga/ofxISF) has partial support for using ISF files in OpenFrameworks projects.
-- [ISFHeavyM](https://github.com/sophiadigitalart/ISFHeavyM) and [ISFgif](https://github.com/sophiadigitalart/ISFGif) can be used to create a ISF shared library with GIF preview for HeavyM.
+
+More resources for adding support for ISF to your own software, along with add-ons for various creative code environments, can be found in the [developers section](https://isf.video/developers/) of the ISF website.
+

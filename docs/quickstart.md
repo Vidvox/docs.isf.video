@@ -19,7 +19,9 @@ In this document we will cover the basics of using and writing shaders in ISF.
 <em>ISF composition being used as a source file in VDMX.</em>
 
 - Shaders written in the ISF specification can be used in supported environments on desktop, mobile and the web.  To use ISF files in a specific piece of software consult the appropriate documentation.
-- ISF files that you would like to be globally available to all software on your Mac can be placed in the "/Library/Graphics/ISF" or "~/Library/Graphics/ISF" directories.  Generators, filters and transitions in these directories should generally be automatically available within supported software where applicable. 
+- In many cases you may have certain ISF files, such as the standard set of generators and filters, that you would like to be globally available to all software on your computer.
+- - MacOS- ISF files should be installed in `/Library/Graphics/ISF` (if you want them to be available for all users on your system) or `~/Library/Graphics/ISF` (if you only want them to be available to your user account). ISF files installed in either of these locations will be available to all applications: application-specific ISFs should be installed in `/Library/Application Support/app name` or `~/Library/Application Support/app name`, or as specified by the software.
+- - Windows- Ideally, global ISFs should be placed in `/ProgramData/ISF`, but different apps may check different locations.
 - ISF files can be created, viewed and shared online at the [interactiveshaderformat.com](http://interactiveshaderformat.com) website.  Compositions from this site can be downloaded and used in your host software of choice.
 - ISF shaders can be made as full page standalone webpages, with or without controls.  An example implementation can be found in the [ISF Generator Example on Glitch](https://glitch.com/edit/#!/isf-example?path=README.md).
 
@@ -29,7 +31,7 @@ Additional discussion and examples can be found in the [ISF Primer chapter on us
 
 You can create ISF compositions using a variety of different tools:
 - There is a free [ISF Editor online](http://interactiveshaderformat.com).
-- There is a free [ISF Editor for Mac](https://www.vidvox.net/download/ISF_Editor_2.9.7.3.dmg).
+- There is a free [ISF Editor for Mac](https://isf.vidvox.net/desktop-editor/).
 - You can use any standard text editor.  If you are using an app like TextEdit, make sure to use the "Make Plain Text" option from the "Format" menu.
 - Additional discussion about development tools can be found in the [ISF Primer chapter on creating ISF Compositions](primer_chapter_3).
 
