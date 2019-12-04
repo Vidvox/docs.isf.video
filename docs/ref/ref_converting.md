@@ -15,7 +15,7 @@ folder: ref
 
 In many cases there are only a few minor differences when converting existing GLSL code to the ISF specification. Here are some of the common changes to consider.
 
-For examples on converting shaders, see [Chapter 9 - Adapting Existing GLSL Code to the ISF Specification](primer_chapter_9.html) of the ISF Primer.
+For examples on converting shaders, see [Chapter 9 - Adapting Existing GLSL Code to the ISF Specification](/primer_chapter_9.html) of the ISF Primer.
 
 ## texture2D() or texture2DRect()
 - You should replace any calls in your shader to ``texture2D()`` or ``texture2DRect()`` with ``IMG_NORM_PIXEL()`` or ``IMG_PIXEL()``, respectively.
@@ -39,7 +39,7 @@ For examples on converting shaders, see [Chapter 9 - Adapting Existing GLSL Code
 
 ## Vertex Shaders and isf_vertShaderInit
 - While ISF files are fragment shaders, and the host environment automatically generates a vertex shader, you can use your own vertex shader if you'd like. If you go this route, your vertex shader should have the same base name as your ISF file (just use the extension .vs), and the first thing you do in your vertex shader's main function is call `isf_vertShaderInit();`.
-- See [Chapter 5 – Vertex Shaders](primer_chapter_5.html) in the ISF Primer for more details.
+- See [Chapter 5 – Vertex Shaders](/primer_chapter_5.html) in the ISF Primer for more details.
 
 ## IMPORTED image data
 - If the shader you're converting requires imported graphic resources, note that the ISF format defines the ability to import image files by adding objects to your JSON dict under the `IMPORTED` key. The imported images are accessed via the usual `IMG_PIXEL()` or `IMG_NORM_PIXEL()` methods. See the [ISF JSON reference](ref_json) page for more details on including image data.
