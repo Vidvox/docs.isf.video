@@ -1,5 +1,12 @@
 ---
+title: Converting GLSL code to ISF
+tags: [Primer, Audio, FFT]
+keywords: getting_started
+last_updated: June 12, 2018
+summary: "Tips and examples for converting existing GLSL code to the ISF Specification."
 sidebar: home_sidebar
+permalink: primer_chapter_9.html
+folder: primer
 ---
 
 # Adapting Existing GLSL Code to the ISF Specification
@@ -43,6 +50,8 @@ A few notes on specific things that may need to be adjusted beyond the automatic
 ## Manually converting GLSL shaders to ISF
 
 When automatic conversion to ISF only works for part of a shader, or for working with GLSL code examples from sources not yet supported for automatic conversion, it is also possible to do the work by hand.
+
+### General tips for converting non-ISF GLSL shaders to ISF
 
 Here is a list of tips that address many of the common differences:
 - You should probably replace any calls in your shader to `texture2D()` or `texture2DRect()` with `IMG_NORM_PIXEL()` or `IMG_PIXEL()`, respectively. Images in ISF- inputs, persistent buffers, etc- can be accessed by either `IMG_NORM_PIXEL()` or `IMG_PIXEL()`, depending on whether you want to use normalized or non-normalized coordinates to access the colors of the image. If your shader isn't using these- if it's using `texture2D()` or `texture2DRect()`- it won't compile if the host application tries to send it a different type of texture.
