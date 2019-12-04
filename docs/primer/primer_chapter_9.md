@@ -155,6 +155,7 @@ In this case, first replace all cases of `u_time` with `TIME` and `u_resolution`
 When making adaptations it can also be useful to look in the code to find sections where you may want to add a custom uniform variable in the JSON blob.  In this example instead of the hardcoded value of 3.0 for the scaling, we have added a `scale` element of type float to the `INPUTS` array with a range of 0.0 to 8.0.
 
 The adapted result looks quite similar:
+[Open in editor](https://www.interactiveshaderformat.com/sketches/5191)
 
 ```glsl
 /*{
