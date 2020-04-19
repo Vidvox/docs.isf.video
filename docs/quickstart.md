@@ -519,7 +519,7 @@ This page was designed to demonstrate some of the core ideas of the Interactive 
 
 Here are a few resources you may want to check out next:
 
-- Read the [ISF Primer](primer_index) for further discussion and examples of many of the topics on this page.  It also includes lessons covering some of the basics of GLSL programming and how to take advantage of commonly used techniques.
+- Read the [ISF Primer](primer) for further discussion and examples of many of the topics on this page.  It also includes lessons covering some of the basics of GLSL programming and how to take advantage of commonly used techniques.
 - The [ISF Reference Pages](ref_index) are a useful resource for quickly finding information about automatically declared uniforms, built-in functions and other related materials.
 - Visit the [ISF Sharing Site](http://interactiveshaderformat.com) where you can find lots of compositions to learn from, remix, or just use directly in host applications.
 - The full [ISF Specification Page](https://github.com/mrRay/ISF_Spec/) contains detailed information for developers.
